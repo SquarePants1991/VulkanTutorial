@@ -1,0 +1,538 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8E140EE1216C69F00016E1A3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EE0216C69F00016E1A3 /* AppDelegate.m */; };
+		8E140EE4216C69F00016E1A3 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EE3216C69F00016E1A3 /* ViewController.mm */; };
+		8E140EE7216C69F00016E1A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E140EE5216C69F00016E1A3 /* Main.storyboard */; };
+		8E140EE9216C69F10016E1A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E140EE8216C69F10016E1A3 /* Assets.xcassets */; };
+		8E140EEC216C69F10016E1A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E140EEA216C69F10016E1A3 /* LaunchScreen.storyboard */; };
+		8E140EEF216C69F10016E1A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EEE216C69F10016E1A3 /* main.m */; };
+		8E140EF9216C69F20016E1A3 /* VulkanTutorialiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EF8216C69F20016E1A3 /* VulkanTutorialiOSTests.m */; };
+		8E140F0D216C6C120016E1A3 /* HTRenderDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E140F0B216C6C120016E1A3 /* HTRenderDevice.cpp */; };
+		8E140F10216C6D080016E1A3 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140F0F216C6D080016E1A3 /* Metal.framework */; };
+		8E140F12216C6D220016E1A3 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140F11216C6D220016E1A3 /* MetalKit.framework */; };
+		8E140F14216C6D5D0016E1A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140F13216C6D5D0016E1A3 /* UIKit.framework */; };
+		8E140F16216C6D640016E1A3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140F15216C6D640016E1A3 /* QuartzCore.framework */; };
+		8E140F18216C6D690016E1A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140F17216C6D690016E1A3 /* Foundation.framework */; };
+		8E140F1A216C6DAA0016E1A3 /* MoltenVK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140F19216C6DAA0016E1A3 /* MoltenVK.framework */; };
+		8E140F1C216C6EF40016E1A3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140F1B216C6EF40016E1A3 /* libc++.tbd */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8E140EF5216C69F20016E1A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8E140ED4216C69F00016E1A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E140EDB216C69F00016E1A3;
+			remoteInfo = VulkanTutorialiOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8E140EDC216C69F00016E1A3 /* VulkanTutorialiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VulkanTutorialiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E140EDF216C69F00016E1A3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8E140EE0216C69F00016E1A3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8E140EE2216C69F00016E1A3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		8E140EE3216C69F00016E1A3 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
+		8E140EE6216C69F00016E1A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8E140EE8216C69F10016E1A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8E140EEB216C69F10016E1A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8E140EED216C69F10016E1A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E140EEE216C69F10016E1A3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8E140EF4216C69F20016E1A3 /* VulkanTutorialiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VulkanTutorialiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E140EF8216C69F20016E1A3 /* VulkanTutorialiOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VulkanTutorialiOSTests.m; sourceTree = "<group>"; };
+		8E140EFA216C69F20016E1A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E140F0A216C6C120016E1A3 /* HTRenderDevice.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTRenderDevice.hpp; sourceTree = "<group>"; };
+		8E140F0B216C6C120016E1A3 /* HTRenderDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderDevice.cpp; sourceTree = "<group>"; };
+		8E140F0C216C6C120016E1A3 /* HTVKCheckUtil.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTVKCheckUtil.hpp; sourceTree = "<group>"; };
+		8E140F0F216C6D080016E1A3 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		8E140F11216C6D220016E1A3 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
+		8E140F13216C6D5D0016E1A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		8E140F15216C6D640016E1A3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8E140F17216C6D690016E1A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8E140F19216C6DAA0016E1A3 /* MoltenVK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MoltenVK.framework; sourceTree = "<group>"; };
+		8E140F1B216C6EF40016E1A3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8E140ED9216C69F00016E1A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E140F1C216C6EF40016E1A3 /* libc++.tbd in Frameworks */,
+				8E140F18216C6D690016E1A3 /* Foundation.framework in Frameworks */,
+				8E140F16216C6D640016E1A3 /* QuartzCore.framework in Frameworks */,
+				8E140F14216C6D5D0016E1A3 /* UIKit.framework in Frameworks */,
+				8E140F12216C6D220016E1A3 /* MetalKit.framework in Frameworks */,
+				8E140F1A216C6DAA0016E1A3 /* MoltenVK.framework in Frameworks */,
+				8E140F10216C6D080016E1A3 /* Metal.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E140EF1216C69F20016E1A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8E140ED3216C69F00016E1A3 = {
+			isa = PBXGroup;
+			children = (
+				8E140EDE216C69F00016E1A3 /* VulkanTutorialiOS */,
+				8E140EF7216C69F20016E1A3 /* VulkanTutorialiOSTests */,
+				8E140EDD216C69F00016E1A3 /* Products */,
+				8E140F0E216C6D080016E1A3 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8E140EDD216C69F00016E1A3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8E140EDC216C69F00016E1A3 /* VulkanTutorialiOS.app */,
+				8E140EF4216C69F20016E1A3 /* VulkanTutorialiOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8E140EDE216C69F00016E1A3 /* VulkanTutorialiOS */ = {
+			isa = PBXGroup;
+			children = (
+				8E140F09216C6C120016E1A3 /* Classes */,
+				8E140F03216C6BA80016E1A3 /* Frameworks */,
+				8E140EDF216C69F00016E1A3 /* AppDelegate.h */,
+				8E140EE0216C69F00016E1A3 /* AppDelegate.m */,
+				8E140EE2216C69F00016E1A3 /* ViewController.h */,
+				8E140EE3216C69F00016E1A3 /* ViewController.mm */,
+				8E140EE5216C69F00016E1A3 /* Main.storyboard */,
+				8E140EE8216C69F10016E1A3 /* Assets.xcassets */,
+				8E140EEA216C69F10016E1A3 /* LaunchScreen.storyboard */,
+				8E140EED216C69F10016E1A3 /* Info.plist */,
+				8E140EEE216C69F10016E1A3 /* main.m */,
+			);
+			path = VulkanTutorialiOS;
+			sourceTree = "<group>";
+		};
+		8E140EF7216C69F20016E1A3 /* VulkanTutorialiOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				8E140EF8216C69F20016E1A3 /* VulkanTutorialiOSTests.m */,
+				8E140EFA216C69F20016E1A3 /* Info.plist */,
+			);
+			path = VulkanTutorialiOSTests;
+			sourceTree = "<group>";
+		};
+		8E140F03216C6BA80016E1A3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8E140F19216C6DAA0016E1A3 /* MoltenVK.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		8E140F09216C6C120016E1A3 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8E140F0A216C6C120016E1A3 /* HTRenderDevice.hpp */,
+				8E140F0B216C6C120016E1A3 /* HTRenderDevice.cpp */,
+				8E140F0C216C6C120016E1A3 /* HTVKCheckUtil.hpp */,
+			);
+			name = Classes;
+			path = ../../../../Classes;
+			sourceTree = "<group>";
+		};
+		8E140F0E216C6D080016E1A3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8E140F1B216C6EF40016E1A3 /* libc++.tbd */,
+				8E140F17216C6D690016E1A3 /* Foundation.framework */,
+				8E140F15216C6D640016E1A3 /* QuartzCore.framework */,
+				8E140F13216C6D5D0016E1A3 /* UIKit.framework */,
+				8E140F11216C6D220016E1A3 /* MetalKit.framework */,
+				8E140F0F216C6D080016E1A3 /* Metal.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8E140EDB216C69F00016E1A3 /* VulkanTutorialiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E140EFD216C69F20016E1A3 /* Build configuration list for PBXNativeTarget "VulkanTutorialiOS" */;
+			buildPhases = (
+				8E140ED8216C69F00016E1A3 /* Sources */,
+				8E140ED9216C69F00016E1A3 /* Frameworks */,
+				8E140EDA216C69F00016E1A3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VulkanTutorialiOS;
+			productName = VulkanTutorialiOS;
+			productReference = 8E140EDC216C69F00016E1A3 /* VulkanTutorialiOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8E140EF3216C69F20016E1A3 /* VulkanTutorialiOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E140F00216C69F20016E1A3 /* Build configuration list for PBXNativeTarget "VulkanTutorialiOSTests" */;
+			buildPhases = (
+				8E140EF0216C69F20016E1A3 /* Sources */,
+				8E140EF1216C69F20016E1A3 /* Frameworks */,
+				8E140EF2216C69F20016E1A3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8E140EF6216C69F20016E1A3 /* PBXTargetDependency */,
+			);
+			name = VulkanTutorialiOSTests;
+			productName = VulkanTutorialiOSTests;
+			productReference = 8E140EF4216C69F20016E1A3 /* VulkanTutorialiOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8E140ED4216C69F00016E1A3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = handytool;
+				TargetAttributes = {
+					8E140EDB216C69F00016E1A3 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+					8E140EF3216C69F20016E1A3 = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = 8E140EDB216C69F00016E1A3;
+					};
+				};
+			};
+			buildConfigurationList = 8E140ED7216C69F00016E1A3 /* Build configuration list for PBXProject "VulkanTutorialiOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8E140ED3216C69F00016E1A3;
+			productRefGroup = 8E140EDD216C69F00016E1A3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8E140EDB216C69F00016E1A3 /* VulkanTutorialiOS */,
+				8E140EF3216C69F20016E1A3 /* VulkanTutorialiOSTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8E140EDA216C69F00016E1A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E140EEC216C69F10016E1A3 /* LaunchScreen.storyboard in Resources */,
+				8E140EE9216C69F10016E1A3 /* Assets.xcassets in Resources */,
+				8E140EE7216C69F00016E1A3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E140EF2216C69F20016E1A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8E140ED8216C69F00016E1A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E140EE4216C69F00016E1A3 /* ViewController.mm in Sources */,
+				8E140EEF216C69F10016E1A3 /* main.m in Sources */,
+				8E140EE1216C69F00016E1A3 /* AppDelegate.m in Sources */,
+				8E140F0D216C6C120016E1A3 /* HTRenderDevice.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E140EF0216C69F20016E1A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E140EF9216C69F20016E1A3 /* VulkanTutorialiOSTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8E140EF6216C69F20016E1A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8E140EDB216C69F00016E1A3 /* VulkanTutorialiOS */;
+			targetProxy = 8E140EF5216C69F20016E1A3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8E140EE5216C69F00016E1A3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8E140EE6216C69F00016E1A3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8E140EEA216C69F10016E1A3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8E140EEB216C69F10016E1A3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8E140EFB216C69F20016E1A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		8E140EFC216C69F20016E1A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8E140EFE216C69F20016E1A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P48344HVQL;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VulkanTutorialiOS/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = /usr/local/vulkansdk/MoltenVK/include;
+				INFOPLIST_FILE = VulkanTutorialiOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.handytool.VulkanTutorialiOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8E140EFF216C69F20016E1A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P48344HVQL;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VulkanTutorialiOS/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = /usr/local/vulkansdk/MoltenVK/include;
+				INFOPLIST_FILE = VulkanTutorialiOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.handytool.VulkanTutorialiOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8E140F01216C69F20016E1A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = VulkanTutorialiOSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.handytool.VulkanTutorialiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VulkanTutorialiOS.app/VulkanTutorialiOS";
+			};
+			name = Debug;
+		};
+		8E140F02216C69F20016E1A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = VulkanTutorialiOSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.handytool.VulkanTutorialiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VulkanTutorialiOS.app/VulkanTutorialiOS";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8E140ED7216C69F00016E1A3 /* Build configuration list for PBXProject "VulkanTutorialiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E140EFB216C69F20016E1A3 /* Debug */,
+				8E140EFC216C69F20016E1A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E140EFD216C69F20016E1A3 /* Build configuration list for PBXNativeTarget "VulkanTutorialiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E140EFE216C69F20016E1A3 /* Debug */,
+				8E140EFF216C69F20016E1A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E140F00216C69F20016E1A3 /* Build configuration list for PBXNativeTarget "VulkanTutorialiOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E140F01216C69F20016E1A3 /* Debug */,
+				8E140F02216C69F20016E1A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8E140ED4216C69F00016E1A3 /* Project object */;
+}

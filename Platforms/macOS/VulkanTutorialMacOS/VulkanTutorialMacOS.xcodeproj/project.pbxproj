@@ -32,6 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		64AB8BDB4A263940AED22593 /* HTVKCheckUtil.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTVKCheckUtil.hpp; sourceTree = "<group>"; };
 		8E140EAB216B62470016E1A3 /* VulkanTutorialMacOS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = VulkanTutorialMacOS; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E140EAE216B62480016E1A3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		8E140EB8216B629F0016E1A3 /* HTRenderDevice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderDevice.cpp; sourceTree = "<group>"; };
@@ -86,6 +87,7 @@
 			children = (
 				8E140EB8216B629F0016E1A3 /* HTRenderDevice.cpp */,
 				8E140EB9216B629F0016E1A3 /* HTRenderDevice.hpp */,
+				64AB8BDB4A263940AED22593 /* HTVKCheckUtil.hpp */,
 			);
 			name = Classes;
 			path = ../../../../Classes;
