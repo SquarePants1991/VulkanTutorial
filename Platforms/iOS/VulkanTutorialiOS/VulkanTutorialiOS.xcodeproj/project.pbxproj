@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E061C7E216DC916007805C9 /* MoltenVK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E061C7D216DC916007805C9 /* MoltenVK.framework */; };
 		8E140EE1216C69F00016E1A3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EE0216C69F00016E1A3 /* AppDelegate.m */; };
 		8E140EE4216C69F00016E1A3 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EE3216C69F00016E1A3 /* ViewController.mm */; };
 		8E140EE7216C69F00016E1A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E140EE5216C69F00016E1A3 /* Main.storyboard */; };
@@ -15,13 +16,6 @@
 		8E140EEF216C69F10016E1A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EEE216C69F10016E1A3 /* main.m */; };
 		8E140EF9216C69F20016E1A3 /* VulkanTutorialiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EF8216C69F20016E1A3 /* VulkanTutorialiOSTests.m */; };
 		8E140F0D216C6C120016E1A3 /* HTRenderDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E140F0B216C6C120016E1A3 /* HTRenderDevice.cpp */; };
-		8E140F10216C6D080016E1A3 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140F0F216C6D080016E1A3 /* Metal.framework */; };
-		8E140F12216C6D220016E1A3 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140F11216C6D220016E1A3 /* MetalKit.framework */; };
-		8E140F14216C6D5D0016E1A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140F13216C6D5D0016E1A3 /* UIKit.framework */; };
-		8E140F16216C6D640016E1A3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140F15216C6D640016E1A3 /* QuartzCore.framework */; };
-		8E140F18216C6D690016E1A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140F17216C6D690016E1A3 /* Foundation.framework */; };
-		8E140F1A216C6DAA0016E1A3 /* MoltenVK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140F19216C6DAA0016E1A3 /* MoltenVK.framework */; };
-		8E140F1C216C6EF40016E1A3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140F1B216C6EF40016E1A3 /* libc++.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8E061C7D216DC916007805C9 /* MoltenVK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MoltenVK.framework; sourceTree = "<group>"; };
+		8E061C7F216DC9B9007805C9 /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
 		8E140EDC216C69F00016E1A3 /* VulkanTutorialiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VulkanTutorialiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E140EDF216C69F00016E1A3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8E140EE0216C69F00016E1A3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -56,7 +52,6 @@
 		8E140F13216C6D5D0016E1A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8E140F15216C6D640016E1A3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8E140F17216C6D690016E1A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		8E140F19216C6DAA0016E1A3 /* MoltenVK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MoltenVK.framework; sourceTree = "<group>"; };
 		8E140F1B216C6EF40016E1A3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -65,13 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E140F1C216C6EF40016E1A3 /* libc++.tbd in Frameworks */,
-				8E140F18216C6D690016E1A3 /* Foundation.framework in Frameworks */,
-				8E140F16216C6D640016E1A3 /* QuartzCore.framework in Frameworks */,
-				8E140F14216C6D5D0016E1A3 /* UIKit.framework in Frameworks */,
-				8E140F12216C6D220016E1A3 /* MetalKit.framework in Frameworks */,
-				8E140F1A216C6DAA0016E1A3 /* MoltenVK.framework in Frameworks */,
-				8E140F10216C6D080016E1A3 /* Metal.framework in Frameworks */,
+				8E061C7E216DC916007805C9 /* MoltenVK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,7 +123,7 @@
 		8E140F03216C6BA80016E1A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8E140F19216C6DAA0016E1A3 /* MoltenVK.framework */,
+				8E061C7D216DC916007805C9 /* MoltenVK.framework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
@@ -153,6 +142,7 @@
 		8E140F0E216C6D080016E1A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8E061C7F216DC9B9007805C9 /* IOSurface.framework */,
 				8E140F1B216C6EF40016E1A3 /* libc++.tbd */,
 				8E140F17216C6D690016E1A3 /* Foundation.framework */,
 				8E140F15216C6D640016E1A3 /* QuartzCore.framework */,
