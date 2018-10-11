@@ -27,7 +27,7 @@ Vulkan是一个完全跨平台的图形处理库，所以我使用C++作为示�
 在MacOS上，我将使用动态库进行环境的搭建。首先我们使用Xcode建立一个命令行项目，选择语言为C++
 ![](https://upload-images.jianshu.io/upload_images/2949750-9e2df9dc4eb127c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-将用到的动态库和资源文件拷贝到项目下并添加到项目中。需要拷贝的有`/usr/local/vulkansdk/macOS/lib/libvulkan.1.1.82.dylib`，`/usr/local/vulkansdk/macOS/lib/libvulkan.1.1.82.dylib`，`/usr/local/vulkansdk/macOS/lib/libMoltenVK.dylib`，`/usr/local/vulkansdk/macOS/etc/vulkan/icd.d/MoltenVK_icd.json`。最后项目目录如下。
+将用到的动态库和资源文件拷贝到项目下并添加到项目中。需要拷贝的有`/usr/local/vulkansdk/macOS/lib/libvulkan.1.1.82.dylib`，`/usr/local/vulkansdk/macOS/lib/libMoltenVK.dylib`，`/usr/local/vulkansdk/macOS/etc/vulkan/icd.d/MoltenVK_icd.json`。最后项目目录如下。
 
 - Frameworks
   * libMoltenVK.dylib
