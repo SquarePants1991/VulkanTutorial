@@ -25,7 +25,8 @@ Vulkan是一个完全跨平台的图形处理库，所以我使用C++作为示�
 
 ## MacOS
 在MacOS上，我将使用动态库进行环境的搭建。首先我们使用Xcode建立一个命令行项目，选择语言为C++
-【建立项目截图】
+![](https://upload-images.jianshu.io/upload_images/2949750-9e2df9dc4eb127c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 将用到的动态库和资源文件拷贝到项目下并添加到项目中。需要拷贝的有`/usr/local/vulkansdk/macOS/lib/libvulkan.1.1.82.dylib`，`/usr/local/vulkansdk/macOS/lib/libvulkan.1.1.82.dylib`，`/usr/local/vulkansdk/macOS/lib/libMoltenVK.dylib`，`/usr/local/vulkansdk/macOS/etc/vulkan/icd.d/MoltenVK_icd.json`。最后项目目录如下。
 
 - Frameworks
@@ -36,9 +37,10 @@ Vulkan是一个完全跨平台的图形处理库，所以我使用C++作为示�
 - main.cpp
 
 然后我们需要将动态库和资源设置到`Build Phase`的`Copy File`中，设置如下图。
-[设置Copy File截图]
+![image.png](https://upload-images.jianshu.io/upload_images/2949750-e0aeb09e9bae310e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 这样设置后，Build时，动态库和资源会被拷贝到可执行文件同一目录下，可执行文件就可以找到它们了。接着需要修改一下`MoltenVK_icd.json`，它指定了`libMoltenVK.dylib`所在的位置。修改前，它的内容是这样的
-```
+```json
 {
     "file_format_version" : "1.0.0",
     "ICD": {
@@ -48,7 +50,7 @@ Vulkan是一个完全跨平台的图形处理库，所以我使用C++作为示�
 }
 ```
 需要修改成
-```
+```json
 {
     "file_format_version" : "1.0.0",
     "ICD": {
@@ -58,13 +60,14 @@ Vulkan是一个完全跨平台的图形处理库，所以我使用C++作为示�
 }
 ```
 因为我们的项目里，MoltenVK_icd.json和libMoltenVK.dylib在同一目录下。最后我们添加额外的头文件搜索路径：`/usr/local/vulkansdk/macOS/include`，这样我们就可以正确的导入Vulkan相关的头文件了。
-【头文件搜索路径设置截图】
+![](https://upload-images.jianshu.io/upload_images/2949750-a705057b1b88d749.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 
 MacOS的开发环境到此基本设置完毕了。
 
 ## MacOS开发环境验证
 为了验证Vulkan的开发环境是否没有问题，我们编写一些代码，创建一个Vulkan的Instance，看看有没有问题。在`Classes`目录中创建C++类`HTRenderDevice`，这个类后面会用来创建管理Vulkan的设备，目前仅仅用来创建Vulkan实例。下面是创建Vulkan实例的代码
-```
+```cpp
 void HTRenderDevice::createInstance() {
     // VK Application Info
     VkApplicationInfo appInfo = {};
