@@ -24,7 +24,7 @@ Vulkan是一个完全跨平台的图形处理库，所以我使用C++作为示�
 如果后面需要在Linux下使用，可以在Platforms里面增加Linux目录。
 
 ## MacOS
-在MacOS上，我将使用动态库进行环境的搭建。首先我们使用Xcode建立一个命令行项目。
+在MacOS上，我将使用动态库进行环境的搭建。首先我们使用Xcode建立一个命令行项目，选择语言为C++
 【建立项目截图】
 将用到的动态库和资源文件拷贝到项目下并添加到项目中。需要拷贝的有`/usr/local/vulkansdk/macOS/lib/libvulkan.1.1.82.dylib`，`/usr/local/vulkansdk/macOS/lib/libvulkan.1.1.82.dylib`，`/usr/local/vulkansdk/macOS/lib/libMoltenVK.dylib`，`/usr/local/vulkansdk/macOS/etc/vulkan/icd.d/MoltenVK_icd.json`。最后项目目录如下。
 
@@ -84,9 +84,12 @@ void HTRenderDevice::createInstance() {
     }
 }
 ```
-当然，你想用Objective-C编写`HTRenderDevice`类也是完全可以的，正如前面提到，使用C++仅仅是为了跨平台。最后在MacOS的项目中通过Group的方式包含`Classes`目录，并在main.cpp中初始化一个`HTRenderDevice`类。如果一切正常，示例程序输出里将会看到`"VK Instance create success.`。如果你遇到了抛出异常，那你就要检查一下前面的步骤是否有遗漏或者错误了。
+当然，你想用Objective-C编写`HTRenderDevice`类也是完全可以的，正如前面提到，使用C++仅仅是为了跨平台。最后在MacOS的项目中通过Group的方式包含`Classes`目录，并在main.cpp中初始化一个`HTRenderDevice`类。如果一切正常，示例程序输出里将会看到`VK Instance create success.`。如果你遇到了抛出异常，那你就要检查一下前面的步骤是否有遗漏或者错误了。
 
 ## iOS
 在iOS上我将使用静态库的方式集成Vulkan，由于iOS上还没有提供Vulkan Loader，所以我们只需要集成MoltenVK即可，不过需要注意的是，SDK中给的静态库只提供了arm64架构的，模拟器下是无法编译通过的。目前我还没有找出在模拟器上调试的方案，只能在真机上调试。
 
-新建一个单页面的iOS项目，然后把MoltenVK的framework拷贝到iOS项目目录下，framework位于`/usr/local/vulkansdk/MoltenVK/iOS/MoltenVK.framework`，我们把MoltenVK.framework加入项目，Xcode便会自动链接这个framework。接下来将上面用到的`Classes`文件夹加入项目，在`ViewController.m`中加入`HTRenderDevice renderDevice;`创建Vulkan Instance。
+新建一个单页面的iOS项目，语言使用Objective-C，然后把MoltenVK的framework拷贝到iOS项目目录下，framework位于`/usr/local/vulkansdk/MoltenVK/iOS/MoltenVK.framework`，我们把MoltenVK.framework加入项目，Xcode便会自动链接这个framework。接下来将上面用到的`Classes`文件夹加入项目，在`ViewController.m`的`- (void)viewDidLoad `方法中加入`HTRenderDevice renderDevice;`创建Vulkan Instance。别忘了把`ViewController.m`重命名为`ViewController.mm`，这样才能在oc类中使用C++。运行项目，如果一切正常的话，可以看到输出`VK Instance create success.`，当然别忘了只能在真机上调试。
+
+# 示例地址
+[https://github.com/SquarePants1991/VulkanTutorial](https://github.com/SquarePants1991/VulkanTutorial)，分支为`chapter1`。
