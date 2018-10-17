@@ -11,5 +11,4 @@
 
 int main(int argc, const char * argv[]) {
     HTRenderDevice renderDevice;
-    std::cout << renderDevice.vkInstance;
 }

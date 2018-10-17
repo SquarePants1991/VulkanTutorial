@@ -12,18 +12,26 @@
 #include <iostream>
 #include <vulkan/vulkan.h>
 
+typedef VkPhysicalDevice (* HTRenderDevicePickPhysicsDeviceCallback)(std::vector<VkPhysicalDevice> &physicsDevices);
+
 class HTRenderDevice {
     public:
     VkInstance vkInstance;
     VkPhysicalDevice vkPhysicsDevice;
-    VkDevice vkLogicDevice;
     int graphicsQueueFamilyIndex;
     int presentQueueFamilyIndex;
+    VkDevice vkLogicDevice;
+    VkQueue graphicsQueue;
     VkQueue presentQueue;
-    
-    HTRenderDevice();
+
+    HTRenderDevice(HTRenderDevicePickPhysicsDeviceCallback physicsDevicePickCallback = nullptr);
     
     private:
+    HTRenderDevicePickPhysicsDeviceCallback _physicsDevicePickCallback;
     void createInstance();
+    void createPhysicsDevice();
+    void findQueueFamilies();
+    void createLogicDevice();
+
 };
 #endif /* HTRenderDevice_hpp */
