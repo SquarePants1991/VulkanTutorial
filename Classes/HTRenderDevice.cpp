@@ -14,6 +14,12 @@ HTRenderDevice::HTRenderDevice() {
     createInstance();
 }
 
+HTRenderDevice::~HTRenderDevice() {
+    if (vkInstance != nullptr) {
+        vkDestroyInstance(vkInstance, NULL);
+    }
+}
+
 void HTRenderDevice::createInstance() {
     // VK Application Info
     VkApplicationInfo appInfo = {};

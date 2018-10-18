@@ -15,13 +15,9 @@
 class HTRenderDevice {
     public:
     VkInstance vkInstance;
-    VkPhysicalDevice vkPhysicsDevice;
-    VkDevice vkLogicDevice;
-    int graphicsQueueFamilyIndex;
-    int presentQueueFamilyIndex;
-    VkQueue presentQueue;
     
     HTRenderDevice();
+    ~HTRenderDevice();
     
     private:
     void createInstance();
