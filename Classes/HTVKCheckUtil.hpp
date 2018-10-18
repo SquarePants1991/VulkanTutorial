@@ -2,6 +2,7 @@
 #define HTVKCheckUtil_hpp
 
 #include <vulkan/vulkan.h>
+#include <iostream>
 
 inline void htCheckVKOp(VkResult result, const char *errMsg) {
     if (result != VK_SUCCESS) {

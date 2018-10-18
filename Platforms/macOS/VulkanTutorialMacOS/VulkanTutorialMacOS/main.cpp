@@ -7,8 +7,39 @@
 //
 
 #include <iostream>
+#include <sstream>
+
 #include "HTRenderDevice.hpp"
+#include "HTRenderSurface.hpp"
+#include "HTWindow.h"
+
+class HTVulkanTutorialWindow: public HTWindow {
+public:
+    HTVulkanTutorialWindow(int windowWidth, int windowHeight, const char *title = "Vulkan Tutorial"): HTWindow(windowWidth, windowHeight, title) {
+
+    }
+
+    void launch() override {
+        HTRenderDevice renderDevice;
+        HTRenderSurface renderSurface(&renderDevice, this->metalView);
+    }
+
+    void loop() override {
+        static int fpsCount = 0;
+        static double totalTime = 0;
+        fpsCount++;
+        totalTime += deltaTime;
+        if (fpsCount >= 30) {
+            std::stringstream titleSS;
+            titleSS << "fps: " << int(1.0 / (totalTime / fpsCount));
+            setTitle(titleSS.str().data());
+            fpsCount = 0;
+            totalTime = 0;
+        }
+    }
+};
 
 int main(int argc, const char * argv[]) {
-    HTRenderDevice renderDevice;
+    HTVulkanTutorialWindow window(800, 600);
+    window.present();
 }

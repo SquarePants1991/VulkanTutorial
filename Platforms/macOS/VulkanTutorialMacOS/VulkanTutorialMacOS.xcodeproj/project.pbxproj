@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64AB816196813BF51A1C5F5F /* HTWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 64AB88BAC5071EBD287556F8 /* HTWindow.mm */; };
+		64AB854AE739ED4A029CD95D /* HTRenderSurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8A643FF05D1CCDB05171 /* HTRenderSurface.cpp */; };
 		8E140EAF216B62480016E1A3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EAE216B62480016E1A3 /* main.cpp */; };
 		8E140EBA216B629F0016E1A3 /* HTRenderDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EB8216B629F0016E1A3 /* HTRenderDevice.cpp */; };
 		8E140EBD216B65ED0016E1A3 /* libvulkan.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140EBC216B65ED0016E1A3 /* libvulkan.1.dylib */; };
@@ -14,6 +16,10 @@
 		8E140EC2216B69570016E1A3 /* MoltenVK_icd.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8E140EC1216B693E0016E1A3 /* MoltenVK_icd.json */; };
 		8E140EC4216B6D720016E1A3 /* libMoltenVK.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140EC3216B6D720016E1A3 /* libMoltenVK.dylib */; };
 		8E140EC5216B6D930016E1A3 /* libMoltenVK.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8E140EC3216B6D720016E1A3 /* libMoltenVK.dylib */; };
+		8E5FF967217847B800AF320F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E5FF966217847B800AF320F /* Cocoa.framework */; };
+		8E5FF96B217847C800AF320F /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E5FF96A217847C800AF320F /* MetalKit.framework */; };
+		8E82D8232178676300F58457 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E82D8222178676300F58457 /* CoreVideo.framework */; };
+		8E82D82421786CDB00F58457 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E5FF968217847C000AF320F /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,7 +38,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		64AB88BAC5071EBD287556F8 /* HTWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HTWindow.mm; sourceTree = "<group>"; };
+		64AB8A643FF05D1CCDB05171 /* HTRenderSurface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderSurface.cpp; sourceTree = "<group>"; };
 		64AB8BDB4A263940AED22593 /* HTVKCheckUtil.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTVKCheckUtil.hpp; sourceTree = "<group>"; };
+		64AB8D0549A84FB3AAA1B177 /* HTRenderSurface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTRenderSurface.hpp; sourceTree = "<group>"; };
+		64AB8EA3467AE2C60272CDA1 /* HTWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTWindow.h; sourceTree = "<group>"; };
 		8E140EAB216B62470016E1A3 /* VulkanTutorialMacOS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = VulkanTutorialMacOS; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E140EAE216B62480016E1A3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		8E140EB8216B629F0016E1A3 /* HTRenderDevice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderDevice.cpp; sourceTree = "<group>"; };
@@ -40,6 +50,10 @@
 		8E140EBC216B65ED0016E1A3 /* libvulkan.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libvulkan.1.dylib; sourceTree = "<group>"; };
 		8E140EC1216B693E0016E1A3 /* MoltenVK_icd.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MoltenVK_icd.json; sourceTree = "<group>"; };
 		8E140EC3216B6D720016E1A3 /* libMoltenVK.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libMoltenVK.dylib; sourceTree = "<group>"; };
+		8E5FF966217847B800AF320F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		8E5FF968217847C000AF320F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8E5FF96A217847C800AF320F /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
+		8E82D8222178676300F58457 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +61,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E82D82421786CDB00F58457 /* QuartzCore.framework in Frameworks */,
+				8E82D8232178676300F58457 /* CoreVideo.framework in Frameworks */,
+				8E5FF96B217847C800AF320F /* MetalKit.framework in Frameworks */,
+				8E5FF967217847B800AF320F /* Cocoa.framework in Frameworks */,
 				8E140EC4216B6D720016E1A3 /* libMoltenVK.dylib in Frameworks */,
 				8E140EBD216B65ED0016E1A3 /* libvulkan.1.dylib in Frameworks */,
 			);
@@ -60,6 +78,7 @@
 			children = (
 				8E140EAD216B62470016E1A3 /* VulkanTutorialMacOS */,
 				8E140EAC216B62470016E1A3 /* Products */,
+				8E5FF965217847B800AF320F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,6 +97,8 @@
 				8E140EBB216B63450016E1A3 /* Frameworks */,
 				8E140EB5216B62790016E1A3 /* Classes */,
 				8E140EAE216B62480016E1A3 /* main.cpp */,
+				64AB88BAC5071EBD287556F8 /* HTWindow.mm */,
+				64AB8EA3467AE2C60272CDA1 /* HTWindow.h */,
 			);
 			path = VulkanTutorialMacOS;
 			sourceTree = "<group>";
@@ -88,6 +109,8 @@
 				8E140EB8216B629F0016E1A3 /* HTRenderDevice.cpp */,
 				8E140EB9216B629F0016E1A3 /* HTRenderDevice.hpp */,
 				64AB8BDB4A263940AED22593 /* HTVKCheckUtil.hpp */,
+				64AB8A643FF05D1CCDB05171 /* HTRenderSurface.cpp */,
+				64AB8D0549A84FB3AAA1B177 /* HTRenderSurface.hpp */,
 			);
 			name = Classes;
 			path = ../../../../Classes;
@@ -108,6 +131,17 @@
 				8E140EC1216B693E0016E1A3 /* MoltenVK_icd.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		8E5FF965217847B800AF320F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8E82D8222178676300F58457 /* CoreVideo.framework */,
+				8E5FF96A217847C800AF320F /* MetalKit.framework */,
+				8E5FF968217847C000AF320F /* QuartzCore.framework */,
+				8E5FF966217847B800AF320F /* Cocoa.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,6 +202,8 @@
 			files = (
 				8E140EAF216B62480016E1A3 /* main.cpp in Sources */,
 				8E140EBA216B629F0016E1A3 /* HTRenderDevice.cpp in Sources */,
+				64AB854AE739ED4A029CD95D /* HTRenderSurface.cpp in Sources */,
+				64AB816196813BF51A1C5F5F /* HTWindow.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
