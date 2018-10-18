@@ -12,10 +12,17 @@ class HTRenderDevice;
 class HTRenderSurface {
 public:
     VkSurfaceKHR vkSurface;
+    int presentQueueFamilyIndex;
+    VkQueue presentQueue;
+    
+    HTRenderDevice *renderDevice;
 #ifdef __APPLE__
     HTRenderSurface(HTRenderDevice *device, const void *view);
 #endif
+    ~HTRenderSurface();
 
+private:
+    void findPresentQueue();
 };
 
 

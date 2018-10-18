@@ -25,8 +25,17 @@ HTRenderDevice::HTRenderDevice(HTRenderDevicePickPhysicsDeviceCallback physicsDe
 {
     createInstance();
     createPhysicsDevice();
-    findQueueFamilies();
+    findGraphicsQueue();
     createLogicDevice();
+}
+
+HTRenderDevice::~HTRenderDevice() {
+    if (vkInstance != nullptr) {
+        vkDestroyInstance(vkInstance, NULL);
+    }
+    if (vkLogicDevice != nullptr) {
+        vkDestroyDevice(vkLogicDevice, NULL);
+    }
 }
 
 void HTRenderDevice::createInstance() {
@@ -78,7 +87,7 @@ void HTRenderDevice::createPhysicsDevice() {
     std::cout << "VK Physics Device: <" << physicalDeviceProperties.deviceName << "> create success." << std::endl;
 }
 
-void HTRenderDevice::findQueueFamilies() {
+void HTRenderDevice::findGraphicsQueue() {
     uint32_t queueFamilyCount = 0;
     vkGetPhysicalDeviceQueueFamilyProperties(vkPhysicsDevice, &queueFamilyCount, nullptr);
     if (queueFamilyCount == 0) {

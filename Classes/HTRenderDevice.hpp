@@ -19,18 +19,17 @@ class HTRenderDevice {
     VkInstance vkInstance;
     VkPhysicalDevice vkPhysicsDevice;
     int graphicsQueueFamilyIndex;
-    int presentQueueFamilyIndex;
-    VkDevice vkLogicDevice;
     VkQueue graphicsQueue;
-    VkQueue presentQueue;
+    VkDevice vkLogicDevice;
 
     HTRenderDevice(HTRenderDevicePickPhysicsDeviceCallback physicsDevicePickCallback = nullptr);
+    ~HTRenderDevice();
     
     private:
     HTRenderDevicePickPhysicsDeviceCallback _physicsDevicePickCallback;
     void createInstance();
     void createPhysicsDevice();
-    void findQueueFamilies();
+    void findGraphicsQueue();
     void createLogicDevice();
 
 };
