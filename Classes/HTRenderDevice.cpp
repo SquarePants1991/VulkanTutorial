@@ -20,6 +20,15 @@ HTRenderDevice::HTRenderDevice(HTRenderDevicePickPhysicsDeviceCallback physicsDe
     createLogicDevice();
 }
 
+HTRenderDevice::~HTRenderDevice() {
+    if (vkInstance != nullptr) {
+        vkDestroyInstance(vkInstance, NULL);
+    }
+    if (vkLogicDevice != nullptr) {
+        vkDestroyDevice(vkLogicDevice, NULL);
+    }
+}
+
 void HTRenderDevice::createInstance() {
     // VK Application Info
     VkApplicationInfo appInfo = {};
