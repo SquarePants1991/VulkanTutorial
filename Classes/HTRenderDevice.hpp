@@ -29,7 +29,7 @@ class HTRenderDevice {
     HTRenderDevicePickPhysicsDeviceCallback _physicsDevicePickCallback;
     void createInstance();
     void createPhysicsDevice();
-    void findQueueFamilies();
+    void findGraphicsQueue();
     void createLogicDevice();
 
 };
