@@ -12,7 +12,8 @@
     #include <TargetConditionals.h>
     #if TARGET_OS_MAC
     #include <vulkan/vulkan_macos.h>
-    #else
+    #endif
+    #if TARGET_OS_IOS
     #include <vulkan/vulkan_ios.h>
     #endif
 #endif
@@ -31,7 +32,7 @@ HTRenderSurface::HTRenderSurface(HTRenderDevice *device, const void *view) {
     surfaceCreateInfo.pView = view;
     surfaceCreateInfo.flags = 0;
 #if TARGET_OS_MAC
-    VkResult surfaceCreateResult = vkCreateMacOSSurfaceMVK(device->vkInstance, &surfaceCreateInfo, NULL, &vkSurface);
+    VkResult surfaceCreateResult = vkCreateMacOSSurfaceMVK(nullptr, &surfaceCreateInfo, NULL, &vkSurface);
 #endif
 #if TARGET_OS_IOS
     VkResult surfaceCreateResult = vkCreateIOSSurfaceMVK(device->vkInstance, &surfaceCreateInfo, NULL, &vkSurface);
@@ -46,7 +47,7 @@ HTRenderSurface::HTRenderSurface(HTRenderDevice *device, const void *view) {
 
 HTRenderSurface::~HTRenderSurface() {
     if (renderDevice != nullptr && vkSurface != nullptr) {
-        vkDestroySurfaceKHR(renderDevice->vkInstance, vkSurface, NULL);
+        vkDestroySurfaceKHR(nullptr, vkSurface, NULL);
     }
 }
 

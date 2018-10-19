@@ -16,7 +16,6 @@ typedef VkPhysicalDevice (* HTRenderDevicePickPhysicsDeviceCallback)(std::vector
 
 class HTRenderDevice {
     public:
-    VkInstance vkInstance;
     VkPhysicalDevice vkPhysicsDevice;
     int graphicsQueueFamilyIndex;
     VkQueue graphicsQueue;

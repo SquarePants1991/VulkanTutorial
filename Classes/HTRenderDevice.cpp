@@ -23,60 +23,25 @@ HTRenderDevice::HTRenderDevice(HTRenderDevicePickPhysicsDeviceCallback physicsDe
         _physicsDevicePickCallback(physicsDevicePickCallback),
         graphicsQueueFamilyIndex(-1)
 {
-    createInstance();
     createPhysicsDevice();
     findGraphicsQueue();
     createLogicDevice();
 }
 
 HTRenderDevice::~HTRenderDevice() {
-    if (vkInstance != nullptr) {
-        vkDestroyInstance(vkInstance, NULL);
-    }
     if (vkLogicDevice != nullptr) {
         vkDestroyDevice(vkLogicDevice, NULL);
     }
 }
 
-void HTRenderDevice::createInstance() {
-    // VK Application Info
-    VkApplicationInfo appInfo = {};
-    appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-    appInfo.pApplicationName = "Vulkan Tutorial";
-    appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
-    appInfo.pEngineName = "No Engine";
-    appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
-    appInfo.apiVersion = VK_API_VERSION_1_0;
-
-    std::vector<const char *> instanceExtNames;
-    instanceExtNames.push_back(VK_KHR_SURFACE_EXTENSION_NAME);
-#ifdef __APPLE__
-#if TARGET_OS_MAC
-    instanceExtNames.push_back(VK_MVK_MACOS_SURFACE_EXTENSION_NAME);
-#endif
-#if TARGET_OS_IOS
-    instanceExtNames.push_back(VK_MVK_IOS_SURFACE_EXTENSION_NAME);
-#endif
-#endif
-    VkInstanceCreateInfo info = {};
-    info.pApplicationInfo = &appInfo;
-    info.enabledExtensionCount = uint32_t(instanceExtNames.size());
-    info.ppEnabledExtensionNames = instanceExtNames.data();
-    VkResult result = vkCreateInstance(&info, NULL, &vkInstance);
-    htCheckVKOp(result, "VK Instance create failed.");
-    if (result == VK_SUCCESS) {
-        std::cout << "VK Instance create success." << std::endl;
-    }
-}
-
 void HTRenderDevice::createPhysicsDevice() {
     uint32_t deviceCount = 0;
-    vkEnumeratePhysicalDevices(vkInstance, &deviceCount, nullptr);
+    vkEnumeratePhysicalDevices(nullptr, &deviceCount, nullptr);
     if (deviceCount == 0) {
         throw std::runtime_error("None Physics Device Found!");
     }
     std::vector<VkPhysicalDevice> physicalDevices(deviceCount);
-    vkEnumeratePhysicalDevices(vkInstance, &deviceCount, physicalDevices.data());
+    vkEnumeratePhysicalDevices(nullptr, &deviceCount, physicalDevices.data());
     if (_physicsDevicePickCallback != nullptr) {
         vkPhysicsDevice = _physicsDevicePickCallback(physicalDevices);
     } else {

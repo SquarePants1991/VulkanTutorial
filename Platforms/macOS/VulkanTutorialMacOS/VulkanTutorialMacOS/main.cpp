@@ -9,6 +9,7 @@
 #include <iostream>
 #include <sstream>
 
+#include "HTVulkanInstance.hpp"
 #include "HTRenderDevice.hpp"
 #include "HTRenderSurface.hpp"
 #include "HTWindow.h"
@@ -20,8 +21,10 @@ public:
     }
 
     void launch() override {
-        HTRenderDevice renderDevice;
-        HTRenderSurface renderSurface(&renderDevice, this->metalView);
+        HTVulkanInstancePtr vulkanInstance = HTNew(HTVulkanInstance, "tt");
+        vulkanInstance->vkInstance;
+//        HTRenderDevice renderDevice;
+//        HTRenderSurface renderSurface(&renderDevice, this->metalView);
     }
 
     void loop() override {
