@@ -1,26 +1,28 @@
 //
-//  HTRenderDevice.cpp
-//  VulkanTutorialMacOS
+//  HTVulkanInstance.cpp
+//  VulkanTutorialiOS
 //
-//  Created by ocean on 2018/10/8.
+//  Created by ocean on 2018/10/18.
 //  Copyright © 2018 handytool. All rights reserved.
 //
 
-#include "HTRenderDevice.hpp"
+#include "HTVulkanInstance.hpp"
 #include "HTVKCheckUtil.hpp"
+
+#include <iostream>
 #include <vector>
 
-HTRenderDevice::HTRenderDevice() {
+HTVulkanInstance::HTVulkanInstance() {
     createInstance();
 }
 
-HTRenderDevice::~HTRenderDevice() {
+HTVulkanInstance::~HTVulkanInstance() {
     if (vkInstance != nullptr) {
-        vkDestroyInstance(vkInstance, NULL);
+        vkDestroyInstance(vkInstance, nullptr);
     }
 }
 
-void HTRenderDevice::createInstance() {
+void HTVulkanInstance::createInstance() {
     // VK Application Info
     VkApplicationInfo appInfo = {};
     appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
@@ -29,7 +31,7 @@ void HTRenderDevice::createInstance() {
     appInfo.pEngineName = "No Engine";
     appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
     appInfo.apiVersion = VK_API_VERSION_1_0;
-
+    
     VkInstanceCreateInfo info = {};
     info.pApplicationInfo = &appInfo;
     VkResult result = vkCreateInstance(&info, NULL, &vkInstance);

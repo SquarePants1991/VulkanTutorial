@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		8E140EAF216B62480016E1A3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EAE216B62480016E1A3 /* main.cpp */; };
-		8E140EBA216B629F0016E1A3 /* HTRenderDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EB8216B629F0016E1A3 /* HTRenderDevice.cpp */; };
 		8E140EBD216B65ED0016E1A3 /* libvulkan.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140EBC216B65ED0016E1A3 /* libvulkan.1.dylib */; };
 		8E140EBE216B65F30016E1A3 /* libvulkan.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8E140EBC216B65ED0016E1A3 /* libvulkan.1.dylib */; };
 		8E140EC2216B69570016E1A3 /* MoltenVK_icd.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8E140EC1216B693E0016E1A3 /* MoltenVK_icd.json */; };
 		8E140EC4216B6D720016E1A3 /* libMoltenVK.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140EC3216B6D720016E1A3 /* libMoltenVK.dylib */; };
 		8E140EC5216B6D930016E1A3 /* libMoltenVK.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8E140EC3216B6D720016E1A3 /* libMoltenVK.dylib */; };
+		8E3239FF217D8295009056C3 /* HTVulkanInstance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E3239FE217D8295009056C3 /* HTVulkanInstance.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,11 +35,11 @@
 		64AB8BDB4A263940AED22593 /* HTVKCheckUtil.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTVKCheckUtil.hpp; sourceTree = "<group>"; };
 		8E140EAB216B62470016E1A3 /* VulkanTutorialMacOS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = VulkanTutorialMacOS; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E140EAE216B62480016E1A3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		8E140EB8216B629F0016E1A3 /* HTRenderDevice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderDevice.cpp; sourceTree = "<group>"; };
-		8E140EB9216B629F0016E1A3 /* HTRenderDevice.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HTRenderDevice.hpp; sourceTree = "<group>"; };
 		8E140EBC216B65ED0016E1A3 /* libvulkan.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libvulkan.1.dylib; sourceTree = "<group>"; };
 		8E140EC1216B693E0016E1A3 /* MoltenVK_icd.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MoltenVK_icd.json; sourceTree = "<group>"; };
 		8E140EC3216B6D720016E1A3 /* libMoltenVK.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libMoltenVK.dylib; sourceTree = "<group>"; };
+		8E3239FD217D8295009056C3 /* HTVulkanInstance.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTVulkanInstance.hpp; sourceTree = "<group>"; };
+		8E3239FE217D8295009056C3 /* HTVulkanInstance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTVulkanInstance.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +85,8 @@
 		8E140EB5216B62790016E1A3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				8E140EB8216B629F0016E1A3 /* HTRenderDevice.cpp */,
-				8E140EB9216B629F0016E1A3 /* HTRenderDevice.hpp */,
+				8E3239FE217D8295009056C3 /* HTVulkanInstance.cpp */,
+				8E3239FD217D8295009056C3 /* HTVulkanInstance.hpp */,
 				64AB8BDB4A263940AED22593 /* HTVKCheckUtil.hpp */,
 			);
 			name = Classes;
@@ -167,7 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E140EAF216B62480016E1A3 /* main.cpp in Sources */,
-				8E140EBA216B629F0016E1A3 /* HTRenderDevice.cpp in Sources */,
+				8E3239FF217D8295009056C3 /* HTVulkanInstance.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,9 +7,9 @@
 //
 
 #include <iostream>
-#include "HTRenderDevice.hpp"
+#include "HTVulkanInstance.hpp"
 
 int main(int argc, const char * argv[]) {
-    HTRenderDevice renderDevice;
-    std::cout << renderDevice.vkInstance;
+    HTVulkanInstance vulkanInstance;
+    std::cout << vulkanInstance.vkInstance;
 }

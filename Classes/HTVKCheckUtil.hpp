@@ -1,6 +1,7 @@
 #ifndef HTVKCheckUtil_hpp
 #define HTVKCheckUtil_hpp
 
+#include <stdexcept>
 #include <vulkan/vulkan.h>
 
 inline void htCheckVKOp(VkResult result, const char *errMsg) {
