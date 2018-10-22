@@ -33,8 +33,7 @@ class HTRenderDevice {
     HTVulkanInstancePtr _vulkanInstancePtr;
     HTRenderSurfacePtr _renderSurfacePtr;
     void createPhysicsDevice();
-    void findGraphicsQueue();
-    void findPresentQueue();
+    void findQueues();
     void createLogicDevice();
 };
 

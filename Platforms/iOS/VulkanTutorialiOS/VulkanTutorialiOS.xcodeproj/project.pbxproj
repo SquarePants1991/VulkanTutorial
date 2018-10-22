@@ -16,6 +16,7 @@
 		8E140EEF216C69F10016E1A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EEE216C69F10016E1A3 /* main.m */; };
 		8E140EF9216C69F20016E1A3 /* VulkanTutorialiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EF8216C69F20016E1A3 /* VulkanTutorialiOSTests.m */; };
 		8E140F0D216C6C120016E1A3 /* HTRenderDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E140F0B216C6C120016E1A3 /* HTRenderDevice.cpp */; };
+		8E323A08217DA31D009056C3 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140F11216C6D220016E1A3 /* MetalKit.framework */; };
 		8E82D8272178AD1300F58457 /* HTRenderSurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E82D8262178AD1300F58457 /* HTRenderSurface.cpp */; };
 		8E82D82A2178AED200F58457 /* HTVulkanInstance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E82D8282178AED200F58457 /* HTVulkanInstance.cpp */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E323A08217DA31D009056C3 /* MetalKit.framework in Frameworks */,
 				8E061C7E216DC916007805C9 /* MoltenVK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

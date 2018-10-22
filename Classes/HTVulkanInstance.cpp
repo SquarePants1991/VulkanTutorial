@@ -13,12 +13,12 @@
 #include <vector>
 #ifdef __APPLE__
 #include <TargetConditionals.h>
-#if TARGET_OS_MAC
-#include <vulkan/vulkan_macos.h>
-#endif
 #if TARGET_OS_IOS
 #include <vulkan/vulkan_ios.h>
+#elif TARGET_OS_MAC
+#include <vulkan/vulkan_macos.h>
 #endif
+
 #endif
 
 HTVulkanInstance::HTVulkanInstance() {
@@ -44,11 +44,10 @@ void HTVulkanInstance::createInstance() {
     std::vector<const char *> instanceExtNames;
     instanceExtNames.push_back(VK_KHR_SURFACE_EXTENSION_NAME);
 #ifdef __APPLE__
-#if TARGET_OS_MAC
-    instanceExtNames.push_back(VK_MVK_MACOS_SURFACE_EXTENSION_NAME);
-#endif
 #if TARGET_OS_IOS
     instanceExtNames.push_back(VK_MVK_IOS_SURFACE_EXTENSION_NAME);
+#elif TARGET_OS_MAC
+    instanceExtNames.push_back(VK_MVK_MACOS_SURFACE_EXTENSION_NAME);
 #endif
 #endif
     VkInstanceCreateInfo info = {};
