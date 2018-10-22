@@ -15,7 +15,7 @@
 class HTVulkanInstance {
 public:
     VkInstance vkInstance;
-    HTVulkanInstance(const char *appName);
+    HTVulkanInstance();
     ~HTVulkanInstance();
 private:
     void createInstance();

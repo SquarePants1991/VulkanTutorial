@@ -19,9 +19,11 @@
 #endif
 #endif
 
-HTRenderDevice::HTRenderDevice(HTRenderDevicePickPhysicsDeviceCallback physicsDevicePickCallback):
+HTRenderDevice::HTRenderDevice(HTVulkanInstancePtr vulkanInstancePtr, HTRenderSurfacePtr renderSurfacePtr, HTRenderDevicePickPhysicsDeviceCallback physicsDevicePickCallback):
         _physicsDevicePickCallback(physicsDevicePickCallback),
-        graphicsQueueFamilyIndex(-1)
+        graphicsQueueFamilyIndex(-1),
+        _vulkanInstancePtr(vulkanInstancePtr),
+        _renderSurfacePtr(renderSurfacePtr)
 {
     createPhysicsDevice();
     findGraphicsQueue();
@@ -36,12 +38,12 @@ HTRenderDevice::~HTRenderDevice() {
 
 void HTRenderDevice::createPhysicsDevice() {
     uint32_t deviceCount = 0;
-    vkEnumeratePhysicalDevices(nullptr, &deviceCount, nullptr);
+    vkEnumeratePhysicalDevices(_vulkanInstancePtr->vkInstance, &deviceCount, nullptr);
     if (deviceCount == 0) {
         throw std::runtime_error("None Physics Device Found!");
     }
     std::vector<VkPhysicalDevice> physicalDevices(deviceCount);
-    vkEnumeratePhysicalDevices(nullptr, &deviceCount, physicalDevices.data());
+    vkEnumeratePhysicalDevices(_vulkanInstancePtr->vkInstance, &deviceCount, physicalDevices.data());
     if (_physicsDevicePickCallback != nullptr) {
         vkPhysicsDevice = _physicsDevicePickCallback(physicalDevices);
     } else {
@@ -70,6 +72,31 @@ void HTRenderDevice::findGraphicsQueue() {
         graphicsQueueFamilyIndex++;
     }
     std::cout << "VK Graphics Queue Found, Index : " << this->graphicsQueueFamilyIndex << std::endl;
+}
+
+
+void HTRenderDevice::findPresentQueue() {
+    uint32_t queueFamilyCount = 0;
+    vkGetPhysicalDeviceQueueFamilyProperties(vkPhysicsDevice, &queueFamilyCount, nullptr);
+    if (queueFamilyCount == 0) {
+        throw std::runtime_error("None Queue Family Found!");
+    }
+    std::vector<VkQueueFamilyProperties> queueFamilyProperties(queueFamilyCount);
+    vkGetPhysicalDeviceQueueFamilyProperties(vkPhysicsDevice, &queueFamilyCount, queueFamilyProperties.data());
+    int32_t presentQueueFamilyIndex = 0;
+    for (const auto &queueFamilyProperty: queueFamilyProperties) {
+        VkBool32 supportPresent = false;
+        vkGetPhysicalDeviceSurfaceSupportKHR(vkPhysicsDevice, presentQueueFamilyIndex, _renderSurfacePtr->vkSurface, &supportPresent);
+        if (queueFamilyProperty.queueCount > 0
+                && supportPresent) {
+            this->presentQueueFamilyIndex = presentQueueFamilyIndex;
+            break;
+        }
+        presentQueueFamilyIndex++;
+    }
+    std::cout << "VK Present Queue Found, Index : " << this->presentQueueFamilyIndex << std::endl;
+
+    vkGetDeviceQueue(vkLogicDevice, presentQueueFamilyIndex, 0, &presentQueue);
 }
 
 void HTRenderDevice::createLogicDevice() {

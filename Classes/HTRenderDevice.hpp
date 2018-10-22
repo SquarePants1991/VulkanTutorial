@@ -9,6 +9,8 @@
 #ifndef HTRenderDevice_hpp
 #define HTRenderDevice_hpp
 
+#include "HTVulkanInstance.hpp"
+#include "HTRenderSurface.hpp"
 #include <iostream>
 #include <vulkan/vulkan.h>
 
@@ -19,17 +21,22 @@ class HTRenderDevice {
     VkPhysicalDevice vkPhysicsDevice;
     int graphicsQueueFamilyIndex;
     VkQueue graphicsQueue;
+    int presentQueueFamilyIndex;
+    VkQueue presentQueue;
     VkDevice vkLogicDevice;
 
-    HTRenderDevice(HTRenderDevicePickPhysicsDeviceCallback physicsDevicePickCallback = nullptr);
+    HTRenderDevice(HTVulkanInstancePtr vulkanInstancePtr, HTRenderSurfacePtr renderSurfacePtr, HTRenderDevicePickPhysicsDeviceCallback physicsDevicePickCallback = nullptr);
     ~HTRenderDevice();
     
     private:
     HTRenderDevicePickPhysicsDeviceCallback _physicsDevicePickCallback;
-    void createInstance();
+    HTVulkanInstancePtr _vulkanInstancePtr;
+    HTRenderSurfacePtr _renderSurfacePtr;
     void createPhysicsDevice();
     void findGraphicsQueue();
+    void findPresentQueue();
     void createLogicDevice();
-
 };
+
+HTMakeClass(HTRenderDevice)
 #endif /* HTRenderDevice_hpp */

@@ -19,8 +19,8 @@
 #endif
 
 #ifdef __APPLE__
-HTRenderSurface::HTRenderSurface(HTRenderDevice *device, const void *view) {
-    this->renderDevice = device;
+HTRenderSurface::HTRenderSurface(HTVulkanInstancePtr vulkanInstancePtr, const void *view):
+        _vulkanInstancePtr(vulkanInstancePtr) {
 #if TARGET_OS_MAC
     VkMacOSSurfaceCreateInfoMVK surfaceCreateInfo = {};
     surfaceCreateInfo.sType = VK_STRUCTURE_TYPE_MACOS_SURFACE_CREATE_INFO_MVK;
@@ -32,7 +32,7 @@ HTRenderSurface::HTRenderSurface(HTRenderDevice *device, const void *view) {
     surfaceCreateInfo.pView = view;
     surfaceCreateInfo.flags = 0;
 #if TARGET_OS_MAC
-    VkResult surfaceCreateResult = vkCreateMacOSSurfaceMVK(nullptr, &surfaceCreateInfo, NULL, &vkSurface);
+    VkResult surfaceCreateResult = vkCreateMacOSSurfaceMVK(vulkanInstancePtr->vkInstance, &surfaceCreateInfo, NULL, &vkSurface);
 #endif
 #if TARGET_OS_IOS
     VkResult surfaceCreateResult = vkCreateIOSSurfaceMVK(device->vkInstance, &surfaceCreateInfo, NULL, &vkSurface);
@@ -41,40 +41,11 @@ HTRenderSurface::HTRenderSurface(HTRenderDevice *device, const void *view) {
     if (surfaceCreateResult == VK_SUCCESS) {
         std::cout << "VK Surface create success." << std::endl;
     }
-    
-    findPresentQueue();
 }
 
 HTRenderSurface::~HTRenderSurface() {
-    if (renderDevice != nullptr && vkSurface != nullptr) {
-        vkDestroySurfaceKHR(nullptr, vkSurface, NULL);
+    if (_vulkanInstancePtr != nullptr && vkSurface != nullptr) {
+        vkDestroySurfaceKHR(_vulkanInstancePtr->vkInstance, vkSurface, NULL);
     }
-}
-
-void HTRenderSurface::findPresentQueue() {
-    if (renderDevice == nullptr) {
-        throw std::runtime_error("can not find present queue, because render device is null.");
-    }
-    uint32_t queueFamilyCount = 0;
-    vkGetPhysicalDeviceQueueFamilyProperties(renderDevice->vkPhysicsDevice, &queueFamilyCount, nullptr);
-    if (queueFamilyCount == 0) {
-        throw std::runtime_error("None Queue Family Found!");
-    }
-    std::vector<VkQueueFamilyProperties> queueFamilyProperties(queueFamilyCount);
-    vkGetPhysicalDeviceQueueFamilyProperties(renderDevice->vkPhysicsDevice, &queueFamilyCount, queueFamilyProperties.data());
-    int32_t presentQueueFamilyIndex = 0;
-    for (const auto &queueFamilyProperty: queueFamilyProperties) {
-        VkBool32 supportPresent = false;
-        vkGetPhysicalDeviceSurfaceSupportKHR(renderDevice->vkPhysicsDevice, presentQueueFamilyIndex, vkSurface, &supportPresent);
-        if (queueFamilyProperty.queueCount > 0
-            && supportPresent) {
-            this->presentQueueFamilyIndex = presentQueueFamilyIndex;
-            break;
-        }
-        presentQueueFamilyIndex++;
-    }
-    std::cout << "VK Present Queue Found, Index : " << this->presentQueueFamilyIndex << std::endl;
-    
-    vkGetDeviceQueue(renderDevice->vkLogicDevice, presentQueueFamilyIndex, 0, &presentQueue);
 }
 #endif

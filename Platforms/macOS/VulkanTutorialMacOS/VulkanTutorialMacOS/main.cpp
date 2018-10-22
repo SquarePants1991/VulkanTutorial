@@ -21,10 +21,9 @@ public:
     }
 
     void launch() override {
-        HTVulkanInstancePtr vulkanInstance = HTNew(HTVulkanInstance, "tt");
-        vulkanInstance->vkInstance;
-//        HTRenderDevice renderDevice;
-//        HTRenderSurface renderSurface(&renderDevice, this->metalView);
+        HTVulkanInstancePtr vulkanInstancePtr = HTNew(HTVulkanInstance);
+        HTRenderSurfacePtr renderSurfacePtr = HTNew(HTRenderSurface, vulkanInstancePtr, metalView);
+        HTRenderDevicePtr renderDevicePtr = HTNew(HTRenderDevice, vulkanInstancePtr, renderSurfacePtr);
     }
 
     void loop() override {

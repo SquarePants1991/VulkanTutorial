@@ -21,13 +21,14 @@
 #endif
 #endif
 
-HTVulkanInstance::HTVulkanInstance(const char *appName) {
-    std::cout << appName << std::endl;
+HTVulkanInstance::HTVulkanInstance() {
     createInstance();
 }
 
 HTVulkanInstance::~HTVulkanInstance() {
-    
+    if (vkInstance != nullptr) {
+        vkDestroyInstance(vkInstance, nullptr);
+    }
 }
 
 void HTVulkanInstance::createInstance() {

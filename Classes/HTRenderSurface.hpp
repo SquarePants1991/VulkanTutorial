@@ -6,24 +6,20 @@
 #ifndef VULKANTUTORIALMACOS_HTRENDERSURFACE_HPP
 #define VULKANTUTORIALMACOS_HTRENDERSURFACE_HPP
 
+#include "HTVulkanInstance.hpp"
 #include <vulkan/vulkan.h>
 
 class HTRenderDevice;
 class HTRenderSurface {
 public:
     VkSurfaceKHR vkSurface;
-    int presentQueueFamilyIndex;
-    VkQueue presentQueue;
-    
-    HTRenderDevice *renderDevice;
 #ifdef __APPLE__
-    HTRenderSurface(HTRenderDevice *device, const void *view);
+    HTRenderSurface(HTVulkanInstancePtr vulkanInstancePtr, const void *view);
 #endif
     ~HTRenderSurface();
-
 private:
-    void findPresentQueue();
+    HTVulkanInstancePtr _vulkanInstancePtr;
 };
 
-
+HTMakeClass(HTRenderSurface)
 #endif //VULKANTUTORIALMACOS_HTRENDERSURFACE_H
