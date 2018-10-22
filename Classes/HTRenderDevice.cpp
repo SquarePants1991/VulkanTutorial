@@ -10,52 +10,30 @@
 #include "HTVKCheckUtil.hpp"
 #include <vector>
 
-HTRenderDevice::HTRenderDevice(HTRenderDevicePickPhysicsDeviceCallback physicsDevicePickCallback):
+HTRenderDevice::HTRenderDevice(HTVulkanInstancePtr vulkanInstancePtr, HTRenderDevicePickPhysicsDeviceCallback physicsDevicePickCallback):
         _physicsDevicePickCallback(physicsDevicePickCallback),
+        _vulkanInstancePtr(vulkanInstancePtr),
         graphicsQueueFamilyIndex(-1)
 {
-    createInstance();
     createPhysicsDevice();
     findGraphicsQueue();
     createLogicDevice();
 }
 
 HTRenderDevice::~HTRenderDevice() {
-    if (vkInstance != nullptr) {
-        vkDestroyInstance(vkInstance, NULL);
-    }
     if (vkLogicDevice != nullptr) {
         vkDestroyDevice(vkLogicDevice, NULL);
     }
 }
 
-void HTRenderDevice::createInstance() {
-    // VK Application Info
-    VkApplicationInfo appInfo = {};
-    appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-    appInfo.pApplicationName = "Vulkan Tutorial";
-    appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
-    appInfo.pEngineName = "No Engine";
-    appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
-    appInfo.apiVersion = VK_API_VERSION_1_0;
-
-    VkInstanceCreateInfo info = {};
-    info.pApplicationInfo = &appInfo;
-    VkResult result = vkCreateInstance(&info, NULL, &vkInstance);
-    htCheckVKOp(result, "VK Instance create failed.");
-    if (result == VK_SUCCESS) {
-        std::cout << "VK Instance create success." << std::endl;
-    }
-}
-
 void HTRenderDevice::createPhysicsDevice() {
     uint32_t deviceCount = 0;
-    vkEnumeratePhysicalDevices(vkInstance, &deviceCount, nullptr);
+    vkEnumeratePhysicalDevices(_vulkanInstancePtr->vkInstance, &deviceCount, nullptr);
     if (deviceCount == 0) {
         throw std::runtime_error("None Physics Device Found!");
     }
     std::vector<VkPhysicalDevice> physicalDevices(deviceCount);
-    vkEnumeratePhysicalDevices(vkInstance, &deviceCount, physicalDevices.data());
+    vkEnumeratePhysicalDevices(_vulkanInstancePtr->vkInstance, &deviceCount, physicalDevices.data());
     if (_physicsDevicePickCallback != nullptr) {
         vkPhysicsDevice = _physicsDevicePickCallback(physicalDevices);
     } else {

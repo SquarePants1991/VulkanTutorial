@@ -14,6 +14,7 @@
 		8E140EC2216B69570016E1A3 /* MoltenVK_icd.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8E140EC1216B693E0016E1A3 /* MoltenVK_icd.json */; };
 		8E140EC4216B6D720016E1A3 /* libMoltenVK.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140EC3216B6D720016E1A3 /* libMoltenVK.dylib */; };
 		8E140EC5216B6D930016E1A3 /* libMoltenVK.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8E140EC3216B6D720016E1A3 /* libMoltenVK.dylib */; };
+		8E323A03217D8350009056C3 /* HTVulkanInstance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E323A02217D8350009056C3 /* HTVulkanInstance.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +41,9 @@
 		8E140EBC216B65ED0016E1A3 /* libvulkan.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libvulkan.1.dylib; sourceTree = "<group>"; };
 		8E140EC1216B693E0016E1A3 /* MoltenVK_icd.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MoltenVK_icd.json; sourceTree = "<group>"; };
 		8E140EC3216B6D720016E1A3 /* libMoltenVK.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libMoltenVK.dylib; sourceTree = "<group>"; };
+		8E323A00217D834F009056C3 /* HTMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMacros.h; sourceTree = "<group>"; };
+		8E323A01217D8350009056C3 /* HTVulkanInstance.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTVulkanInstance.hpp; sourceTree = "<group>"; };
+		8E323A02217D8350009056C3 /* HTVulkanInstance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTVulkanInstance.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,9 @@
 		8E140EB5216B62790016E1A3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8E323A00217D834F009056C3 /* HTMacros.h */,
+				8E323A02217D8350009056C3 /* HTVulkanInstance.cpp */,
+				8E323A01217D8350009056C3 /* HTVulkanInstance.hpp */,
 				8E140EB8216B629F0016E1A3 /* HTRenderDevice.cpp */,
 				8E140EB9216B629F0016E1A3 /* HTRenderDevice.hpp */,
 				64AB8BDB4A263940AED22593 /* HTVKCheckUtil.hpp */,
@@ -167,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E140EAF216B62480016E1A3 /* main.cpp in Sources */,
+				8E323A03217D8350009056C3 /* HTVulkanInstance.cpp in Sources */,
 				8E140EBA216B629F0016E1A3 /* HTRenderDevice.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

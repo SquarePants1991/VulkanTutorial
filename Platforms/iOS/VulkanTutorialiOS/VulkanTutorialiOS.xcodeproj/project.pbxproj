@@ -16,6 +16,7 @@
 		8E140EEF216C69F10016E1A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EEE216C69F10016E1A3 /* main.m */; };
 		8E140EF9216C69F20016E1A3 /* VulkanTutorialiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EF8216C69F20016E1A3 /* VulkanTutorialiOSTests.m */; };
 		8E140F0D216C6C120016E1A3 /* HTRenderDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E140F0B216C6C120016E1A3 /* HTRenderDevice.cpp */; };
+		8E323A07217D8467009056C3 /* HTVulkanInstance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E323A06217D8467009056C3 /* HTVulkanInstance.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,9 @@
 		8E140F15216C6D640016E1A3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8E140F17216C6D690016E1A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8E140F1B216C6EF40016E1A3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		8E323A04217D8466009056C3 /* HTMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMacros.h; sourceTree = "<group>"; };
+		8E323A05217D8467009056C3 /* HTVulkanInstance.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTVulkanInstance.hpp; sourceTree = "<group>"; };
+		8E323A06217D8467009056C3 /* HTVulkanInstance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTVulkanInstance.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,9 @@
 		8E140F09216C6C120016E1A3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8E323A04217D8466009056C3 /* HTMacros.h */,
+				8E323A06217D8467009056C3 /* HTVulkanInstance.cpp */,
+				8E323A05217D8467009056C3 /* HTVulkanInstance.hpp */,
 				8E140F0A216C6C120016E1A3 /* HTRenderDevice.hpp */,
 				8E140F0B216C6C120016E1A3 /* HTRenderDevice.cpp */,
 				8E140F0C216C6C120016E1A3 /* HTVKCheckUtil.hpp */,
@@ -254,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E140EE4216C69F00016E1A3 /* ViewController.mm in Sources */,
+				8E323A07217D8467009056C3 /* HTVulkanInstance.cpp in Sources */,
 				8E140EEF216C69F10016E1A3 /* main.m in Sources */,
 				8E140EE1216C69F00016E1A3 /* AppDelegate.m in Sources */,
 				8E140F0D216C6C120016E1A3 /* HTRenderDevice.cpp in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "HTVulkanInstance.hpp"
 #import "HTRenderDevice.hpp"
 
 @interface ViewController ()
@@ -17,7 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    HTRenderDevice renderDevice;
+    HTVulkanInstancePtr vulkanInstancePtr = HTNew(HTVulkanInstance);
+    HTRenderDevicePtr renderDevicePtr = HTNew(HTRenderDevice, vulkanInstancePtr);
 }
 
 

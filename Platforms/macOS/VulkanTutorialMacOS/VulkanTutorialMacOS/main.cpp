@@ -7,8 +7,10 @@
 //
 
 #include <iostream>
+#include "HTVulkanInstance.hpp"
 #include "HTRenderDevice.hpp"
 
 int main(int argc, const char * argv[]) {
-    HTRenderDevice renderDevice;
+    HTVulkanInstancePtr vulkanInstancePtr = HTNew(HTVulkanInstance);
+    HTRenderDevicePtr renderDevicePtr = HTNew(HTRenderDevice, vulkanInstancePtr);
 }
