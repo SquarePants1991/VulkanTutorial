@@ -12,6 +12,7 @@
 #include "HTVulkanInstance.hpp"
 #include "HTRenderDevice.hpp"
 #include "HTRenderSurface.hpp"
+#include "HTSwapchain.hpp"
 #include "HTWindow.h"
 
 class HTVulkanTutorialWindow: public HTWindow {
@@ -24,6 +25,7 @@ public:
         HTVulkanInstancePtr vulkanInstancePtr = HTNew(HTVulkanInstance);
         HTRenderSurfacePtr renderSurfacePtr = HTNew(HTRenderSurface, vulkanInstancePtr, metalView);
         HTRenderDevicePtr renderDevicePtr = HTNew(HTRenderDevice, vulkanInstancePtr, renderSurfacePtr);
+        HTSwapchainPtr swapchainPtr = HTNew(HTSwapchain, renderDevicePtr, renderSurfacePtr);
     }
 
     void loop() override {

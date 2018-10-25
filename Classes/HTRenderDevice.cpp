@@ -100,11 +100,16 @@ void HTRenderDevice::createLogicDevice() {
         deviceQueueCreateInfo.pQueuePriorities = &queuePriority;
         deviceQueueCreateInfos.push_back(deviceQueueCreateInfo);
     }
+
+    std::vector<const char *> deviceExtNames;
+    deviceExtNames.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
     
     VkDeviceCreateInfo deviceCreateInfo = {};
     deviceCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
     deviceCreateInfo.pQueueCreateInfos = deviceQueueCreateInfos.data();
     deviceCreateInfo.queueCreateInfoCount = queueFamilyCount;
+    deviceCreateInfo.enabledExtensionCount = static_cast<uint32_t>(deviceExtNames.size());
+    deviceCreateInfo.ppEnabledExtensionNames = deviceExtNames.data();
     VkResult result = vkCreateDevice(vkPhysicsDevice, &deviceCreateInfo, NULL, &vkLogicDevice);
     htCheckVKOp(result, "VK Logic Device create failed.");
     if (result == VK_SUCCESS) {

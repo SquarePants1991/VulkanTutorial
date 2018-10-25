@@ -10,6 +10,7 @@
 #import "HTVulkanInstance.hpp"
 #import "HTRenderSurface.hpp"
 #import "HTRenderDevice.hpp"
+#import "HTSwapchain.hpp"
 #import <MetalKit/MetalKit.h>
 
 @interface ViewController () {
@@ -26,6 +27,7 @@
     HTVulkanInstancePtr vulkanInstancePtr = HTNew(HTVulkanInstance);
     HTRenderSurfacePtr renderSurfacePtr = HTNew(HTRenderSurface, vulkanInstancePtr, (__bridge void *)_metalView);
     HTRenderDevicePtr renderDevicePtr = HTNew(HTRenderDevice, vulkanInstancePtr, renderSurfacePtr);
+    HTSwapchainPtr swapchainPtr = HTNew(HTSwapchain, renderDevicePtr, renderSurfacePtr);
 }
 
 - (void)prepareMetalView {

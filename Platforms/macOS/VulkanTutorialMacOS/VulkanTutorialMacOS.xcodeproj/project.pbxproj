@@ -21,6 +21,7 @@
 		8E5FF96B217847C800AF320F /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E5FF96A217847C800AF320F /* MetalKit.framework */; };
 		8E82D8232178676300F58457 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E82D8222178676300F58457 /* CoreVideo.framework */; };
 		8E82D82421786CDB00F58457 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E5FF968217847C000AF320F /* QuartzCore.framework */; };
+		8EB519C7217EF64E0086C835 /* HTSwapchain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EB519C5217EF64E0086C835 /* HTSwapchain.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,6 +59,8 @@
 		8E5FF968217847C000AF320F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8E5FF96A217847C800AF320F /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		8E82D8222178676300F58457 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		8EB519C5217EF64E0086C835 /* HTSwapchain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HTSwapchain.cpp; sourceTree = "<group>"; };
+		8EB519C6217EF64E0086C835 /* HTSwapchain.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HTSwapchain.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +121,8 @@
 				64AB8BDB4A263940AED22593 /* HTVKCheckUtil.hpp */,
 				64AB8A643FF05D1CCDB05171 /* HTRenderSurface.cpp */,
 				64AB8D0549A84FB3AAA1B177 /* HTRenderSurface.hpp */,
+				8EB519C5217EF64E0086C835 /* HTSwapchain.cpp */,
+				8EB519C6217EF64E0086C835 /* HTSwapchain.hpp */,
 			);
 			name = Classes;
 			path = ../../../../Classes;
@@ -207,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EB519C7217EF64E0086C835 /* HTSwapchain.cpp in Sources */,
 				8E140EAF216B62480016E1A3 /* main.cpp in Sources */,
 				8E3239F82179E30E009056C3 /* HTVulkanInstance.cpp in Sources */,
 				8E140EBA216B629F0016E1A3 /* HTRenderDevice.cpp in Sources */,
