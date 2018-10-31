@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		64AB816196813BF51A1C5F5F /* HTWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 64AB88BAC5071EBD287556F8 /* HTWindow.mm */; };
+		64AB819796DB4AD6A02E0D0A /* HTRenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8202751A74014F09BA93 /* HTRenderPass.cpp */; };
 		64AB854AE739ED4A029CD95D /* HTRenderSurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8A643FF05D1CCDB05171 /* HTRenderSurface.cpp */; };
 		8E140EAF216B62480016E1A3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EAE216B62480016E1A3 /* main.cpp */; };
 		8E140EBA216B629F0016E1A3 /* HTRenderDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EB8216B629F0016E1A3 /* HTRenderDevice.cpp */; };
@@ -40,7 +41,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		64AB8202751A74014F09BA93 /* HTRenderPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderPass.cpp; sourceTree = "<group>"; };
 		64AB88BAC5071EBD287556F8 /* HTWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HTWindow.mm; sourceTree = "<group>"; };
+		64AB89E75ED4A0739A8C2F79 /* HTRenderPass.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTRenderPass.hpp; sourceTree = "<group>"; };
 		64AB8A643FF05D1CCDB05171 /* HTRenderSurface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderSurface.cpp; sourceTree = "<group>"; };
 		64AB8BDB4A263940AED22593 /* HTVKCheckUtil.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTVKCheckUtil.hpp; sourceTree = "<group>"; };
 		64AB8D0549A84FB3AAA1B177 /* HTRenderSurface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTRenderSurface.hpp; sourceTree = "<group>"; };
@@ -123,6 +126,8 @@
 				64AB8D0549A84FB3AAA1B177 /* HTRenderSurface.hpp */,
 				8EB519C5217EF64E0086C835 /* HTSwapchain.cpp */,
 				8EB519C6217EF64E0086C835 /* HTSwapchain.hpp */,
+				64AB8202751A74014F09BA93 /* HTRenderPass.cpp */,
+				64AB89E75ED4A0739A8C2F79 /* HTRenderPass.hpp */,
 			);
 			name = Classes;
 			path = ../../../../Classes;
@@ -218,6 +223,7 @@
 				8E140EBA216B629F0016E1A3 /* HTRenderDevice.cpp in Sources */,
 				64AB854AE739ED4A029CD95D /* HTRenderSurface.cpp in Sources */,
 				64AB816196813BF51A1C5F5F /* HTWindow.mm in Sources */,
+				64AB819796DB4AD6A02E0D0A /* HTRenderPass.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
