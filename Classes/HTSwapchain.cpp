@@ -29,6 +29,7 @@ HTSwapchain::~HTSwapchain() {
 void HTSwapchain::collectSwapchainRelateInfos() {
     _surfaceCapabilities = {};
     vkGetPhysicalDeviceSurfaceCapabilitiesKHR(_renderDevicePtr->vkPhysicsDevice, _renderSurfacePtr->vkSurface, &_surfaceCapabilities);
+    imageExtend = _surfaceCapabilities.currentExtent;
 
     _surfaceFormat = {VK_FORMAT_B8G8R8A8_UNORM, VK_COLOR_SPACE_SRGB_NONLINEAR_KHR};
     uint32_t surfaceFormatCount;
