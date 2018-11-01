@@ -22,7 +22,6 @@ private:
     VkSurfaceCapabilitiesKHR _surfaceCapabilities;
     VkSurfaceFormatKHR _surfaceFormat;
     VkPresentModeKHR _presentMode;
-    VkExtent2D _extend;
 
     void collectSwapchainRelateInfos();
     void createSwapchain();
@@ -31,6 +30,9 @@ public:
     VkSwapchainKHR vkSwapchain;
     std::vector<VkImage> imagesOnChain;
     std::vector<VkImageView> imageViews;
+    
+    VkFormat imageFormat;
+    VkExtent2D imageExtend;
 
     HTSwapchain(HTRenderDevicePtr renderDevicePtr, HTRenderSurfacePtr renderSurfacePtr);
     ~HTSwapchain();
