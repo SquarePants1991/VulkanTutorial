@@ -7,15 +7,17 @@
 #define VULKANTUTORIALMACOS_HTRENDERPASS_HPP
 
 #include <vulkan/vulkan.h>
+#import "HTSwapchain.hpp"
 
 class HTRenderPass {
 private:
+    HTSwapchainPtr _swapchainPtr;
+    HTRenderDevicePtr _renderDevicePtr;
     void createRenderPass();
 public:
-    HTRenderPass();
+    HTRenderPass(HTRenderDevicePtr renderDevicePtr, HTSwapchainPtr swapchainPtr);
     ~HTRenderPass();
     VkRenderPass vkRenderPass;
 };
-
-
+HTMakeClass(HTRenderPass)
 #endif //VULKANTUTORIALMACOS_HTRENDERPASS_HPP

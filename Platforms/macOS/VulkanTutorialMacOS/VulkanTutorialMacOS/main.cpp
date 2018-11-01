@@ -13,6 +13,8 @@
 #include "HTRenderDevice.hpp"
 #include "HTRenderSurface.hpp"
 #include "HTSwapchain.hpp"
+#include "HTRenderPass.hpp"
+#include "HTFrameBufferPool.hpp"
 #include "HTWindow.h"
 
 class HTVulkanTutorialWindow: public HTWindow {
@@ -26,6 +28,9 @@ public:
         HTRenderSurfacePtr renderSurfacePtr = HTNew(HTRenderSurface, vulkanInstancePtr, metalView);
         HTRenderDevicePtr renderDevicePtr = HTNew(HTRenderDevice, vulkanInstancePtr, renderSurfacePtr);
         HTSwapchainPtr swapchainPtr = HTNew(HTSwapchain, renderDevicePtr, renderSurfacePtr);
+        HTRenderPassPtr renderPassPtr = HTNew(HTRenderPass, renderDevicePtr, swapchainPtr);
+        HTFrameBufferPoolPtr frameBufferPoolPtr = HTNew(HTFrameBufferPool, renderDevicePtr, swapchainPtr, renderPassPtr);
+
     }
 
     void loop() override {

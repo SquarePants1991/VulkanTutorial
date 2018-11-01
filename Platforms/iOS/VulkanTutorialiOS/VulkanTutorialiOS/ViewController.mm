@@ -11,6 +11,8 @@
 #import "HTRenderSurface.hpp"
 #import "HTRenderDevice.hpp"
 #import "HTSwapchain.hpp"
+#import "HTRenderPass.hpp"
+#import "HTFrameBufferPool.hpp"
 #import <MetalKit/MetalKit.h>
 
 @interface ViewController () {
@@ -28,6 +30,8 @@
     HTRenderSurfacePtr renderSurfacePtr = HTNew(HTRenderSurface, vulkanInstancePtr, (__bridge void *)_metalView);
     HTRenderDevicePtr renderDevicePtr = HTNew(HTRenderDevice, vulkanInstancePtr, renderSurfacePtr);
     HTSwapchainPtr swapchainPtr = HTNew(HTSwapchain, renderDevicePtr, renderSurfacePtr);
+    HTRenderPassPtr renderPassPtr = HTNew(HTRenderPass, renderDevicePtr, swapchainPtr);
+    HTFrameBufferPoolPtr frameBufferPoolPtr = HTNew(HTFrameBufferPool, renderDevicePtr, swapchainPtr, renderPassPtr);
 }
 
 - (void)prepareMetalView {

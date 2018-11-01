@@ -20,6 +20,8 @@
 		8E82D8272178AD1300F58457 /* HTRenderSurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E82D8262178AD1300F58457 /* HTRenderSurface.cpp */; };
 		8E82D82A2178AED200F58457 /* HTVulkanInstance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E82D8282178AED200F58457 /* HTVulkanInstance.cpp */; };
 		8E84AE682181CC0E00D41E41 /* HTSwapchain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E84AE672181CC0E00D41E41 /* HTSwapchain.cpp */; };
+		8EC7EC3B218AD93800226A77 /* HTRenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EC7EC38218AD93700226A77 /* HTRenderPass.cpp */; };
+		8EC7EC3C218AD93800226A77 /* HTFrameBufferPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EC7EC3A218AD93800226A77 /* HTFrameBufferPool.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,10 @@
 		8E82D8292178AED200F58457 /* HTVulkanInstance.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HTVulkanInstance.hpp; sourceTree = "<group>"; };
 		8E84AE662181CC0E00D41E41 /* HTSwapchain.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTSwapchain.hpp; sourceTree = "<group>"; };
 		8E84AE672181CC0E00D41E41 /* HTSwapchain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTSwapchain.cpp; sourceTree = "<group>"; };
+		8EC7EC37218AD93600226A77 /* HTRenderPass.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTRenderPass.hpp; sourceTree = "<group>"; };
+		8EC7EC38218AD93700226A77 /* HTRenderPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderPass.cpp; sourceTree = "<group>"; };
+		8EC7EC39218AD93700226A77 /* HTFrameBufferPool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTFrameBufferPool.hpp; sourceTree = "<group>"; };
+		8EC7EC3A218AD93800226A77 /* HTFrameBufferPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTFrameBufferPool.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +149,10 @@
 		8E140F09216C6C120016E1A3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8EC7EC3A218AD93800226A77 /* HTFrameBufferPool.cpp */,
+				8EC7EC39218AD93700226A77 /* HTFrameBufferPool.hpp */,
+				8EC7EC38218AD93700226A77 /* HTRenderPass.cpp */,
+				8EC7EC37218AD93600226A77 /* HTRenderPass.hpp */,
 				8E84AE672181CC0E00D41E41 /* HTSwapchain.cpp */,
 				8E84AE662181CC0E00D41E41 /* HTSwapchain.hpp */,
 				8E82D8282178AED200F58457 /* HTVulkanInstance.cpp */,
@@ -273,9 +283,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E82D8272178AD1300F58457 /* HTRenderSurface.cpp in Sources */,
+				8EC7EC3C218AD93800226A77 /* HTFrameBufferPool.cpp in Sources */,
 				8E82D82A2178AED200F58457 /* HTVulkanInstance.cpp in Sources */,
 				8E140EE4216C69F00016E1A3 /* ViewController.mm in Sources */,
 				8E84AE682181CC0E00D41E41 /* HTSwapchain.cpp in Sources */,
+				8EC7EC3B218AD93800226A77 /* HTRenderPass.cpp in Sources */,
 				8E140EEF216C69F10016E1A3 /* main.m in Sources */,
 				8E140EE1216C69F00016E1A3 /* AppDelegate.m in Sources */,
 				8E140F0D216C6C120016E1A3 /* HTRenderDevice.cpp in Sources */,

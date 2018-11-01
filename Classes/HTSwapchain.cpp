@@ -50,6 +50,7 @@ void HTSwapchain::collectSwapchainRelateInfos() {
             _surfaceFormat = surfaceFormats[0];
         }
     }
+    imageFormat = _surfaceFormat.format;
 
     uint32_t presentModeCount;
     result = vkGetPhysicalDeviceSurfacePresentModesKHR(_renderDevicePtr->vkPhysicsDevice, _renderSurfacePtr->vkSurface, &presentModeCount, nullptr);
