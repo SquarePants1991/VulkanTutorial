@@ -16,22 +16,40 @@
 #include "HTRenderPass.hpp"
 #include "HTFrameBufferPool.hpp"
 #include "HTCommandBufferPool.hpp"
+#include "HTRenderer.hpp"
 #include "HTWindow.h"
 
 class HTVulkanTutorialWindow: public HTWindow {
+    HTVulkanInstancePtr vulkanInstancePtr;
+    HTRenderSurfacePtr renderSurfacePtr;
+    HTRenderDevicePtr renderDevicePtr;
+    HTSwapchainPtr swapchainPtr;
+    HTRenderPassPtr renderPassPtr;
+    HTFrameBufferPoolPtr frameBufferPoolPtr;
+    HTCommandBufferPoolPtr commandBufferPoolPtr;
+    HTRendererPtr rendererPtr;
 public:
     HTVulkanTutorialWindow(int windowWidth, int windowHeight, const char *title = "Vulkan Tutorial"): HTWindow(windowWidth, windowHeight, title) {
 
     }
 
+    static void render(VkCommandBuffer commandBuffer) {
+
+    }
+
     void launch() override {
-        HTVulkanInstancePtr vulkanInstancePtr = HTNew(HTVulkanInstance);
-        HTRenderSurfacePtr renderSurfacePtr = HTNew(HTRenderSurface, vulkanInstancePtr, metalView);
-        HTRenderDevicePtr renderDevicePtr = HTNew(HTRenderDevice, vulkanInstancePtr, renderSurfacePtr);
-        HTSwapchainPtr swapchainPtr = HTNew(HTSwapchain, renderDevicePtr, renderSurfacePtr);
-        HTRenderPassPtr renderPassPtr = HTNew(HTRenderPass, renderDevicePtr, swapchainPtr);
-        HTFrameBufferPoolPtr frameBufferPoolPtr = HTNew(HTFrameBufferPool, renderDevicePtr, swapchainPtr, renderPassPtr);
-        HTCommandBufferPoolPtr commandBufferPoolPtr = HTNew(HTCommandBufferPool, renderDevicePtr, swapchainPtr);
+        vulkanInstancePtr = HTNew(HTVulkanInstance);
+        renderSurfacePtr = HTNew(HTRenderSurface, vulkanInstancePtr, metalView);
+        renderDevicePtr = HTNew(HTRenderDevice, vulkanInstancePtr, renderSurfacePtr);
+        swapchainPtr = HTNew(HTSwapchain, renderDevicePtr, renderSurfacePtr);
+        renderPassPtr = HTNew(HTRenderPass, renderDevicePtr, swapchainPtr);
+        frameBufferPoolPtr = HTNew(HTFrameBufferPool, renderDevicePtr, swapchainPtr, renderPassPtr);
+        commandBufferPoolPtr = HTNew(HTCommandBufferPool, renderDevicePtr, swapchainPtr);
+
+        rendererPtr = HTNew(HTRenderer, renderDevicePtr, swapchainPtr, renderPassPtr, frameBufferPoolPtr, commandBufferPoolPtr);
+        rendererPtr->renderHandler = render;
+        rendererPtr->render();
+        rendererPtr->present();
     }
 
     void loop() override {
@@ -45,6 +63,11 @@ public:
             setTitle(titleSS.str().data());
             fpsCount = 0;
             totalTime = 0;
+        }
+
+        if (rendererPtr) {
+            rendererPtr->render();
+            rendererPtr->present();
         }
     }
 };
