@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		64AB816196813BF51A1C5F5F /* HTWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 64AB88BAC5071EBD287556F8 /* HTWindow.mm */; };
 		64AB819796DB4AD6A02E0D0A /* HTRenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8202751A74014F09BA93 /* HTRenderPass.cpp */; };
+		64AB81B35E3AEFF7F4B92C91 /* HTCommandBufferPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8C22C8EF8E67EAF9F8FD /* HTCommandBufferPool.cpp */; };
 		64AB83F40AA746EA866229D1 /* HTFrameBufferPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB880A59F49773E818A0A0 /* HTFrameBufferPool.cpp */; };
 		64AB854AE739ED4A029CD95D /* HTRenderSurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8A643FF05D1CCDB05171 /* HTRenderSurface.cpp */; };
 		8E140EAF216B62480016E1A3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EAE216B62480016E1A3 /* main.cpp */; };
@@ -43,12 +44,14 @@
 
 /* Begin PBXFileReference section */
 		64AB8202751A74014F09BA93 /* HTRenderPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderPass.cpp; sourceTree = "<group>"; };
+		64AB87C4414DEDB8C441EC93 /* HTCommandBufferPool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTCommandBufferPool.hpp; sourceTree = "<group>"; };
 		64AB880A59F49773E818A0A0 /* HTFrameBufferPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTFrameBufferPool.cpp; sourceTree = "<group>"; };
 		64AB88BAC5071EBD287556F8 /* HTWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HTWindow.mm; sourceTree = "<group>"; };
 		64AB894506E2DBFF641A801F /* HTFrameBufferPool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTFrameBufferPool.hpp; sourceTree = "<group>"; };
 		64AB89E75ED4A0739A8C2F79 /* HTRenderPass.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTRenderPass.hpp; sourceTree = "<group>"; };
 		64AB8A643FF05D1CCDB05171 /* HTRenderSurface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderSurface.cpp; sourceTree = "<group>"; };
 		64AB8BDB4A263940AED22593 /* HTVKCheckUtil.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTVKCheckUtil.hpp; sourceTree = "<group>"; };
+		64AB8C22C8EF8E67EAF9F8FD /* HTCommandBufferPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTCommandBufferPool.cpp; sourceTree = "<group>"; };
 		64AB8D0549A84FB3AAA1B177 /* HTRenderSurface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTRenderSurface.hpp; sourceTree = "<group>"; };
 		64AB8EA3467AE2C60272CDA1 /* HTWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTWindow.h; sourceTree = "<group>"; };
 		8E140EAB216B62470016E1A3 /* VulkanTutorialMacOS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = VulkanTutorialMacOS; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +136,8 @@
 				64AB89E75ED4A0739A8C2F79 /* HTRenderPass.hpp */,
 				64AB880A59F49773E818A0A0 /* HTFrameBufferPool.cpp */,
 				64AB894506E2DBFF641A801F /* HTFrameBufferPool.hpp */,
+				64AB8C22C8EF8E67EAF9F8FD /* HTCommandBufferPool.cpp */,
+				64AB87C4414DEDB8C441EC93 /* HTCommandBufferPool.hpp */,
 			);
 			name = Classes;
 			path = ../../../../Classes;
@@ -230,6 +235,7 @@
 				64AB816196813BF51A1C5F5F /* HTWindow.mm in Sources */,
 				64AB819796DB4AD6A02E0D0A /* HTRenderPass.cpp in Sources */,
 				64AB83F40AA746EA866229D1 /* HTFrameBufferPool.cpp in Sources */,
+				64AB81B35E3AEFF7F4B92C91 /* HTCommandBufferPool.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

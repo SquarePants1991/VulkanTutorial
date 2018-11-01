@@ -15,6 +15,7 @@
 #include "HTSwapchain.hpp"
 #include "HTRenderPass.hpp"
 #include "HTFrameBufferPool.hpp"
+#include "HTCommandBufferPool.hpp"
 #include "HTWindow.h"
 
 class HTVulkanTutorialWindow: public HTWindow {
@@ -30,7 +31,7 @@ public:
         HTSwapchainPtr swapchainPtr = HTNew(HTSwapchain, renderDevicePtr, renderSurfacePtr);
         HTRenderPassPtr renderPassPtr = HTNew(HTRenderPass, renderDevicePtr, swapchainPtr);
         HTFrameBufferPoolPtr frameBufferPoolPtr = HTNew(HTFrameBufferPool, renderDevicePtr, swapchainPtr, renderPassPtr);
-
+        HTCommandBufferPoolPtr commandBufferPoolPtr = HTNew(HTCommandBufferPool, renderDevicePtr, swapchainPtr);
     }
 
     void loop() override {

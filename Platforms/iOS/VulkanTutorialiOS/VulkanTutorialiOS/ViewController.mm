@@ -13,6 +13,7 @@
 #import "HTSwapchain.hpp"
 #import "HTRenderPass.hpp"
 #import "HTFrameBufferPool.hpp"
+#import "HTCommandBufferPool.hpp"
 #import <MetalKit/MetalKit.h>
 
 @interface ViewController () {
@@ -32,6 +33,7 @@
     HTSwapchainPtr swapchainPtr = HTNew(HTSwapchain, renderDevicePtr, renderSurfacePtr);
     HTRenderPassPtr renderPassPtr = HTNew(HTRenderPass, renderDevicePtr, swapchainPtr);
     HTFrameBufferPoolPtr frameBufferPoolPtr = HTNew(HTFrameBufferPool, renderDevicePtr, swapchainPtr, renderPassPtr);
+    HTCommandBufferPoolPtr commandBufferPoolPtr = HTNew(HTCommandBufferPool, renderDevicePtr, swapchainPtr);
 }
 
 - (void)prepareMetalView {
