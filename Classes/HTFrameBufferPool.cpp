@@ -14,7 +14,11 @@ HTFrameBufferPool::HTFrameBufferPool(HTRenderDevicePtr renderDevicePtr, HTSwapch
 }
 
 HTFrameBufferPool::~HTFrameBufferPool() {
-
+    if (_renderDevicePtr && vkFramebuffers.size() > 0) {
+        for (const auto &framebuffer: vkFramebuffers) {
+            vkDestroyFramebuffer(_renderDevicePtr->vkLogicDevice, framebuffer, nullptr);
+        }
+    }
 }
 
 void HTFrameBufferPool::createFramebuffers() {
