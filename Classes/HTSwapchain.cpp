@@ -18,7 +18,7 @@ HTSwapchain::HTSwapchain(HTRenderDevicePtr renderDevicePtr, HTRenderSurfacePtr r
 }
 
 HTSwapchain::~HTSwapchain() {
-    if (vkSwapchain != nullptr) {
+    if (vkSwapchain != NULL) {
         vkDestroySwapchainKHR(_renderDevicePtr->vkLogicDevice, vkSwapchain, nullptr);
     }
     for (const auto &imageView: imageViews) {

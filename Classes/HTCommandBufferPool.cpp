@@ -13,7 +13,7 @@ HTCommandBufferPool::HTCommandBufferPool(HTRenderDevicePtr renderDevicePtr, HTSw
 }
 
 HTCommandBufferPool::~HTCommandBufferPool() {
-    if (_renderDevicePtr && vkCommandPool != nullptr) {
+    if (_renderDevicePtr && vkCommandPool != NULL) {
         if (vkCommandBuffers.size() > 0) {
             vkFreeCommandBuffers(_renderDevicePtr->vkLogicDevice, vkCommandPool, static_cast<uint32_t>(vkCommandBuffers.size()), vkCommandBuffers.data());
         }

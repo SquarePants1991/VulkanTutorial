@@ -42,7 +42,7 @@ _vulkanInstancePtr(vulkanInstancePtr) {
 }
 
 HTRenderSurface::~HTRenderSurface() {
-    if (_vulkanInstancePtr != nullptr && vkSurface != nullptr) {
+    if (_vulkanInstancePtr != nullptr && vkSurface != NULL) {
         vkDestroySurfaceKHR(_vulkanInstancePtr->vkInstance, vkSurface, NULL);
     }
 }

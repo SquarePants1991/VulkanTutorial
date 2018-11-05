@@ -6,6 +6,8 @@
 #include "HTRenderer.hpp"
 #include "HTVKCheckUtil.hpp"
 
+int HTRenderer::_currentFrameIndex = 0;
+
 HTRenderer::HTRenderer(HTRenderDevicePtr renderDevicePtr, HTSwapchainPtr swapchainPtr, HTRenderPassPtr renderPassPtr, HTFrameBufferPoolPtr frameBufferPoolPtr, HTCommandBufferPoolPtr commandBufferPoolPtr):
         _renderDevicePtr(renderDevicePtr),
         _swapchainPtr(swapchainPtr),
@@ -17,17 +19,33 @@ HTRenderer::HTRenderer(HTRenderDevicePtr renderDevicePtr, HTSwapchainPtr swapcha
 }
 
 HTRenderer::~HTRenderer() {
-
+    for (int i = 0; i < MaxFrameInFlight; ++i) {
+        vkDestroyFence(_renderDevicePtr->vkLogicDevice, _renderCompleteFences[i], nullptr);
+        vkDestroySemaphore(_renderDevicePtr->vkLogicDevice, _waitImageReadySemaphores[i], nullptr);
+        vkDestroySemaphore(_renderDevicePtr->vkLogicDevice, _commandBufferDidRenderSemaphores[i], nullptr);
+    }
 }
 
 void HTRenderer::createSemaphores() {
-    VkSemaphoreCreateInfo semaphoreCreateInfo = {};
-    semaphoreCreateInfo.sType = VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO;
-    VkResult result;
-    result = vkCreateSemaphore(_renderDevicePtr->vkLogicDevice, &semaphoreCreateInfo, nullptr, &_waitImageReadySemaphore);
-    htCheckVKOp(result, "VK Wait Image Semaphore fail.");
-    result = vkCreateSemaphore(_renderDevicePtr->vkLogicDevice, &semaphoreCreateInfo, nullptr, &_commandBufferDidRenderSemaphore);
-    htCheckVKOp(result, "VK Command Buffer Did Render Semaphore fail.");
+    _renderCompleteFences.resize(MaxFrameInFlight);
+    _waitImageReadySemaphores.resize(MaxFrameInFlight);
+    _commandBufferDidRenderSemaphores.resize(MaxFrameInFlight);
+
+    for (int i = 0; i < MaxFrameInFlight; ++i) {
+        VkResult result;
+        VkFenceCreateInfo fenceCreateInfo = {};
+        fenceCreateInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
+        fenceCreateInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;
+        result = vkCreateFence(_renderDevicePtr->vkLogicDevice, &fenceCreateInfo, nullptr, &_renderCompleteFences[i]);
+        htCheckVKOp(result, "VK Render Complete Fence create fail.");
+
+        VkSemaphoreCreateInfo semaphoreCreateInfo = {};
+        semaphoreCreateInfo.sType = VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO;
+        result = vkCreateSemaphore(_renderDevicePtr->vkLogicDevice, &semaphoreCreateInfo, nullptr, &_waitImageReadySemaphores[i]);
+        htCheckVKOp(result, "VK Wait Image Semaphore create fail.");
+        result = vkCreateSemaphore(_renderDevicePtr->vkLogicDevice, &semaphoreCreateInfo, nullptr, &_commandBufferDidRenderSemaphores[i]);
+        htCheckVKOp(result, "VK Command Buffer Did Render Semaphore create fail.");
+    }
 }
 
 void HTRenderer::render() {
@@ -40,8 +58,7 @@ void HTRenderer::render() {
         vkBeginCommandBuffer(commandBuffer, &commandBufferBeginInfo);
 
         VkRenderPassBeginInfo renderPassBeginInfo = {};
-        VkRect2D rect = {};
-        VkClearValue clearColor = {0.7, 0.6, 0.0, 1.0};
+        VkClearValue clearColor = {0.9, 0.6, 0.0, 1.0};
         renderPassBeginInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
         renderPassBeginInfo.renderPass = _renderPassPtr->vkRenderPass;
         renderPassBeginInfo.clearValueCount = 1;
@@ -62,8 +79,11 @@ void HTRenderer::render() {
 }
 
 void HTRenderer::present() {
+    vkWaitForFences(_renderDevicePtr->vkLogicDevice, 1, &_renderCompleteFences[_currentFrameIndex], VK_TRUE, std::numeric_limits<uint64_t >::max());
+    vkResetFences(_renderDevicePtr->vkLogicDevice, 1, &_renderCompleteFences[_currentFrameIndex]);
+
     uint32_t imageIndex;
-    vkAcquireNextImageKHR(_renderDevicePtr->vkLogicDevice, _swapchainPtr->vkSwapchain, std::numeric_limits<uint64_t >::max(), _waitImageReadySemaphore, VK_NULL_HANDLE, &imageIndex);
+    vkAcquireNextImageKHR(_renderDevicePtr->vkLogicDevice, _swapchainPtr->vkSwapchain, std::numeric_limits<uint64_t >::max(), _waitImageReadySemaphores[_currentFrameIndex], VK_NULL_HANDLE, &imageIndex);
 
     VkSubmitInfo submitInfo = {};
     submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
@@ -71,21 +91,21 @@ void HTRenderer::present() {
             VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT
     };
     submitInfo.waitSemaphoreCount = 1;
-    submitInfo.pWaitSemaphores = &_waitImageReadySemaphore;
+    submitInfo.pWaitSemaphores = &_waitImageReadySemaphores[_currentFrameIndex];
     submitInfo.pWaitDstStageMask = waitStages;
     submitInfo.commandBufferCount = 1;
     submitInfo.pCommandBuffers = &_commandBufferPoolPtr->vkCommandBuffers[imageIndex];
 
     submitInfo.signalSemaphoreCount = 1;
-    submitInfo.pSignalSemaphores = &_commandBufferDidRenderSemaphore;
+    submitInfo.pSignalSemaphores = &_commandBufferDidRenderSemaphores[_currentFrameIndex];
 
-    VkResult result = vkQueueSubmit(_renderDevicePtr->graphicsQueue, 1, &submitInfo, VK_NULL_HANDLE);
+    VkResult result = vkQueueSubmit(_renderDevicePtr->graphicsQueue, 1, &submitInfo, _renderCompleteFences[_currentFrameIndex]);
     htCheckVKOp(result, "VK Queue submit fail.");
 
     VkPresentInfoKHR presentInfo = {};
     presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
     presentInfo.waitSemaphoreCount = 1;
-    presentInfo.pWaitSemaphores = &_commandBufferDidRenderSemaphore;
+    presentInfo.pWaitSemaphores = &_commandBufferDidRenderSemaphores[_currentFrameIndex];
     presentInfo.swapchainCount = 1;
     presentInfo.pSwapchains = &_swapchainPtr->vkSwapchain;
     presentInfo.pImageIndices = &imageIndex;
@@ -93,4 +113,6 @@ void HTRenderer::present() {
 
     result = vkQueuePresentKHR(_renderDevicePtr->presentQueue, &presentInfo);
     htCheckVKOp(result, "VK Queue present fail.");
+
+    _currentFrameIndex = (_currentFrameIndex + 1) % MaxFrameInFlight;
 }

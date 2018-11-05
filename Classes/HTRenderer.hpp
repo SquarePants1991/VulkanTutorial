@@ -17,8 +17,13 @@ typedef void (* HTRendererRenderHandler)(VkCommandBuffer commandBuffer);
 
 class HTRenderer {
 private:
-    VkSemaphore _waitImageReadySemaphore;
-    VkSemaphore _commandBufferDidRenderSemaphore;
+    enum {
+        MaxFrameInFlight = 3
+    };
+    static int _currentFrameIndex;
+    std::vector<VkFence> _renderCompleteFences;
+    std::vector<VkSemaphore> _waitImageReadySemaphores;
+    std::vector<VkSemaphore> _commandBufferDidRenderSemaphores;
 
     HTRenderDevicePtr _renderDevicePtr;
     HTSwapchainPtr _swapchainPtr;

@@ -14,14 +14,20 @@
 #import "HTRenderPass.hpp"
 #import "HTFrameBufferPool.hpp"
 #import "HTCommandBufferPool.hpp"
+#import "HTRenderer.hpp"
 #import <MetalKit/MetalKit.h>
 
 @interface ViewController () {
     MTKView *_metalView;
+    HTRendererPtr rendererPtr;
 }
 @end
 
 @implementation ViewController
+
+static void render(VkCommandBuffer commandBuffer) {
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,6 +40,11 @@
     HTRenderPassPtr renderPassPtr = HTNew(HTRenderPass, renderDevicePtr, swapchainPtr);
     HTFrameBufferPoolPtr frameBufferPoolPtr = HTNew(HTFrameBufferPool, renderDevicePtr, swapchainPtr, renderPassPtr);
     HTCommandBufferPoolPtr commandBufferPoolPtr = HTNew(HTCommandBufferPool, renderDevicePtr, swapchainPtr);
+    
+    rendererPtr = HTNew(HTRenderer, renderDevicePtr, swapchainPtr, renderPassPtr, frameBufferPoolPtr, commandBufferPoolPtr);
+    rendererPtr->renderHandler = render;
+    rendererPtr->render();
+    rendererPtr->present();
 }
 
 - (void)prepareMetalView {

@@ -13,7 +13,7 @@ HTRenderPass::HTRenderPass(HTRenderDevicePtr renderDevicePtr, HTSwapchainPtr swa
 }
 
 HTRenderPass::~HTRenderPass() {
-    if (_renderDevicePtr && vkRenderPass != nullptr) {
+    if (_renderDevicePtr && vkRenderPass != NULL) {
         vkDestroyRenderPass(_renderDevicePtr->vkLogicDevice, vkRenderPass, nullptr);
     }
 }
