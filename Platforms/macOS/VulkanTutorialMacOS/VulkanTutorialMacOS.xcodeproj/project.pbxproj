@@ -12,6 +12,7 @@
 		64AB81B35E3AEFF7F4B92C91 /* HTCommandBufferPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8C22C8EF8E67EAF9F8FD /* HTCommandBufferPool.cpp */; };
 		64AB83F40AA746EA866229D1 /* HTFrameBufferPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB880A59F49773E818A0A0 /* HTFrameBufferPool.cpp */; };
 		64AB854AE739ED4A029CD95D /* HTRenderSurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8A643FF05D1CCDB05171 /* HTRenderSurface.cpp */; };
+		64AB85941593057E2E2DB68B /* HTRenderPipline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8F67636D7DDFF0FCBFE1 /* HTRenderPipline.cpp */; };
 		64AB86346A8EAB95EDBCADBD /* HTRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB84B0741A87400CF989B4 /* HTRenderer.cpp */; };
 		8E140EAF216B62480016E1A3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EAE216B62480016E1A3 /* main.cpp */; };
 		8E140EBA216B629F0016E1A3 /* HTRenderDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EB8216B629F0016E1A3 /* HTRenderDevice.cpp */; };
@@ -44,6 +45,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		64AB8015E0DF07F62B179B78 /* HTRenderPipline.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTRenderPipline.hpp; sourceTree = "<group>"; };
 		64AB8202751A74014F09BA93 /* HTRenderPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderPass.cpp; sourceTree = "<group>"; };
 		64AB84B0741A87400CF989B4 /* HTRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderer.cpp; sourceTree = "<group>"; };
 		64AB87C4414DEDB8C441EC93 /* HTCommandBufferPool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTCommandBufferPool.hpp; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 		64AB8C22C8EF8E67EAF9F8FD /* HTCommandBufferPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTCommandBufferPool.cpp; sourceTree = "<group>"; };
 		64AB8D0549A84FB3AAA1B177 /* HTRenderSurface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTRenderSurface.hpp; sourceTree = "<group>"; };
 		64AB8EA3467AE2C60272CDA1 /* HTWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTWindow.h; sourceTree = "<group>"; };
+		64AB8F67636D7DDFF0FCBFE1 /* HTRenderPipline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderPipline.cpp; sourceTree = "<group>"; };
 		8E140EAB216B62470016E1A3 /* VulkanTutorialMacOS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = VulkanTutorialMacOS; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E140EAE216B62480016E1A3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		8E140EB8216B629F0016E1A3 /* HTRenderDevice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderDevice.cpp; sourceTree = "<group>"; };
@@ -73,6 +76,11 @@
 		8E82D8222178676300F58457 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		8EB519C5217EF64E0086C835 /* HTSwapchain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HTSwapchain.cpp; sourceTree = "<group>"; };
 		8EB519C6217EF64E0086C835 /* HTSwapchain.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HTSwapchain.hpp; sourceTree = "<group>"; };
+		8EBE7F5B21944F52007AED2B /* frag.spv */ = {isa = PBXFileReference; lastKnownFileType = file; path = frag.spv; sourceTree = "<group>"; };
+		8EBE7F5C21944F52007AED2B /* vertex.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = vertex.vert; sourceTree = "<group>"; };
+		8EBE7F5D21944F52007AED2B /* fragment.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = fragment.frag; sourceTree = "<group>"; };
+		8EBE7F5E21944F52007AED2B /* vert.spv */ = {isa = PBXFileReference; lastKnownFileType = file; path = vert.spv; sourceTree = "<group>"; };
+		8EBE7F5F21944F7A007AED2B /* compile.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = compile.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +120,7 @@
 		8E140EAD216B62470016E1A3 /* VulkanTutorialMacOS */ = {
 			isa = PBXGroup;
 			children = (
+				8EBE7F5A21944F52007AED2B /* Shaders */,
 				8E140EC0216B692E0016E1A3 /* Resources */,
 				8E140EBB216B63450016E1A3 /* Frameworks */,
 				8E140EB5216B62790016E1A3 /* Classes */,
@@ -143,6 +152,8 @@
 				64AB87C4414DEDB8C441EC93 /* HTCommandBufferPool.hpp */,
 				64AB84B0741A87400CF989B4 /* HTRenderer.cpp */,
 				64AB8A506CD91E047E60D4E5 /* HTRenderer.hpp */,
+				64AB8F67636D7DDFF0FCBFE1 /* HTRenderPipline.cpp */,
+				64AB8015E0DF07F62B179B78 /* HTRenderPipline.hpp */,
 			);
 			name = Classes;
 			path = ../../../../Classes;
@@ -174,6 +185,19 @@
 				8E5FF966217847B800AF320F /* Cocoa.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8EBE7F5A21944F52007AED2B /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				8EBE7F5B21944F52007AED2B /* frag.spv */,
+				8EBE7F5C21944F52007AED2B /* vertex.vert */,
+				8EBE7F5D21944F52007AED2B /* fragment.frag */,
+				8EBE7F5E21944F52007AED2B /* vert.spv */,
+				8EBE7F5F21944F7A007AED2B /* compile.sh */,
+			);
+			name = Shaders;
+			path = ../../../../Shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +266,7 @@
 				64AB83F40AA746EA866229D1 /* HTFrameBufferPool.cpp in Sources */,
 				64AB81B35E3AEFF7F4B92C91 /* HTCommandBufferPool.cpp in Sources */,
 				64AB86346A8EAB95EDBCADBD /* HTRenderer.cpp in Sources */,
+				64AB85941593057E2E2DB68B /* HTRenderPipline.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
