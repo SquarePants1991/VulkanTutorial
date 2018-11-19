@@ -10,6 +10,7 @@
 #include "HTSwapchain.hpp"
 #include "HTRenderDevice.hpp"
 #include "HTRenderPass.hpp"
+#include "HTRenderPipline.hpp"
 #include "HTFrameBufferPool.hpp"
 #include "HTCommandBufferPool.hpp"
 
@@ -28,6 +29,7 @@ private:
     HTRenderDevicePtr _renderDevicePtr;
     HTSwapchainPtr _swapchainPtr;
     HTRenderPassPtr _renderPassPtr;
+    HTRenderPiplinePtr _renderPiplinePtr;
     HTFrameBufferPoolPtr _frameBufferPoolPtr;
     HTCommandBufferPoolPtr _commandBufferPoolPtr;
 
@@ -35,7 +37,7 @@ private:
 public:
     HTRendererRenderHandler renderHandler;
 
-    HTRenderer(HTRenderDevicePtr renderDevicePtr, HTSwapchainPtr swapchainPtr, HTRenderPassPtr renderPassPtr, HTFrameBufferPoolPtr frameBufferPoolPtr, HTCommandBufferPoolPtr commandBufferPoolPtr);
+    HTRenderer(HTRenderDevicePtr renderDevicePtr, HTSwapchainPtr swapchainPtr, HTRenderPassPtr renderPassPtr, HTRenderPiplinePtr renderPiplinePtr, HTFrameBufferPoolPtr frameBufferPoolPtr, HTCommandBufferPoolPtr commandBufferPoolPtr);
     ~HTRenderer();
 
     void render();

@@ -8,19 +8,27 @@
 
 #include <vulkan/vulkan.h>
 #include <vector>
+#include "HTRenderDevice.hpp"
+#include "HTSwapchain.hpp"
+#include "HTRenderPass.hpp"
 
 class HTRenderPipline {
 private:
-    std::vector<VkShaderModule> _shaderModules;
+    HTRenderDevicePtr _renderDevicePtr;
+    HTSwapchainPtr _swapchainPtr;
+    HTRenderPassPtr _renderPassPtr;
+    std::vector<std::pair<VkShaderModule, int>> _shaderModules;
 
-    VkShaderModule createShaderModule();
-    std::vector<unsigned char> readFileContent(const char *path);
+    std::vector<char> readFileContent(const char *path);
+    VkShaderModule createShaderModule(std::vector<char> shaderByteCodes);
+    void createPipline();
 public:
     VkPipeline vkPipeline;
+    VkPipelineLayout vkPiplineLayout;
 
-    HTRenderPipline(const char *vertexShaderPath, const char *fragmentShaderPath);
+    HTRenderPipline(HTRenderDevicePtr renderDevicePtr, HTSwapchainPtr swapchainPtr, HTRenderPassPtr renderPassPtr,const char *vertexShaderPath, const char *fragmentShaderPath);
     ~HTRenderPipline();
 };
 
-
+HTMakeClass(HTRenderPipline)
 #endif //VULKANTUTORIALMACOS_HTRENDERPIPLINE_HPP

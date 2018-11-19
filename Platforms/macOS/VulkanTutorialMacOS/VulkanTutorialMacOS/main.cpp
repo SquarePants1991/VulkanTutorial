@@ -14,6 +14,7 @@
 #include "HTRenderSurface.hpp"
 #include "HTSwapchain.hpp"
 #include "HTRenderPass.hpp"
+#include "HTRenderPipline.hpp"
 #include "HTFrameBufferPool.hpp"
 #include "HTCommandBufferPool.hpp"
 #include "HTRenderer.hpp"
@@ -25,6 +26,7 @@ class HTVulkanTutorialWindow: public HTWindow {
     HTRenderDevicePtr renderDevicePtr;
     HTSwapchainPtr swapchainPtr;
     HTRenderPassPtr renderPassPtr;
+    HTRenderPiplinePtr renderPiplinePtr;
     HTFrameBufferPoolPtr frameBufferPoolPtr;
     HTCommandBufferPoolPtr commandBufferPoolPtr;
     HTRendererPtr rendererPtr;
@@ -43,10 +45,11 @@ public:
         renderDevicePtr = HTNew(HTRenderDevice, vulkanInstancePtr, renderSurfacePtr);
         swapchainPtr = HTNew(HTSwapchain, renderDevicePtr, renderSurfacePtr);
         renderPassPtr = HTNew(HTRenderPass, renderDevicePtr, swapchainPtr);
+        renderPiplinePtr = HTNew(HTRenderPipline, renderDevicePtr, swapchainPtr, renderPassPtr, "./vert.spv", "./frag.spv");
         frameBufferPoolPtr = HTNew(HTFrameBufferPool, renderDevicePtr, swapchainPtr, renderPassPtr);
         commandBufferPoolPtr = HTNew(HTCommandBufferPool, renderDevicePtr, swapchainPtr);
 
-        rendererPtr = HTNew(HTRenderer, renderDevicePtr, swapchainPtr, renderPassPtr, frameBufferPoolPtr, commandBufferPoolPtr);
+        rendererPtr = HTNew(HTRenderer, renderDevicePtr, swapchainPtr, renderPassPtr, renderPiplinePtr, frameBufferPoolPtr, commandBufferPoolPtr);
         rendererPtr->renderHandler = render;
         rendererPtr->render();
         rendererPtr->present();

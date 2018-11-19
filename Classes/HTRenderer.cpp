@@ -8,10 +8,11 @@
 
 int HTRenderer::_currentFrameIndex = 0;
 
-HTRenderer::HTRenderer(HTRenderDevicePtr renderDevicePtr, HTSwapchainPtr swapchainPtr, HTRenderPassPtr renderPassPtr, HTFrameBufferPoolPtr frameBufferPoolPtr, HTCommandBufferPoolPtr commandBufferPoolPtr):
+HTRenderer::HTRenderer(HTRenderDevicePtr renderDevicePtr, HTSwapchainPtr swapchainPtr, HTRenderPassPtr renderPassPtr, HTRenderPiplinePtr renderPiplinePtr, HTFrameBufferPoolPtr frameBufferPoolPtr, HTCommandBufferPoolPtr commandBufferPoolPtr):
         _renderDevicePtr(renderDevicePtr),
         _swapchainPtr(swapchainPtr),
         _renderPassPtr(renderPassPtr),
+        _renderPiplinePtr(renderPiplinePtr),
         _frameBufferPoolPtr(frameBufferPoolPtr),
         _commandBufferPoolPtr(commandBufferPoolPtr),
         renderHandler(nullptr) {
@@ -68,6 +69,8 @@ void HTRenderer::render() {
         renderPassBeginInfo.renderArea.extent = _swapchainPtr->imageExtend;
 
         vkCmdBeginRenderPass(commandBuffer, &renderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
+        vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, _renderPiplinePtr->vkPipeline);
+        vkCmdDraw(commandBuffer, 3, 1, 0, 0);
         if (renderHandler != nullptr) {
             renderHandler(commandBuffer);
         }

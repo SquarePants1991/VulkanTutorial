@@ -24,6 +24,8 @@
 		8E3239F82179E30E009056C3 /* HTVulkanInstance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E3239F72179E30E009056C3 /* HTVulkanInstance.cpp */; };
 		8E5FF967217847B800AF320F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E5FF966217847B800AF320F /* Cocoa.framework */; };
 		8E5FF96B217847C800AF320F /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E5FF96A217847C800AF320F /* MetalKit.framework */; };
+		8E7B122021A2BC6D00D669A6 /* frag.spv in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8EBE7F5B21944F52007AED2B /* frag.spv */; };
+		8E7B122121A2BC6F00D669A6 /* vert.spv in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8EBE7F5E21944F52007AED2B /* vert.spv */; };
 		8E82D8232178676300F58457 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E82D8222178676300F58457 /* CoreVideo.framework */; };
 		8E82D82421786CDB00F58457 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E5FF968217847C000AF320F /* QuartzCore.framework */; };
 		8EB519C7217EF64E0086C835 /* HTSwapchain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EB519C5217EF64E0086C835 /* HTSwapchain.cpp */; };
@@ -37,6 +39,8 @@
 			dstSubfolderSpec = 16;
 			files = (
 				8E140EBE216B65F30016E1A3 /* libvulkan.1.dylib in CopyFiles */,
+				8E7B122121A2BC6F00D669A6 /* vert.spv in CopyFiles */,
+				8E7B122021A2BC6D00D669A6 /* frag.spv in CopyFiles */,
 				8E140EC2216B69570016E1A3 /* MoltenVK_icd.json in CopyFiles */,
 				8E140EC5216B6D930016E1A3 /* libMoltenVK.dylib in CopyFiles */,
 			);
@@ -209,6 +213,7 @@
 			buildPhases = (
 				8E140EA7216B62470016E1A3 /* Sources */,
 				8E140EA8216B62470016E1A3 /* Frameworks */,
+				8E7B122221A2BCD000D669A6 /* Compile Shaders */,
 				8E140EA9216B62470016E1A3 /* CopyFiles */,
 			);
 			buildRules = (
@@ -250,6 +255,27 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8E7B122221A2BCD000D669A6 /* Compile Shaders */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Compile Shaders";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ${SRCROOT}/../../../Shaders\n./compile.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8E140EA7216B62470016E1A3 /* Sources */ = {
