@@ -12,12 +12,18 @@
 #include "HTSwapchain.hpp"
 #include "HTRenderPass.hpp"
 
+struct HTVertexInputDescriptions {
+    std::vector<VkVertexInputBindingDescription> bindingDescriptions;
+    std::vector<VkVertexInputAttributeDescription> attributeDescriptions;
+};
+
 class HTRenderPipline {
 private:
     HTRenderDevicePtr _renderDevicePtr;
     HTSwapchainPtr _swapchainPtr;
     HTRenderPassPtr _renderPassPtr;
     std::vector<std::pair<VkShaderModule, int>> _shaderModules;
+    HTVertexInputDescriptions _vertexInputDescriptions;
 
     std::vector<char> readFileContent(const char *path);
     VkShaderModule createShaderModule(std::vector<char> shaderByteCodes);
@@ -26,7 +32,13 @@ public:
     VkPipeline vkPipeline;
     VkPipelineLayout vkPiplineLayout;
 
-    HTRenderPipline(HTRenderDevicePtr renderDevicePtr, HTSwapchainPtr swapchainPtr, HTRenderPassPtr renderPassPtr,const char *vertexShaderPath, const char *fragmentShaderPath);
+    HTRenderPipline(HTRenderDevicePtr renderDevicePtr,
+            HTSwapchainPtr swapchainPtr,
+            HTRenderPassPtr renderPassPtr,
+            const char *vertexShaderPath,
+            const char *fragmentShaderPath,
+            HTVertexInputDescriptions vertexInputDescriptions
+    );
     ~HTRenderPipline();
 };
 

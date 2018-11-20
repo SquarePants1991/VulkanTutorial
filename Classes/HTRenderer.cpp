@@ -70,9 +70,8 @@ void HTRenderer::render() {
 
         vkCmdBeginRenderPass(commandBuffer, &renderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
         vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, _renderPiplinePtr->vkPipeline);
-        vkCmdDraw(commandBuffer, 3, 1, 0, 0);
         if (renderHandler != nullptr) {
-            renderHandler(commandBuffer);
+            renderHandler(commandBuffer, renderContext);
         }
         vkCmdEndRenderPass(commandBuffer);
 

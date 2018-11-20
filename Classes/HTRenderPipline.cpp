@@ -7,10 +7,16 @@
 #include "HTRenderPipline.hpp"
 #include "HTVKCheckUtil.hpp"
 
-HTRenderPipline::HTRenderPipline(HTRenderDevicePtr renderDevicePtr, HTSwapchainPtr swapchainPtr, HTRenderPassPtr renderPassPtr, const char *vertexShaderPath, const char *fragmentShaderPath):
+HTRenderPipline::HTRenderPipline(HTRenderDevicePtr renderDevicePtr,
+        HTSwapchainPtr swapchainPtr,
+        HTRenderPassPtr renderPassPtr,
+        const char *vertexShaderPath,
+        const char *fragmentShaderPath,
+        HTVertexInputDescriptions vertexInputDescriptions):
     _renderDevicePtr(renderDevicePtr),
     _swapchainPtr(swapchainPtr),
-    _renderPassPtr(renderPassPtr) {
+    _renderPassPtr(renderPassPtr),
+    _vertexInputDescriptions(vertexInputDescriptions) {
     std::vector<char> vertexShaderByteCodes = readFileContent(vertexShaderPath);
     std::vector<char> fragmentShaderByteCodes = readFileContent(fragmentShaderPath);
     _shaderModules.push_back(std::make_pair(createShaderModule(vertexShaderByteCodes), VK_SHADER_STAGE_VERTEX_BIT));
@@ -55,10 +61,10 @@ void HTRenderPipline::createPipline() {
     // 顶点数据布局，类似于VAO
     VkPipelineVertexInputStateCreateInfo pipelineVertexInputStateCreateInfo = {};
     pipelineVertexInputStateCreateInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-    pipelineVertexInputStateCreateInfo.vertexAttributeDescriptionCount = 0;
-    pipelineVertexInputStateCreateInfo.pVertexAttributeDescriptions = nullptr;
-    pipelineVertexInputStateCreateInfo.vertexBindingDescriptionCount = 0;
-    pipelineVertexInputStateCreateInfo.pVertexBindingDescriptions = nullptr;
+    pipelineVertexInputStateCreateInfo.vertexAttributeDescriptionCount = static_cast<uint32_t>(_vertexInputDescriptions.attributeDescriptions.size());;
+    pipelineVertexInputStateCreateInfo.pVertexAttributeDescriptions = _vertexInputDescriptions.attributeDescriptions.data();
+    pipelineVertexInputStateCreateInfo.vertexBindingDescriptionCount = static_cast<uint32_t>(_vertexInputDescriptions.bindingDescriptions.size());
+    pipelineVertexInputStateCreateInfo.pVertexBindingDescriptions = _vertexInputDescriptions.bindingDescriptions.data();
 
     VkPipelineInputAssemblyStateCreateInfo pipelineInputAssemblyStateCreateInfo = {};
     pipelineInputAssemblyStateCreateInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;

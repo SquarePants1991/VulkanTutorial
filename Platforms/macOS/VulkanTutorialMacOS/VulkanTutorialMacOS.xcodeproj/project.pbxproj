@@ -11,6 +11,7 @@
 		64AB819796DB4AD6A02E0D0A /* HTRenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8202751A74014F09BA93 /* HTRenderPass.cpp */; };
 		64AB81B35E3AEFF7F4B92C91 /* HTCommandBufferPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8C22C8EF8E67EAF9F8FD /* HTCommandBufferPool.cpp */; };
 		64AB83F40AA746EA866229D1 /* HTFrameBufferPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB880A59F49773E818A0A0 /* HTFrameBufferPool.cpp */; };
+		64AB8459796E234DF93A473C /* HTVertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8B42600FF006818D5FE1 /* HTVertexBuffer.cpp */; };
 		64AB854AE739ED4A029CD95D /* HTRenderSurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8A643FF05D1CCDB05171 /* HTRenderSurface.cpp */; };
 		64AB85941593057E2E2DB68B /* HTRenderPipline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8F67636D7DDFF0FCBFE1 /* HTRenderPipline.cpp */; };
 		64AB86346A8EAB95EDBCADBD /* HTRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB84B0741A87400CF989B4 /* HTRenderer.cpp */; };
@@ -52,6 +53,7 @@
 		64AB8015E0DF07F62B179B78 /* HTRenderPipline.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTRenderPipline.hpp; sourceTree = "<group>"; };
 		64AB8202751A74014F09BA93 /* HTRenderPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderPass.cpp; sourceTree = "<group>"; };
 		64AB84B0741A87400CF989B4 /* HTRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderer.cpp; sourceTree = "<group>"; };
+		64AB87C3545F9B03EB9C55FC /* HTVertexBuffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTVertexBuffer.hpp; sourceTree = "<group>"; };
 		64AB87C4414DEDB8C441EC93 /* HTCommandBufferPool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTCommandBufferPool.hpp; sourceTree = "<group>"; };
 		64AB880A59F49773E818A0A0 /* HTFrameBufferPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTFrameBufferPool.cpp; sourceTree = "<group>"; };
 		64AB88BAC5071EBD287556F8 /* HTWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HTWindow.mm; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 		64AB89E75ED4A0739A8C2F79 /* HTRenderPass.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTRenderPass.hpp; sourceTree = "<group>"; };
 		64AB8A506CD91E047E60D4E5 /* HTRenderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTRenderer.hpp; sourceTree = "<group>"; };
 		64AB8A643FF05D1CCDB05171 /* HTRenderSurface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderSurface.cpp; sourceTree = "<group>"; };
+		64AB8B42600FF006818D5FE1 /* HTVertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTVertexBuffer.cpp; sourceTree = "<group>"; };
 		64AB8BDB4A263940AED22593 /* HTVKCheckUtil.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTVKCheckUtil.hpp; sourceTree = "<group>"; };
 		64AB8C22C8EF8E67EAF9F8FD /* HTCommandBufferPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTCommandBufferPool.cpp; sourceTree = "<group>"; };
 		64AB8D0549A84FB3AAA1B177 /* HTRenderSurface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTRenderSurface.hpp; sourceTree = "<group>"; };
@@ -158,6 +161,8 @@
 				64AB8A506CD91E047E60D4E5 /* HTRenderer.hpp */,
 				64AB8F67636D7DDFF0FCBFE1 /* HTRenderPipline.cpp */,
 				64AB8015E0DF07F62B179B78 /* HTRenderPipline.hpp */,
+				64AB8B42600FF006818D5FE1 /* HTVertexBuffer.cpp */,
+				64AB87C3545F9B03EB9C55FC /* HTVertexBuffer.hpp */,
 			);
 			name = Classes;
 			path = ../../../../Classes;
@@ -293,6 +298,7 @@
 				64AB81B35E3AEFF7F4B92C91 /* HTCommandBufferPool.cpp in Sources */,
 				64AB86346A8EAB95EDBCADBD /* HTRenderer.cpp in Sources */,
 				64AB85941593057E2E2DB68B /* HTRenderPipline.cpp in Sources */,
+				64AB8459796E234DF93A473C /* HTVertexBuffer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,7 +420,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = /usr/local/vulkansdk/macOS/include;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/vulkansdk/macOS/include,
+					/usr/local/include,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/vulkansdk/macOS/lib,
 					"$(PROJECT_DIR)/VulkanTutorialMacOS/Frameworks",
@@ -427,7 +436,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = /usr/local/vulkansdk/macOS/include;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/vulkansdk/macOS/include,
+					/usr/local/include,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/vulkansdk/macOS/lib,
 					"$(PROJECT_DIR)/VulkanTutorialMacOS/Frameworks",

@@ -16,18 +16,21 @@
 #import "HTFrameBufferPool.hpp"
 #import "HTCommandBufferPool.hpp"
 #import "HTRenderer.hpp"
+#import "HTVertexBuffer.hpp"
 #import <MetalKit/MetalKit.h>
 
 @interface ViewController () {
     MTKView *_metalView;
     HTRendererPtr rendererPtr;
+    HTVertexBufferPtr vertexBufferPtr;
 }
 @end
 
 @implementation ViewController
 
-static void render(VkCommandBuffer commandBuffer) {
-    
+static void render(VkCommandBuffer commandBuffer, void *renderContext) {
+    ViewController *vc = (__bridge ViewController *)renderContext;
+    [vc render:commandBuffer];
 }
 
 - (void)viewDidLoad {
@@ -42,12 +45,24 @@ static void render(VkCommandBuffer commandBuffer) {
     
     NSString *vertexShaderPath = [[NSBundle mainBundle] pathForResource:@"vert" ofType:@"spv"];
     NSString *fragShaderPath = [[NSBundle mainBundle] pathForResource:@"frag" ofType:@"spv"];
-    HTRenderPiplinePtr renderPipelinePtr = HTNew(HTRenderPipline, renderDevicePtr, swapchainPtr, renderPassPtr, [vertexShaderPath UTF8String], [fragShaderPath UTF8String]);
+    HTVertexInputDescriptions vertexInputDescriptions = {
+        .attributeDescriptions = HTVertex::getAttributeDescriptions(),
+        .bindingDescriptions = HTVertex::getBindingDescriptions()
+    };
+    HTRenderPiplinePtr renderPipelinePtr = HTNew(HTRenderPipline, renderDevicePtr, swapchainPtr, renderPassPtr, [vertexShaderPath UTF8String], [fragShaderPath UTF8String], vertexInputDescriptions);
     HTFrameBufferPoolPtr frameBufferPoolPtr = HTNew(HTFrameBufferPool, renderDevicePtr, swapchainPtr, renderPassPtr);
     HTCommandBufferPoolPtr commandBufferPoolPtr = HTNew(HTCommandBufferPool, renderDevicePtr, swapchainPtr);
     
+    HTVertex vertices[] = {
+        {{0, 0.5, 0}, {1.0, 0.0, 1.0}},
+        {{-0.5, -0.5, 0}, {0.0, 1.0, 1.0}},
+        {{0.5, -0.5, 0}, {1.0, 1.0, 0.0}},
+    };
+    vertexBufferPtr = HTNew(HTVertexBuffer, renderDevicePtr, vertices, sizeof(vertices) / sizeof(HTVertex));
+    
     rendererPtr = HTNew(HTRenderer, renderDevicePtr, swapchainPtr, renderPassPtr, renderPipelinePtr, frameBufferPoolPtr, commandBufferPoolPtr);
     rendererPtr->renderHandler = render;
+    rendererPtr->renderContext = (__bridge void *)self;
     rendererPtr->render();
     rendererPtr->present();
 }
@@ -57,4 +72,14 @@ static void render(VkCommandBuffer commandBuffer) {
     [self.view addSubview:_metalView];
 }
 
+- (void)render:(VkCommandBuffer)commandBuffer {
+    if (vertexBufferPtr) {
+        VkBuffer buffers[] = {vertexBufferPtr->vkVertexBuffer};
+        VkDeviceSize offsets[] = {0};
+        vkCmdBindVertexBuffers(commandBuffer, 0, 1, buffers, offsets);
+        // 我们默认使用三角形列表渲染，所以实例个数应该是顶点数除以3
+        uint32_t instanceCount = vertexBufferPtr->vertexCount() / 3;
+        vkCmdDraw(commandBuffer, vertexBufferPtr->vertexCount(), instanceCount, 0, 0);
+    }
+}
 @end

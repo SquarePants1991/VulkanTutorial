@@ -27,6 +27,7 @@
 		8E82D82A2178AED200F58457 /* HTVulkanInstance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E82D8282178AED200F58457 /* HTVulkanInstance.cpp */; };
 		8E84AE682181CC0E00D41E41 /* HTSwapchain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E84AE672181CC0E00D41E41 /* HTSwapchain.cpp */; };
 		8EB68943218FEFB100D14E8F /* HTRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EB68942218FEFB100D14E8F /* HTRenderer.cpp */; };
+		8EC16D4321A3B38D0024E725 /* HTVertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EC16D4221A3B38D0024E725 /* HTVertexBuffer.cpp */; };
 		8EC7EC3B218AD93800226A77 /* HTRenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EC7EC38218AD93700226A77 /* HTRenderPass.cpp */; };
 		8EC7EC3C218AD93800226A77 /* HTFrameBufferPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EC7EC3A218AD93800226A77 /* HTFrameBufferPool.cpp */; };
 		8EC7EC3F218B0DA200226A77 /* HTCommandBufferPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EC7EC3E218B0DA200226A77 /* HTCommandBufferPool.cpp */; };
@@ -83,6 +84,8 @@
 		8E84AE672181CC0E00D41E41 /* HTSwapchain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTSwapchain.cpp; sourceTree = "<group>"; };
 		8EB68941218FEFB100D14E8F /* HTRenderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTRenderer.hpp; sourceTree = "<group>"; };
 		8EB68942218FEFB100D14E8F /* HTRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderer.cpp; sourceTree = "<group>"; };
+		8EC16D4121A3B38C0024E725 /* HTVertexBuffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTVertexBuffer.hpp; sourceTree = "<group>"; };
+		8EC16D4221A3B38D0024E725 /* HTVertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTVertexBuffer.cpp; sourceTree = "<group>"; };
 		8EC7EC37218AD93600226A77 /* HTRenderPass.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTRenderPass.hpp; sourceTree = "<group>"; };
 		8EC7EC38218AD93700226A77 /* HTRenderPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderPass.cpp; sourceTree = "<group>"; };
 		8EC7EC39218AD93700226A77 /* HTFrameBufferPool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTFrameBufferPool.hpp; sourceTree = "<group>"; };
@@ -169,6 +172,8 @@
 		8E140F09216C6C120016E1A3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8EC16D4221A3B38D0024E725 /* HTVertexBuffer.cpp */,
+				8EC16D4121A3B38C0024E725 /* HTVertexBuffer.hpp */,
 				8E7B122E21A2D06F00D669A6 /* HTRenderPipline.cpp */,
 				8E7B122F21A2D06F00D669A6 /* HTRenderPipline.hpp */,
 				8EB68942218FEFB100D14E8F /* HTRenderer.cpp */,
@@ -352,6 +357,7 @@
 				8EC7EC3C218AD93800226A77 /* HTFrameBufferPool.cpp in Sources */,
 				8E82D82A2178AED200F58457 /* HTVulkanInstance.cpp in Sources */,
 				8EC7EC3F218B0DA200226A77 /* HTCommandBufferPool.cpp in Sources */,
+				8EC16D4321A3B38D0024E725 /* HTVertexBuffer.cpp in Sources */,
 				8E140EE4216C69F00016E1A3 /* ViewController.mm in Sources */,
 				8E84AE682181CC0E00D41E41 /* HTSwapchain.cpp in Sources */,
 				8EC7EC3B218AD93800226A77 /* HTRenderPass.cpp in Sources */,
@@ -523,7 +529,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/VulkanTutorialiOS/Frameworks",
 				);
-				HEADER_SEARCH_PATHS = /usr/local/vulkansdk/MoltenVK/include;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/vulkansdk/MoltenVK/include,
+					/usr/local/include,
+				);
 				INFOPLIST_FILE = VulkanTutorialiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -546,7 +555,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/VulkanTutorialiOS/Frameworks",
 				);
-				HEADER_SEARCH_PATHS = /usr/local/vulkansdk/MoltenVK/include;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/vulkansdk/MoltenVK/include,
+					/usr/local/include,
+				);
 				INFOPLIST_FILE = VulkanTutorialiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = (

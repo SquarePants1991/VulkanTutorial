@@ -20,6 +20,8 @@
 #include "HTRenderer.hpp"
 #include "HTWindow.h"
 
+#include "HTVertexBuffer.hpp"
+
 class HTVulkanTutorialWindow: public HTWindow {
     HTVulkanInstancePtr vulkanInstancePtr;
     HTRenderSurfacePtr renderSurfacePtr;
@@ -30,13 +32,16 @@ class HTVulkanTutorialWindow: public HTWindow {
     HTFrameBufferPoolPtr frameBufferPoolPtr;
     HTCommandBufferPoolPtr commandBufferPoolPtr;
     HTRendererPtr rendererPtr;
+
+    HTVertexBufferPtr vertexBufferPtr;
 public:
     HTVulkanTutorialWindow(int windowWidth, int windowHeight, const char *title = "Vulkan Tutorial"): HTWindow(windowWidth, windowHeight, title) {
 
     }
 
-    static void render(VkCommandBuffer commandBuffer) {
-
+    static void render(VkCommandBuffer commandBuffer, void *renderContext) {
+        HTVulkanTutorialWindow *window = (HTVulkanTutorialWindow *)renderContext;
+        window->render(commandBuffer);
     }
 
     void launch() override {
@@ -45,14 +50,35 @@ public:
         renderDevicePtr = HTNew(HTRenderDevice, vulkanInstancePtr, renderSurfacePtr);
         swapchainPtr = HTNew(HTSwapchain, renderDevicePtr, renderSurfacePtr);
         renderPassPtr = HTNew(HTRenderPass, renderDevicePtr, swapchainPtr);
-        renderPiplinePtr = HTNew(HTRenderPipline, renderDevicePtr, swapchainPtr, renderPassPtr, "./vert.spv", "./frag.spv");
+        HTVertexInputDescriptions vertexInputDescriptions = {
+                .attributeDescriptions = HTVertex::getAttributeDescriptions(),
+                .bindingDescriptions = HTVertex::getBindingDescriptions()
+        };
+        renderPiplinePtr = HTNew(HTRenderPipline, renderDevicePtr, swapchainPtr, renderPassPtr, "./vert.spv", "./frag.spv", vertexInputDescriptions);
         frameBufferPoolPtr = HTNew(HTFrameBufferPool, renderDevicePtr, swapchainPtr, renderPassPtr);
         commandBufferPoolPtr = HTNew(HTCommandBufferPool, renderDevicePtr, swapchainPtr);
 
         rendererPtr = HTNew(HTRenderer, renderDevicePtr, swapchainPtr, renderPassPtr, renderPiplinePtr, frameBufferPoolPtr, commandBufferPoolPtr);
         rendererPtr->renderHandler = render;
-        rendererPtr->render();
-        rendererPtr->present();
+        rendererPtr->renderContext = reinterpret_cast<void *>(this);
+
+        HTVertex vertices[] = {
+                {{0, 0.5, 0}, {1.0, 0.0, 1.0}},
+                {{-0.5, -0.5, 0}, {0.0, 1.0, 1.0}},
+                {{0.5, -0.5, 0}, {1.0, 1.0, 0.0}},
+        };
+        vertexBufferPtr = HTNew(HTVertexBuffer, renderDevicePtr, vertices, sizeof(vertices) / sizeof(HTVertex));
+    }
+
+    void render(VkCommandBuffer commandBuffer) {
+        if (vertexBufferPtr) {
+            VkBuffer buffers[] = {vertexBufferPtr->vkVertexBuffer};
+            VkDeviceSize offsets[] = {0};
+            vkCmdBindVertexBuffers(commandBuffer, 0, 1, buffers, offsets);
+            // 我们默认使用三角形列表渲染，所以实例个数应该是顶点数除以3
+            uint32_t instanceCount = vertexBufferPtr->vertexCount() / 3;
+            vkCmdDraw(commandBuffer, vertexBufferPtr->vertexCount(), instanceCount, 0, 0);
+        }
     }
 
     void loop() override {

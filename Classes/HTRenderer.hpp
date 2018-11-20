@@ -14,7 +14,7 @@
 #include "HTFrameBufferPool.hpp"
 #include "HTCommandBufferPool.hpp"
 
-typedef void (* HTRendererRenderHandler)(VkCommandBuffer commandBuffer);
+typedef void (* HTRendererRenderHandler)(VkCommandBuffer commandBuffer, void *renderContext);
 
 class HTRenderer {
 private:
@@ -36,6 +36,7 @@ private:
     void createSemaphores();
 public:
     HTRendererRenderHandler renderHandler;
+    void *renderContext;
 
     HTRenderer(HTRenderDevicePtr renderDevicePtr, HTSwapchainPtr swapchainPtr, HTRenderPassPtr renderPassPtr, HTRenderPiplinePtr renderPiplinePtr, HTFrameBufferPoolPtr frameBufferPoolPtr, HTCommandBufferPoolPtr commandBufferPoolPtr);
     ~HTRenderer();
