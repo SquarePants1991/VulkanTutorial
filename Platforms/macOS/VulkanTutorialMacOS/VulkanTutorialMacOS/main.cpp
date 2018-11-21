@@ -75,9 +75,7 @@ public:
             VkBuffer buffers[] = {vertexBufferPtr->vkVertexBuffer};
             VkDeviceSize offsets[] = {0};
             vkCmdBindVertexBuffers(commandBuffer, 0, 1, buffers, offsets);
-            // 我们默认使用三角形列表渲染，所以实例个数应该是顶点数除以3
-            uint32_t instanceCount = vertexBufferPtr->vertexCount() / 3;
-            vkCmdDraw(commandBuffer, vertexBufferPtr->vertexCount(), instanceCount, 0, 0);
+            vkCmdDraw(commandBuffer, vertexBufferPtr->vertexCount(), 1, 0, 0);
         }
     }
 
