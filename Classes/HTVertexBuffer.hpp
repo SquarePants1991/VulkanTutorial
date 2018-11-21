@@ -51,17 +51,30 @@ private:
     HTRenderDevicePtr _renderDevicePtr;
     HTVertex *_vertices;
     uint32_t _vertexCount;
+    uint16_t *_indexes;
+    uint32_t _indexCount;
     bool _shouldCopyData;
-    void createBuffer();
-    void copyData();
+    void createBuffers();
+    void createBuffer(uint32_t sizeInBytes, VkBufferUsageFlagBits usageFlagBits, VkBuffer &buffer, VkDeviceMemory &bufferMemory);
+    void copyData(uint32_t sizeInBytes, void *data, VkDeviceMemory &dstMemory);
 public:
     VkBuffer vkVertexBuffer;
+    VkBuffer vkIndexBuffer;
     VkDeviceMemory vkVertexBufferDeviceMemory;
-    HTVertexBuffer(HTRenderDevicePtr renderDevicePtr, HTVertex *vertices, uint32_t vertexCount, bool shouldCopyData = true);
+    VkDeviceMemory vkIndexBufferDeviceMemory;
+    HTVertexBuffer(HTRenderDevicePtr renderDevicePtr, HTVertex *vertices, uint32_t vertexCount, uint16_t *indexes = nullptr, uint32_t indexCount = 0, bool shouldCopyData = true);
     ~HTVertexBuffer();
 
     uint32_t vertexCount() {
         return _vertexCount;
+    }
+
+    uint32_t indexCount() {
+        return _indexCount;
+    }
+
+    bool supportIndexMode() {
+        return _indexCount > 0;
     }
 };
 

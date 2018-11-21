@@ -63,11 +63,17 @@ public:
         rendererPtr->renderContext = reinterpret_cast<void *>(this);
 
         HTVertex vertices[] = {
-                {{0, 0.5, 0}, {1.0, 0.0, 1.0}},
-                {{-0.5, -0.5, 0}, {0.0, 1.0, 1.0}},
-                {{0.5, -0.5, 0}, {1.0, 1.0, 0.0}},
+                {{-0.5, 0.5, 0}, {1.0, 0.0, 1.0}},
+                {{0.5, 0.5, 0}, {1.0, 0.0, 1.0}},
+                {{0.5, -0.5, 0}, {0.0, 1.0, 1.0}},
+                {{-0.5, -0.5, 0}, {1.0, 1.0, 0.0}},
         };
-        vertexBufferPtr = HTNew(HTVertexBuffer, renderDevicePtr, vertices, sizeof(vertices) / sizeof(HTVertex));
+
+        uint16_t indexes[] = {
+                0, 1, 2,
+                2, 3, 0
+        };
+        vertexBufferPtr = HTNew(HTVertexBuffer, renderDevicePtr, vertices, sizeof(vertices) / sizeof(HTVertex), indexes, sizeof(indexes) / sizeof(uint16_t));
     }
 
     void render(VkCommandBuffer commandBuffer) {
@@ -75,9 +81,12 @@ public:
             VkBuffer buffers[] = {vertexBufferPtr->vkVertexBuffer};
             VkDeviceSize offsets[] = {0};
             vkCmdBindVertexBuffers(commandBuffer, 0, 1, buffers, offsets);
-            // 我们默认使用三角形列表渲染，所以实例个数应该是顶点数除以3
-            uint32_t instanceCount = vertexBufferPtr->vertexCount() / 3;
-            vkCmdDraw(commandBuffer, vertexBufferPtr->vertexCount(), instanceCount, 0, 0);
+            if (vertexBufferPtr->supportIndexMode()) {
+                vkCmdBindIndexBuffer(commandBuffer, vertexBufferPtr->vkIndexBuffer, VkDeviceSize(0), VK_INDEX_TYPE_UINT16);
+                vkCmdDrawIndexed(commandBuffer, vertexBufferPtr->indexCount(), 1, 0, 0, 0);
+            } else {
+                vkCmdDraw(commandBuffer, vertexBufferPtr->vertexCount(), 1, 0, 0);
+            }
         }
     }
 
