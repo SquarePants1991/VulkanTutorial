@@ -17,6 +17,9 @@
 		8E140EF9216C69F20016E1A3 /* VulkanTutorialiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EF8216C69F20016E1A3 /* VulkanTutorialiOSTests.m */; };
 		8E140F0D216C6C120016E1A3 /* HTRenderDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E140F0B216C6C120016E1A3 /* HTRenderDevice.cpp */; };
 		8E323A08217DA31D009056C3 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140F11216C6D220016E1A3 /* MetalKit.framework */; };
+		8E72835921B1462C00059AFA /* HTBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E72835321B1462B00059AFA /* HTBuffer.cpp */; };
+		8E72835A21B1462C00059AFA /* HTUniformBufferPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E72835421B1462C00059AFA /* HTUniformBufferPool.cpp */; };
+		8E72835B21B1462C00059AFA /* HTUniformBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E72835521B1462C00059AFA /* HTUniformBuffer.cpp */; };
 		8E7B122921A2CFD700D669A6 /* frag.spv in Resources */ = {isa = PBXBuildFile; fileRef = 8E7B122421A2CFD700D669A6 /* frag.spv */; };
 		8E7B122A21A2CFD700D669A6 /* vertex.vert in Resources */ = {isa = PBXBuildFile; fileRef = 8E7B122521A2CFD700D669A6 /* vertex.vert */; };
 		8E7B122B21A2CFD700D669A6 /* compile.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8E7B122621A2CFD700D669A6 /* compile.sh */; };
@@ -69,6 +72,12 @@
 		8E140F17216C6D690016E1A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8E140F1B216C6EF40016E1A3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		8E3239F42179E19D009056C3 /* HTMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMacros.h; sourceTree = "<group>"; };
+		8E72835321B1462B00059AFA /* HTBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTBuffer.cpp; sourceTree = "<group>"; };
+		8E72835421B1462C00059AFA /* HTUniformBufferPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTUniformBufferPool.cpp; sourceTree = "<group>"; };
+		8E72835521B1462C00059AFA /* HTUniformBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTUniformBuffer.cpp; sourceTree = "<group>"; };
+		8E72835621B1462C00059AFA /* HTBuffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTBuffer.hpp; sourceTree = "<group>"; };
+		8E72835721B1462C00059AFA /* HTUniformBuffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTUniformBuffer.hpp; sourceTree = "<group>"; };
+		8E72835821B1462C00059AFA /* HTUniformBufferPool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTUniformBufferPool.hpp; sourceTree = "<group>"; };
 		8E7B122421A2CFD700D669A6 /* frag.spv */ = {isa = PBXFileReference; lastKnownFileType = file; path = frag.spv; sourceTree = "<group>"; };
 		8E7B122521A2CFD700D669A6 /* vertex.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = vertex.vert; sourceTree = "<group>"; };
 		8E7B122621A2CFD700D669A6 /* compile.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = compile.sh; sourceTree = "<group>"; };
@@ -172,6 +181,12 @@
 		8E140F09216C6C120016E1A3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8E72835321B1462B00059AFA /* HTBuffer.cpp */,
+				8E72835621B1462C00059AFA /* HTBuffer.hpp */,
+				8E72835521B1462C00059AFA /* HTUniformBuffer.cpp */,
+				8E72835721B1462C00059AFA /* HTUniformBuffer.hpp */,
+				8E72835421B1462C00059AFA /* HTUniformBufferPool.cpp */,
+				8E72835821B1462C00059AFA /* HTUniformBufferPool.hpp */,
 				8EC16D4221A3B38D0024E725 /* HTVertexBuffer.cpp */,
 				8EC16D4121A3B38C0024E725 /* HTVertexBuffer.hpp */,
 				8E7B122E21A2D06F00D669A6 /* HTRenderPipline.cpp */,
@@ -358,10 +373,13 @@
 				8E82D82A2178AED200F58457 /* HTVulkanInstance.cpp in Sources */,
 				8EC7EC3F218B0DA200226A77 /* HTCommandBufferPool.cpp in Sources */,
 				8EC16D4321A3B38D0024E725 /* HTVertexBuffer.cpp in Sources */,
+				8E72835A21B1462C00059AFA /* HTUniformBufferPool.cpp in Sources */,
 				8E140EE4216C69F00016E1A3 /* ViewController.mm in Sources */,
 				8E84AE682181CC0E00D41E41 /* HTSwapchain.cpp in Sources */,
 				8EC7EC3B218AD93800226A77 /* HTRenderPass.cpp in Sources */,
 				8E140EEF216C69F10016E1A3 /* main.m in Sources */,
+				8E72835B21B1462C00059AFA /* HTUniformBuffer.cpp in Sources */,
+				8E72835921B1462C00059AFA /* HTBuffer.cpp in Sources */,
 				8E140EE1216C69F00016E1A3 /* AppDelegate.m in Sources */,
 				8E7B123021A2D06F00D669A6 /* HTRenderPipline.cpp in Sources */,
 				8E140F0D216C6C120016E1A3 /* HTRenderDevice.cpp in Sources */,

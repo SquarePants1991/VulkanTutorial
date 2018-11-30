@@ -9,6 +9,7 @@
 #include <vulkan/vulkan.h>
 #include <glm/glm.hpp>
 #include <vector>
+#include "HTBuffer.hpp"
 #include "HTRenderDevice.hpp"
 
 struct HTVertex {
@@ -46,17 +47,14 @@ struct HTVertex {
     }
 };
 
-class HTVertexBuffer {
+class HTVertexBuffer: public HTBuffer {
 private:
-    HTRenderDevicePtr _renderDevicePtr;
     HTVertex *_vertices;
     uint32_t _vertexCount;
     uint16_t *_indexes;
     uint32_t _indexCount;
     bool _shouldCopyData;
     void createBuffers();
-    void createBuffer(uint32_t sizeInBytes, VkBufferUsageFlagBits usageFlagBits, VkBuffer &buffer, VkDeviceMemory &bufferMemory);
-    void copyData(uint32_t sizeInBytes, void *data, VkDeviceMemory &dstMemory);
 public:
     VkBuffer vkVertexBuffer;
     VkBuffer vkIndexBuffer;

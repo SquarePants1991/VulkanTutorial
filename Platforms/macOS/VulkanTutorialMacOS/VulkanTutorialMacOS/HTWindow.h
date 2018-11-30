@@ -12,6 +12,8 @@ class HTWindow {
     void *_window;
 public:
     HTWindow(int windowWidth, int windowHeight, const char *title);
+    int windowWidth;
+    int windowHeight;
     void *metalView;
     double deltaTime;
     double elapsedTime;

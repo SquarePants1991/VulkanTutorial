@@ -31,6 +31,9 @@ HTRenderPipline::~HTRenderPipline() {
     if (vkPiplineLayout) {
         vkDestroyPipelineLayout(_renderDevicePtr->vkLogicDevice, vkPiplineLayout, nullptr);
     }
+    if (vkDescriptorSetLayout) {
+        vkDestroyDescriptorSetLayout(_renderDevicePtr->vkLogicDevice, vkDescriptorSetLayout, nullptr);
+    }
 }
 
 VkShaderModule HTRenderPipline::createShaderModule(std::vector<char> shaderByteCodes) {
@@ -140,12 +143,29 @@ void HTRenderPipline::createPipline() {
             .pDynamicStates = dynamicStates,
     };
 
+    VkDescriptorSetLayoutBinding uniformLayoutBinding = {
+            .binding = 0,
+            .descriptorCount = 1,
+            .descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,
+            .pImmutableSamplers = nullptr,
+            .stageFlags = VK_SHADER_STAGE_VERTEX_BIT
+    };
+    VkDescriptorSetLayoutCreateInfo descriptorSetLayoutCreateInfo = {
+            .sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO,
+            .bindingCount = 1,
+            .pBindings = &uniformLayoutBinding,
+    };
+
+    htCheckVKOp(
+            vkCreateDescriptorSetLayout(_renderDevicePtr->vkLogicDevice, &descriptorSetLayoutCreateInfo, nullptr, &vkDescriptorSetLayout),
+            "VK Descriptor Set Layout create fail.");
+
     VkPipelineLayoutCreateInfo pipelineLayoutCreateInfo = {
             .sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO,
             .pushConstantRangeCount = 0,
             .pPushConstantRanges = nullptr,
-            .pSetLayouts = nullptr,
-            .setLayoutCount = 0
+            .pSetLayouts = &vkDescriptorSetLayout,
+            .setLayoutCount = 1
     };
     htCheckVKOp(vkCreatePipelineLayout(_renderDevicePtr->vkLogicDevice, &pipelineLayoutCreateInfo, nullptr, &vkPiplineLayout), "VK Pipline Layout create fail.");
 

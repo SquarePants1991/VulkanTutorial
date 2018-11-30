@@ -8,6 +8,9 @@
 
 #include <iostream>
 #include <sstream>
+#define GLM_ENABLE_EXPERIMENTAL
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/transform.hpp>
 
 #include "HTVulkanInstance.hpp"
 #include "HTRenderDevice.hpp"
@@ -17,6 +20,7 @@
 #include "HTRenderPipline.hpp"
 #include "HTFrameBufferPool.hpp"
 #include "HTCommandBufferPool.hpp"
+#include "HTUniformBufferPool.hpp"
 #include "HTRenderer.hpp"
 #include "HTWindow.h"
 
@@ -31,17 +35,20 @@ class HTVulkanTutorialWindow: public HTWindow {
     HTRenderPiplinePtr renderPiplinePtr;
     HTFrameBufferPoolPtr frameBufferPoolPtr;
     HTCommandBufferPoolPtr commandBufferPoolPtr;
+    HTUniformBufferPoolPtr uniformBufferPoolPtr;
     HTRendererPtr rendererPtr;
 
     HTVertexBufferPtr vertexBufferPtr;
+
+    float elapsedTime;
 public:
     HTVulkanTutorialWindow(int windowWidth, int windowHeight, const char *title = "Vulkan Tutorial"): HTWindow(windowWidth, windowHeight, title) {
 
     }
 
-    static void render(VkCommandBuffer commandBuffer, void *renderContext) {
+    static void render(VkCommandBuffer commandBuffer, HTUniformBufferPtr uniformBufferPtr, void *renderContext) {
         HTVulkanTutorialWindow *window = (HTVulkanTutorialWindow *)renderContext;
-        window->render(commandBuffer);
+        window->render(commandBuffer, uniformBufferPtr);
     }
 
     void launch() override {
@@ -57,8 +64,9 @@ public:
         renderPiplinePtr = HTNew(HTRenderPipline, renderDevicePtr, swapchainPtr, renderPassPtr, "./vert.spv", "./frag.spv", vertexInputDescriptions);
         frameBufferPoolPtr = HTNew(HTFrameBufferPool, renderDevicePtr, swapchainPtr, renderPassPtr);
         commandBufferPoolPtr = HTNew(HTCommandBufferPool, renderDevicePtr, swapchainPtr);
+        uniformBufferPoolPtr = HTNew(HTUniformBufferPool, renderDevicePtr, swapchainPtr, renderPiplinePtr);
 
-        rendererPtr = HTNew(HTRenderer, renderDevicePtr, swapchainPtr, renderPassPtr, renderPiplinePtr, frameBufferPoolPtr, commandBufferPoolPtr);
+        rendererPtr = HTNew(HTRenderer, renderDevicePtr, swapchainPtr, renderPassPtr, renderPiplinePtr, frameBufferPoolPtr, commandBufferPoolPtr, uniformBufferPoolPtr);
         rendererPtr->renderHandler = render;
         rendererPtr->renderContext = reinterpret_cast<void *>(this);
 
@@ -74,9 +82,16 @@ public:
                 2, 3, 0
         };
         vertexBufferPtr = HTNew(HTVertexBuffer, renderDevicePtr, vertices, sizeof(vertices) / sizeof(HTVertex), indexes, sizeof(indexes) / sizeof(uint16_t));
+
+        elapsedTime = 0.0f;
     }
 
-    void render(VkCommandBuffer commandBuffer) {
+    void render(VkCommandBuffer commandBuffer, HTUniformBufferPtr uniformBufferPtr) {
+        // Update Uniform Data
+        float rotateAngle = (sin(elapsedTime) + 1) * 0.5f * 360.0f;
+        uniformBufferPtr->uniformData.model = glm::rotate<float, glm::highp>(glm::radians(rotateAngle), glm::vec3(0, 0, 1.0f));
+        uniformBufferPtr->flush();
+
         if (vertexBufferPtr) {
             VkBuffer buffers[] = {vertexBufferPtr->vkVertexBuffer};
             VkDeviceSize offsets[] = {0};
@@ -95,6 +110,7 @@ public:
         static double totalTime = 0;
         fpsCount++;
         totalTime += deltaTime;
+        elapsedTime += deltaTime;
         if (fpsCount >= 30) {
             std::stringstream titleSS;
             titleSS << "fps: " << int(1.0 / (totalTime / fpsCount));

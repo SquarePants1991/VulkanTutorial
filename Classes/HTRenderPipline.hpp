@@ -31,6 +31,7 @@ private:
 public:
     VkPipeline vkPipeline;
     VkPipelineLayout vkPiplineLayout;
+    VkDescriptorSetLayout vkDescriptorSetLayout;
 
     HTRenderPipline(HTRenderDevicePtr renderDevicePtr,
             HTSwapchainPtr swapchainPtr,

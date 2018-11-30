@@ -78,7 +78,9 @@ static CVReturn renderCallback(CVDisplayLinkRef displayLink,
 }
 @end
 
-HTWindow::HTWindow(int windowWidth, int windowHeight, const char *title) {
+HTWindow::HTWindow(int windowWidth, int windowHeight, const char *title):
+        windowWidth(windowWidth),
+        windowHeight(windowHeight) {
     [NSApplication sharedApplication];
     [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
     NSWindowStyleMask windowStyleMask = NSWindowStyleMaskTitled | NSWindowStyleMaskClosable;

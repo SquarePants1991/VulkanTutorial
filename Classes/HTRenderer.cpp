@@ -8,13 +8,14 @@
 
 int HTRenderer::_currentFrameIndex = 0;
 
-HTRenderer::HTRenderer(HTRenderDevicePtr renderDevicePtr, HTSwapchainPtr swapchainPtr, HTRenderPassPtr renderPassPtr, HTRenderPiplinePtr renderPiplinePtr, HTFrameBufferPoolPtr frameBufferPoolPtr, HTCommandBufferPoolPtr commandBufferPoolPtr):
+HTRenderer::HTRenderer(HTRenderDevicePtr renderDevicePtr, HTSwapchainPtr swapchainPtr, HTRenderPassPtr renderPassPtr, HTRenderPiplinePtr renderPiplinePtr, HTFrameBufferPoolPtr frameBufferPoolPtr, HTCommandBufferPoolPtr commandBufferPoolPtr, HTUniformBufferPoolPtr uniformBufferPoolPtr):
         _renderDevicePtr(renderDevicePtr),
         _swapchainPtr(swapchainPtr),
         _renderPassPtr(renderPassPtr),
         _renderPiplinePtr(renderPiplinePtr),
         _frameBufferPoolPtr(frameBufferPoolPtr),
         _commandBufferPoolPtr(commandBufferPoolPtr),
+        _uniformBufferPoolPtr(uniformBufferPoolPtr),
         renderHandler(nullptr) {
     createSemaphores();
 }
@@ -70,8 +71,11 @@ void HTRenderer::render() {
 
         vkCmdBeginRenderPass(commandBuffer, &renderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
         vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, _renderPiplinePtr->vkPipeline);
+        VkDescriptorSet currentDescriptorSet = _uniformBufferPoolPtr->vkDescriptorSets[index];
+        HTUniformBufferPtr currentUniformBuffer = _uniformBufferPoolPtr->uniformBuffers[index];
+        vkCmdBindDescriptorSets(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, _renderPiplinePtr->vkPiplineLayout, 0, 1, &currentDescriptorSet, 0, nullptr);
         if (renderHandler != nullptr) {
-            renderHandler(commandBuffer, renderContext);
+            renderHandler(commandBuffer, currentUniformBuffer, renderContext);
         }
         vkCmdEndRenderPass(commandBuffer);
 

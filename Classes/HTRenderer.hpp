@@ -13,8 +13,9 @@
 #include "HTRenderPipline.hpp"
 #include "HTFrameBufferPool.hpp"
 #include "HTCommandBufferPool.hpp"
+#include "HTUniformBufferPool.hpp"
 
-typedef void (* HTRendererRenderHandler)(VkCommandBuffer commandBuffer, void *renderContext);
+typedef void (* HTRendererRenderHandler)(VkCommandBuffer commandBuffer, HTUniformBufferPtr uniformBufferPtr, void *renderContext);
 
 class HTRenderer {
 private:
@@ -32,13 +33,14 @@ private:
     HTRenderPiplinePtr _renderPiplinePtr;
     HTFrameBufferPoolPtr _frameBufferPoolPtr;
     HTCommandBufferPoolPtr _commandBufferPoolPtr;
+    HTUniformBufferPoolPtr _uniformBufferPoolPtr;
 
     void createSemaphores();
 public:
     HTRendererRenderHandler renderHandler;
     void *renderContext;
 
-    HTRenderer(HTRenderDevicePtr renderDevicePtr, HTSwapchainPtr swapchainPtr, HTRenderPassPtr renderPassPtr, HTRenderPiplinePtr renderPiplinePtr, HTFrameBufferPoolPtr frameBufferPoolPtr, HTCommandBufferPoolPtr commandBufferPoolPtr);
+    HTRenderer(HTRenderDevicePtr renderDevicePtr, HTSwapchainPtr swapchainPtr, HTRenderPassPtr renderPassPtr, HTRenderPiplinePtr renderPiplinePtr, HTFrameBufferPoolPtr frameBufferPoolPtr, HTCommandBufferPoolPtr commandBufferPoolPtr, HTUniformBufferPoolPtr uniformBufferPoolPtr);
     ~HTRenderer();
 
     void render();
