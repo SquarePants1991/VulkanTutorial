@@ -78,8 +78,8 @@ void HTRenderPipline::createPipline() {
     viewport.y = 0;
     viewport.width = _swapchainPtr->imageExtend.width;
     viewport.height = _swapchainPtr->imageExtend.height;
-    viewport.minDepth = 0;
-    viewport.maxDepth = 1.0;
+    viewport.minDepth = 0.0f;
+    viewport.maxDepth = 1.0f;
 
     VkRect2D scissor = {};
     scissor.offset = {0, 0};

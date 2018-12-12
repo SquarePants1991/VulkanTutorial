@@ -11,5 +11,8 @@ layout(binding = 0) uniform UniformBufferObject {
 
 void main() {
     frag_color = vec4(in_color, 1.0);
-    gl_Position = ubo.projection * ubo.view * ubo.model * vec4(in_position, 1.0);
+    vec4 pos = ubo.projection * ubo.view * ubo.model * vec4(in_position, 1.0);
+    pos.y = -pos.y;
+    pos.z = (pos.z + pos.w) / 2.0;
+    gl_Position = pos;
 }

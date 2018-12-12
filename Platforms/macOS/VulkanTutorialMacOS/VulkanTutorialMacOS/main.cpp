@@ -72,7 +72,7 @@ public:
 
         HTVertex vertices[] = {
                 {{-0.5, 0.5, 0}, {1.0, 0.0, 1.0}},
-                {{0.5, 0.5, 0}, {1.0, 0.0, 1.0}},
+                {{0.45, 0.5, 0}, {1.0, 0.0, 1.0}},
                 {{0.5, -0.5, 0}, {0.0, 1.0, 1.0}},
                 {{-0.5, -0.5, 0}, {1.0, 1.0, 0.0}},
         };
@@ -88,8 +88,22 @@ public:
 
     void render(VkCommandBuffer commandBuffer, HTUniformBufferPtr uniformBufferPtr) {
         // Update Uniform Data
-        float rotateAngle = (sin(elapsedTime) + 1) * 0.5f * 360.0f;
-        uniformBufferPtr->uniformData.model = glm::rotate<float, glm::highp>(glm::radians(rotateAngle), glm::vec3(0, 0, 1.0f));
+        float screenW = float(swapchainPtr->imageExtend.width);
+        float screenH = float(swapchainPtr->imageExtend.height);
+        float animateFactor = (sin(elapsedTime) + 1) * 0.5f;
+
+#define USE_PERSPECTIVE 0
+#if USE_PERSPECTIVE
+        float aspect = screenW / screenH;
+        uniformBufferPtr->uniformData.projection = glm::perspective(glm::radians(60.0f), aspect, 0.1f, 1000.0f);
+        uniformBufferPtr->uniformData.view = glm::lookAt(glm::vec3(0, 0, -1), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+        uniformBufferPtr->uniformData.model = glm::rotate<float, glm::highp>(animateFactor, glm::vec3(1.0f, 0.0f, 0.0f));
+#else
+        float scale = 100.0f * animateFactor;
+        uniformBufferPtr->uniformData.projection = glm::ortho(-screenW / 2.0f, screenW / 2.0f, -screenH / 2.0f, screenH / 2.0f, 0.1f, 1000.0f);
+        uniformBufferPtr->uniformData.view = glm::lookAt(glm::vec3(0, 0, -1), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+        uniformBufferPtr->uniformData.model = glm::scale<float, glm::highp>(glm::vec3(scale, scale, scale));
+#endif
         uniformBufferPtr->flush();
 
         if (vertexBufferPtr) {
