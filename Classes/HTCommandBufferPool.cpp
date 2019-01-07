@@ -47,3 +47,35 @@ void HTCommandBufferPool::createCommandBuffers() {
         std::cout << "VK Command Buffers create success." << std::endl;
     }
 }
+
+VkCommandBuffer HTCommandBufferPool::beginOneTimeCommands() {
+    VkCommandBufferAllocateInfo commandBufferAllocateInfo = {};
+    commandBufferAllocateInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+    commandBufferAllocateInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+    commandBufferAllocateInfo.commandBufferCount = 1;
+    commandBufferAllocateInfo.commandPool = vkCommandPool;
+
+    VkCommandBuffer commandBuffer;
+    vkAllocateCommandBuffers(_renderDevicePtr->vkLogicDevice, &commandBufferAllocateInfo, &commandBuffer);
+
+    VkCommandBufferBeginInfo commandBufferBeginInfo = {
+            .sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO,
+            .flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT
+    };
+    vkBeginCommandBuffer(commandBuffer, &commandBufferBeginInfo);
+    return commandBuffer;
+}
+
+void HTCommandBufferPool::endOneTimeCommands(VkCommandBuffer commandBuffer) {
+    vkEndCommandBuffer(commandBuffer);
+
+    VkSubmitInfo submitInfo = {
+            .sType = VK_STRUCTURE_TYPE_SUBMIT_INFO,
+            .commandBufferCount = 1,
+            .pCommandBuffers = &commandBuffer
+    };
+    vkQueueSubmit(_renderDevicePtr->graphicsQueue, 1, &submitInfo, VK_NULL_HANDLE);
+    vkQueueWaitIdle(_renderDevicePtr->graphicsQueue);
+
+    vkFreeCommandBuffers(_renderDevicePtr->vkLogicDevice, vkCommandPool, 1, &commandBuffer);
+}

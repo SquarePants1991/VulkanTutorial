@@ -14,7 +14,8 @@ HTUniformBuffer::HTUniformBuffer(HTRenderDevicePtr renderDevicePtr):
             .model = glm::identity<glm::mat4>(),
             .view = glm::identity<glm::mat4>()
     };
-    createBuffer(sizeof(HTUniformBuffer), VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, vkBuffer, vkDeviceMemory);
+    VkMemoryPropertyFlagBits memoryPropertyFlagBits = VkMemoryPropertyFlagBits(VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
+    createBuffer(sizeof(HTUniformBuffer), VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, memoryPropertyFlagBits, vkBuffer, vkDeviceMemory);
     copyData(sizeof(HTUniformBuffer), &uniformData, vkDeviceMemory);
 }
 

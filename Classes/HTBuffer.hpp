@@ -10,11 +10,12 @@
 #include "HTRenderDevice.hpp"
 
 class HTBuffer {
-protected:
+public:
     HTRenderDevicePtr _renderDevicePtr;
     HTBuffer(HTRenderDevicePtr renderDevicePtr);
     void copyData(uint32_t sizeInBytes, void *data, VkDeviceMemory &dstMemory);
-    void createBuffer(uint32_t sizeInBytes, VkBufferUsageFlagBits usageFlagBits, VkBuffer &buffer, VkDeviceMemory &bufferMemory);
+    void createBuffer(uint32_t sizeInBytes, VkBufferUsageFlagBits usageFlagBits, VkMemoryPropertyFlagBits memoryPropertyFlagBits, VkBuffer &buffer, VkDeviceMemory &bufferMemory);
+    void createDeviceMemory(VkMemoryRequirements memoryRequirements, VkMemoryPropertyFlagBits memoryPropertyFlagBits, VkDeviceMemory &bufferMemory);
 };
 
 

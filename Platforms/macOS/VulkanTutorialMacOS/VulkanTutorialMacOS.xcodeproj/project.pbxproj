@@ -18,6 +18,7 @@
 		64AB85941593057E2E2DB68B /* HTRenderPipline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8F67636D7DDFF0FCBFE1 /* HTRenderPipline.cpp */; };
 		64AB86346A8EAB95EDBCADBD /* HTRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB84B0741A87400CF989B4 /* HTRenderer.cpp */; };
 		64AB8D82A2F7C81ED34D7C56 /* HTUniformBufferPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB88E423F69B9782946A99 /* HTUniformBufferPool.cpp */; };
+		64AB8EBD38D43650DA5FB6AF /* HTTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB842FB3483B4290FD1516 /* HTTexture.cpp */; };
 		8E140EAF216B62480016E1A3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EAE216B62480016E1A3 /* main.cpp */; };
 		8E140EBA216B629F0016E1A3 /* HTRenderDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EB8216B629F0016E1A3 /* HTRenderDevice.cpp */; };
 		8E140EBD216B65ED0016E1A3 /* libvulkan.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E140EBC216B65ED0016E1A3 /* libvulkan.1.dylib */; };
@@ -56,9 +57,11 @@
 		64AB8015E0DF07F62B179B78 /* HTRenderPipline.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTRenderPipline.hpp; sourceTree = "<group>"; };
 		64AB8202751A74014F09BA93 /* HTRenderPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderPass.cpp; sourceTree = "<group>"; };
 		64AB838638B228F2DCEDEDA5 /* HTUniformBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTUniformBuffer.cpp; sourceTree = "<group>"; };
+		64AB842FB3483B4290FD1516 /* HTTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTTexture.cpp; sourceTree = "<group>"; };
 		64AB84B0741A87400CF989B4 /* HTRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderer.cpp; sourceTree = "<group>"; };
 		64AB84E399FACB06C49BAC96 /* HTBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTBuffer.cpp; sourceTree = "<group>"; };
 		64AB862481F269D75CE18494 /* HTUniformBuffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTUniformBuffer.hpp; sourceTree = "<group>"; };
+		64AB87902B57E3028F12580F /* HTTexture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTTexture.hpp; sourceTree = "<group>"; };
 		64AB87C3545F9B03EB9C55FC /* HTVertexBuffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTVertexBuffer.hpp; sourceTree = "<group>"; };
 		64AB87C4414DEDB8C441EC93 /* HTCommandBufferPool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTCommandBufferPool.hpp; sourceTree = "<group>"; };
 		64AB880A59F49773E818A0A0 /* HTFrameBufferPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTFrameBufferPool.cpp; sourceTree = "<group>"; };
@@ -90,6 +93,7 @@
 		8E5FF968217847C000AF320F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8E5FF96A217847C800AF320F /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		8E82D8222178676300F58457 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		8E9D2B5C21C8A10B0092E2B5 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		8EB519C5217EF64E0086C835 /* HTSwapchain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HTSwapchain.cpp; sourceTree = "<group>"; };
 		8EB519C6217EF64E0086C835 /* HTSwapchain.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HTSwapchain.hpp; sourceTree = "<group>"; };
 		8EBE7F5B21944F52007AED2B /* frag.spv */ = {isa = PBXFileReference; lastKnownFileType = file; path = frag.spv; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 		8E140EB5216B62790016E1A3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8E9D2B5A21C8A10B0092E2B5 /* ThirdParty */,
 				8E3239F52179E30E009056C3 /* HTMacros.h */,
 				8E3239F72179E30E009056C3 /* HTVulkanInstance.cpp */,
 				8E3239F62179E30E009056C3 /* HTVulkanInstance.hpp */,
@@ -178,6 +183,8 @@
 				64AB862481F269D75CE18494 /* HTUniformBuffer.hpp */,
 				64AB88E423F69B9782946A99 /* HTUniformBufferPool.cpp */,
 				64AB8AE58575C2A5406718AE /* HTUniformBufferPool.hpp */,
+				64AB842FB3483B4290FD1516 /* HTTexture.cpp */,
+				64AB87902B57E3028F12580F /* HTTexture.hpp */,
 			);
 			name = Classes;
 			path = ../../../../Classes;
@@ -209,6 +216,22 @@
 				8E5FF966217847B800AF320F /* Cocoa.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8E9D2B5A21C8A10B0092E2B5 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				8E9D2B5B21C8A10B0092E2B5 /* stb */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		8E9D2B5B21C8A10B0092E2B5 /* stb */ = {
+			isa = PBXGroup;
+			children = (
+				8E9D2B5C21C8A10B0092E2B5 /* stb_image.h */,
+			);
+			path = stb;
 			sourceTree = "<group>";
 		};
 		8EBE7F5A21944F52007AED2B /* Shaders */ = {
@@ -317,6 +340,7 @@
 				64AB81EB0D5C1B9BFB494366 /* HTBuffer.cpp in Sources */,
 				64AB80DAE94BD07B77D8B2E9 /* HTUniformBuffer.cpp in Sources */,
 				64AB8D82A2F7C81ED34D7C56 /* HTUniformBufferPool.cpp in Sources */,
+				64AB8EBD38D43650DA5FB6AF /* HTTexture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

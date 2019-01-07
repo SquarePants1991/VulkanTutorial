@@ -46,9 +46,10 @@ HTVertexBuffer::~HTVertexBuffer() {
 
 void HTVertexBuffer::createBuffers() {
     uint32_t vertexBufferSize = sizeof(HTVertex) * _vertexCount;
-    createBuffer(vertexBufferSize, VK_BUFFER_USAGE_VERTEX_BUFFER_BIT, vkVertexBuffer, vkVertexBufferDeviceMemory);
+    VkMemoryPropertyFlagBits memoryPropertyFlagBits = VkMemoryPropertyFlagBits(VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
+    createBuffer(vertexBufferSize, VK_BUFFER_USAGE_VERTEX_BUFFER_BIT, memoryPropertyFlagBits, vkVertexBuffer, vkVertexBufferDeviceMemory);
     copyData(vertexBufferSize, reinterpret_cast<void *>(_vertices), vkVertexBufferDeviceMemory);
     uint32_t indexBufferSize = sizeof(uint16_t) * _indexCount;
-    createBuffer(indexBufferSize, VK_BUFFER_USAGE_INDEX_BUFFER_BIT, vkIndexBuffer, vkIndexBufferDeviceMemory);
+    createBuffer(indexBufferSize, VK_BUFFER_USAGE_INDEX_BUFFER_BIT, memoryPropertyFlagBits, vkIndexBuffer, vkIndexBufferDeviceMemory);
     copyData(indexBufferSize, reinterpret_cast<void *>(_indexes), vkIndexBufferDeviceMemory);
 }

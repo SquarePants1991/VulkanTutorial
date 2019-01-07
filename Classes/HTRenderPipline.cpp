@@ -150,12 +150,22 @@ void HTRenderPipline::createPipline() {
             .pImmutableSamplers = nullptr,
             .stageFlags = VK_SHADER_STAGE_VERTEX_BIT
     };
+    VkDescriptorSetLayoutBinding sampledImageLayoutBinding = {
+            .binding = 1,
+            .descriptorCount = 1,
+            .descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,
+            .pImmutableSamplers = nullptr,
+            .stageFlags = VK_SHADER_STAGE_FRAGMENT_BIT
+    };
+    VkDescriptorSetLayoutBinding setLayoutBindings[] = {
+            uniformLayoutBinding,
+            sampledImageLayoutBinding
+    };
     VkDescriptorSetLayoutCreateInfo descriptorSetLayoutCreateInfo = {
             .sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO,
-            .bindingCount = 1,
-            .pBindings = &uniformLayoutBinding,
+            .bindingCount = sizeof(setLayoutBindings) / sizeof(VkDescriptorSetLayoutBinding),
+            .pBindings = setLayoutBindings,
     };
-
     htCheckVKOp(
             vkCreateDescriptorSetLayout(_renderDevicePtr->vkLogicDevice, &descriptorSetLayoutCreateInfo, nullptr, &vkDescriptorSetLayout),
             "VK Descriptor Set Layout create fail.");

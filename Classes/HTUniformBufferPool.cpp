@@ -29,15 +29,21 @@ void HTUniformBufferPool::createUniformBuffers() {
         uniformBuffers[i] = HTNew(HTUniformBuffer, _renderDevicePtr);
     }
 
-    VkDescriptorPoolSize descriptorPoolSize = {
-            .descriptorCount = bufferCount,
-            .type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER
+    VkDescriptorPoolSize descriptorPoolSize[] = {
+            {
+                    .descriptorCount = bufferCount,
+                    .type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER
+            },
+            {
+                    .descriptorCount = bufferCount,
+                    .type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER
+            },
     };
     VkDescriptorPoolCreateInfo descriptorPoolCreateInfo = {
             .sType = VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO,
             .maxSets = bufferCount,
-            .poolSizeCount = 1,
-            .pPoolSizes = &descriptorPoolSize
+            .poolSizeCount = sizeof(descriptorPoolSize) / sizeof(VkDescriptorPoolSize),
+            .pPoolSizes = descriptorPoolSize
     };
     VkResult result = vkCreateDescriptorPool(_renderDevicePtr->vkLogicDevice, &descriptorPoolCreateInfo, nullptr, &vkDescriptorPool);
     htCheckVKOp(result, "VK Descriptor Pool create fail.");

@@ -20,6 +20,9 @@ public:
     std::vector<VkCommandBuffer> vkCommandBuffers;
     HTCommandBufferPool(HTRenderDevicePtr renderDevicePtr, HTSwapchainPtr swapchainPtr);
     ~HTCommandBufferPool();
+
+    VkCommandBuffer beginOneTimeCommands();
+    void endOneTimeCommands(VkCommandBuffer commandBuffer);
 };
 
 HTMakeClass(HTCommandBufferPool)
