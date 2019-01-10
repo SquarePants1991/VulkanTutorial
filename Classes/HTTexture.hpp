@@ -32,6 +32,6 @@ public:
     HTTexture(HTRenderDevicePtr renderDevicePtr, HTCommandBufferPoolPtr commandBufferPoolPtr, const char *imagePath);
     ~HTTexture();
 };
-
+HTMakeClass(HTTexture)
 
 #endif //VULKANTUTORIALMACOS_HTTEXTURE_HPP

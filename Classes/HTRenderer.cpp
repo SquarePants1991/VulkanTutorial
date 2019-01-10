@@ -77,6 +77,7 @@ void HTRenderer::render() {
         if (renderHandler != nullptr) {
             renderHandler(commandBuffer, currentUniformBuffer, renderContext);
         }
+        _uniformBufferPoolPtr->UpdateTextures();
         vkCmdEndRenderPass(commandBuffer);
 
         vkEndCommandBuffer(commandBuffer);

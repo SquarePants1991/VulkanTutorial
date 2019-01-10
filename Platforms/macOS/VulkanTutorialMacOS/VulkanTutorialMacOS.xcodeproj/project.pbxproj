@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D79B1E021E6E38600AED3F5 /* 1.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D79B1DE21E6E37B00AED3F5 /* 1.jpg */; };
+		3D79B1E121E6E38600AED3F5 /* 2.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D79B1DF21E6E37B00AED3F5 /* 2.jpg */; };
 		64AB80DAE94BD07B77D8B2E9 /* HTUniformBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB838638B228F2DCEDEDA5 /* HTUniformBuffer.cpp */; };
 		64AB816196813BF51A1C5F5F /* HTWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 64AB88BAC5071EBD287556F8 /* HTWindow.mm */; };
 		64AB819796DB4AD6A02E0D0A /* HTRenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8202751A74014F09BA93 /* HTRenderPass.cpp */; };
@@ -46,6 +48,8 @@
 				8E140EBE216B65F30016E1A3 /* libvulkan.1.dylib in CopyFiles */,
 				8E7B122121A2BC6F00D669A6 /* vert.spv in CopyFiles */,
 				8E7B122021A2BC6D00D669A6 /* frag.spv in CopyFiles */,
+				3D79B1E021E6E38600AED3F5 /* 1.jpg in CopyFiles */,
+				3D79B1E121E6E38600AED3F5 /* 2.jpg in CopyFiles */,
 				8E140EC2216B69570016E1A3 /* MoltenVK_icd.json in CopyFiles */,
 				8E140EC5216B6D930016E1A3 /* libMoltenVK.dylib in CopyFiles */,
 			);
@@ -54,6 +58,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3D79B1DE21E6E37B00AED3F5 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		3D79B1DF21E6E37B00AED3F5 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		64AB8015E0DF07F62B179B78 /* HTRenderPipline.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTRenderPipline.hpp; sourceTree = "<group>"; };
 		64AB8202751A74014F09BA93 /* HTRenderPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTRenderPass.cpp; sourceTree = "<group>"; };
 		64AB838638B228F2DCEDEDA5 /* HTUniformBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTUniformBuffer.cpp; sourceTree = "<group>"; };
@@ -202,6 +208,8 @@
 		8E140EC0216B692E0016E1A3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3D79B1DE21E6E37B00AED3F5 /* 1.jpg */,
+				3D79B1DF21E6E37B00AED3F5 /* 2.jpg */,
 				8E140EC1216B693E0016E1A3 /* MoltenVK_icd.json */,
 			);
 			path = Resources;

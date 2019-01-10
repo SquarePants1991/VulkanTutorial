@@ -23,6 +23,7 @@ public:
     std::vector<VkDescriptorSet > vkDescriptorSets;
     HTUniformBufferPool(HTRenderDevicePtr renderDevicePtr, HTSwapchainPtr swapchainPtr, HTRenderPiplinePtr renderPiplinePtr);
     ~HTUniformBufferPool();
+    void UpdateTextures();
 };
 
 HTMakeClass(HTUniformBufferPool)

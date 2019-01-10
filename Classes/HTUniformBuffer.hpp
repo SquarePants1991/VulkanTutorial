@@ -7,6 +7,7 @@
 #define VULKANTUTORIALMACOS_HTUNIFORMBUFFER_HPP
 
 #include "HTBuffer.hpp"
+#include "HTTexture.hpp"
 #include <glm/glm.hpp>
 
 struct HTUniformData {
@@ -21,6 +22,8 @@ public:
     VkBuffer vkBuffer;
     VkDeviceMemory vkDeviceMemory;
 
+    HTTexturePtr diffuseMap;
+    
     HTUniformBuffer(HTRenderDevicePtr renderDevicePtr);
     ~HTUniformBuffer();
 

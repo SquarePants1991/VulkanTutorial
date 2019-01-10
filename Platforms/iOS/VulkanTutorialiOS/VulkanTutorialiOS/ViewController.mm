@@ -18,6 +18,7 @@
 #import "HTRenderer.hpp"
 #import "HTVertexBuffer.hpp"
 #import "HTUniformBufferPool.hpp"
+#import "HTTexture.hpp"
 #import <MetalKit/MetalKit.h>
 #import <glm/gtc/matrix_transform.hpp>
 #define GLM_ENABLE_EXPERIMENTAL
@@ -28,10 +29,15 @@
     HTRendererPtr rendererPtr;
     HTSwapchainPtr swapchainPtr;
     HTVertexBufferPtr vertexBufferPtr;
+    std::vector<HTTexturePtr> textures;
     
     CADisplayLink *_renderLoopTimer;
     NSTimeInterval _lastUpdateTime;
+    NSTimeInterval _deltaTime;
     NSTimeInterval _elapsedTime;
+    int currentImageIndex;
+    float switchImageInterval;
+    float switchImageTimer;
 }
 @end
 
@@ -45,6 +51,8 @@ static void render(VkCommandBuffer commandBuffer, HTUniformBufferPtr uniformBuff
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self prepareMetalView];
+
+    switchImageInterval = 3.0f;
     
     HTVulkanInstancePtr vulkanInstancePtr = HTNew(HTVulkanInstance);
     HTRenderSurfacePtr renderSurfacePtr = HTNew(HTRenderSurface, vulkanInstancePtr, (__bridge void *)_metalView);
@@ -64,10 +72,10 @@ static void render(VkCommandBuffer commandBuffer, HTUniformBufferPtr uniformBuff
     HTUniformBufferPoolPtr uniformBufferPoolPtr = HTNew(HTUniformBufferPool, renderDevicePtr, swapchainPtr, renderPipelinePtr);
     
     HTVertex vertices[] = {
-        {{-0.5, 0.5, 0}, {1.0, 0.0, 1.0}},
-        {{0.5, 0.5, 0}, {1.0, 0.0, 1.0}},
-        {{0.5, -0.5, 0}, {0.0, 1.0, 1.0}},
-        {{-0.5, -0.5, 0}, {1.0, 1.0, 0.0}},
+        {{-0.5, 0.5, 0}, {1.0, 0.0, 1.0}, {0.0, 0.0}},
+        {{0.5, 0.5, 0}, {1.0, 0.0, 1.0}, {1.0, 0.0}},
+        {{0.5, -0.5, 0}, {0.0, 1.0, 1.0}, {1.0, 1.0}},
+        {{-0.5, -0.5, 0}, {1.0, 1.0, 0.0}, {0.0, 1.0}},
     };
     
     uint16_t indexes[] = {
@@ -75,7 +83,14 @@ static void render(VkCommandBuffer commandBuffer, HTUniformBufferPtr uniformBuff
         2, 3, 0
     };
     vertexBufferPtr = HTNew(HTVertexBuffer, renderDevicePtr, vertices, sizeof(vertices) / sizeof(HTVertex), indexes, sizeof(indexes) / sizeof(uint16_t));
-    
+
+    NSString *img1Path = [[NSBundle mainBundle] pathForResource:@"1" ofType:@"jpg" inDirectory:@"./"];
+    NSString *img2Path = [[NSBundle mainBundle] pathForResource:@"2" ofType:@"jpg" inDirectory:@"./"];
+    HTTexturePtr texture1 = HTNew(HTTexture, renderDevicePtr, commandBufferPoolPtr, [img1Path UTF8String]);
+    HTTexturePtr texture2 = HTNew(HTTexture, renderDevicePtr, commandBufferPoolPtr, [img2Path UTF8String]);
+    textures.push_back(texture1);
+    textures.push_back(texture2);
+
     rendererPtr = HTNew(HTRenderer, renderDevicePtr, swapchainPtr, renderPassPtr, renderPipelinePtr, frameBufferPoolPtr, commandBufferPoolPtr, uniformBufferPoolPtr);
     rendererPtr->renderHandler = render;
     rendererPtr->renderContext = (__bridge void *)self;
@@ -98,7 +113,8 @@ static void render(VkCommandBuffer commandBuffer, HTUniformBufferPtr uniformBuff
         _lastUpdateTime = now;
         _elapsedTime = 0;
     }
-    _elapsedTime += now - _lastUpdateTime;
+    _deltaTime = now - _lastUpdateTime;
+    _elapsedTime += _deltaTime;
     _lastUpdateTime = now;
     rendererPtr->render();
     rendererPtr->present();
@@ -122,6 +138,14 @@ static void render(VkCommandBuffer commandBuffer, HTUniformBufferPtr uniformBuff
     uniformBufferPtr->uniformData.view = glm::lookAt(glm::vec3(0, 0, -1), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
     uniformBufferPtr->uniformData.model = glm::scale<float, glm::highp>(glm::vec3(scale, scale, scale));
 #endif
+
+    switchImageTimer += _deltaTime;
+    if (switchImageTimer > switchImageInterval) {
+        switchImageTimer = 0;
+        currentImageIndex++;
+        currentImageIndex = currentImageIndex > textures.size() - 1 ? 0 : currentImageIndex;
+    }
+    uniformBufferPtr->diffuseMap = textures[currentImageIndex];
     uniformBufferPtr->flush();
     
     if (vertexBufferPtr) {

@@ -20,7 +20,6 @@
     if (self = [super init]) {
         _window = window;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowWillClose:) name:NSWindowWillCloseNotification object:nil];
-        [self createLoop];
     }
     return self;
 }
@@ -57,6 +56,7 @@ static CVReturn renderCallback(CVDisplayLinkRef displayLink,
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
     _window->launch();
+    [self createLoop];
 }
 
 - (void)windowWillClose:(NSNotification *)notification {

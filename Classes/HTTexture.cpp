@@ -65,6 +65,7 @@ void HTTexture::loadImage(const char *path) {
     VkMemoryRequirements imageMemoryRequirements = {};
     vkGetImageMemoryRequirements(_renderDevicePtr->vkLogicDevice, vkImage, &imageMemoryRequirements);
     buffer.createDeviceMemory(imageMemoryRequirements, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, vkImageDeviceMemory);
+    vkBindImageMemory(_renderDevicePtr->vkLogicDevice, vkImage, vkImageDeviceMemory, VkDeviceSize(0));
 
     transitionImageLayout(vkImage, defaultImageFormat, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
     copyBufferToImage(vkImage, _imageStagingBuffer, imageWidth, imageHeight);
@@ -144,10 +145,10 @@ void HTTexture::copyBufferToImage(VkImage image, VkBuffer srcBuffer, uint32_t im
             .imageSubresource.layerCount = 1,
             .imageSubresource.baseArrayLayer = 0,
             .bufferOffset = VkDeviceSize(0),
-            .bufferRowLength = uint32_t(4 * sizeof(char) * imageWidth),
-            .bufferImageHeight = imageHeight
+            .bufferRowLength = 0,
+            .bufferImageHeight = 0
     };
-    vkCmdCopyBufferToImage(commandBuffer, srcBuffer, image, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, 1, &region);
+    vkCmdCopyBufferToImage(commandBuffer, srcBuffer, image, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
 
     _commandBufferPoolPtr->endOneTimeCommands(commandBuffer);
 }

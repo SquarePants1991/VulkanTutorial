@@ -20,6 +20,39 @@ HTUniformBufferPool::~HTUniformBufferPool() {
     }
 }
 
+void HTUniformBufferPool::UpdateTextures() {
+    uint32_t bufferCount = static_cast<uint32_t>(_swapchainPtr->imageViews.size());
+    for (int i = 0; i < bufferCount; ++i) {
+        HTUniformBufferPtr uniformBufferPtr = uniformBuffers[i];
+        if (uniformBufferPtr->diffuseMap == nullptr) {
+            continue;
+        }
+        VkDescriptorSet descriptorSet = vkDescriptorSets[i];
+
+        VkDescriptorImageInfo descriptorImageInfo = {
+                .sampler = uniformBufferPtr->diffuseMap->vkSampler,
+                .imageView = uniformBufferPtr->diffuseMap->vkImageView,
+                .imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL
+        };
+
+        VkWriteDescriptorSet diffuseMapWriteDescriptorSet = {
+                .sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET,
+                .descriptorCount = 1,
+                .descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,
+                .dstBinding = 1,
+                .dstArrayElement = 0,
+                .dstSet = descriptorSet,
+                .pImageInfo = &descriptorImageInfo
+        };
+
+        VkWriteDescriptorSet writeDescriptorSets[] = {
+                diffuseMapWriteDescriptorSet
+        };
+
+        vkUpdateDescriptorSets(_renderDevicePtr->vkLogicDevice, sizeof(writeDescriptorSets) / sizeof(VkWriteDescriptorSet), writeDescriptorSets, 0, nullptr);
+    }
+}
+
 void HTUniformBufferPool::createUniformBuffers() {
     uint32_t bufferCount = static_cast<uint32_t>(_swapchainPtr->imageViews.size());
     uniformBuffers.resize(bufferCount);
@@ -76,7 +109,7 @@ void HTUniformBufferPool::createUniformBuffers() {
                 .buffer = uniformBufferPtr->vkBuffer
         };
 
-        VkWriteDescriptorSet writeDescriptorSet = {
+        VkWriteDescriptorSet uniformBufferWriteDescriptorSet = {
                 .sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET,
                 .descriptorCount = 1,
                 .descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,
@@ -85,6 +118,11 @@ void HTUniformBufferPool::createUniformBuffers() {
                 .dstSet = descriptorSet,
                 .pBufferInfo = &descriptorBufferInfo
         };
-        vkUpdateDescriptorSets(_renderDevicePtr->vkLogicDevice, 1, &writeDescriptorSet, 0, nullptr);
+
+        VkWriteDescriptorSet writeDescriptorSets[] = {
+            uniformBufferWriteDescriptorSet
+        };
+        vkUpdateDescriptorSets(_renderDevicePtr->vkLogicDevice, sizeof(writeDescriptorSets) / sizeof(VkWriteDescriptorSet), writeDescriptorSets, 0, nullptr);
+        UpdateTextures();
     }
 }

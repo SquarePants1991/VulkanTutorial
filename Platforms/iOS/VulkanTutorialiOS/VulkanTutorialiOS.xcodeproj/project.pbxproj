@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D79B1E521E6F3AD00AED3F5 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3D79B1E321E6F3AD00AED3F5 /* 2.jpg */; };
+		3D79B1E621E6F3AD00AED3F5 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3D79B1E421E6F3AD00AED3F5 /* 1.jpg */; };
+		3D79B1E921E6F57500AED3F5 /* HTTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D79B1E821E6F57500AED3F5 /* HTTexture.cpp */; };
 		8E061C7E216DC916007805C9 /* MoltenVK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E061C7D216DC916007805C9 /* MoltenVK.framework */; };
 		8E140EE1216C69F00016E1A3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EE0216C69F00016E1A3 /* AppDelegate.m */; };
 		8E140EE4216C69F00016E1A3 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E140EE3216C69F00016E1A3 /* ViewController.mm */; };
@@ -47,6 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D79B1E321E6F3AD00AED3F5 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		3D79B1E421E6F3AD00AED3F5 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		3D79B1E721E6F57400AED3F5 /* HTTexture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HTTexture.hpp; sourceTree = "<group>"; };
+		3D79B1E821E6F57500AED3F5 /* HTTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTTexture.cpp; sourceTree = "<group>"; };
 		8E061C7D216DC916007805C9 /* MoltenVK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MoltenVK.framework; sourceTree = "<group>"; };
 		8E061C7F216DC9B9007805C9 /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
 		8E140EDC216C69F00016E1A3 /* VulkanTutorialiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VulkanTutorialiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +130,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D79B1E221E6F3AD00AED3F5 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				3D79B1E321E6F3AD00AED3F5 /* 2.jpg */,
+				3D79B1E421E6F3AD00AED3F5 /* 1.jpg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		8E140ED3216C69F00016E1A3 = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +161,7 @@
 		8E140EDE216C69F00016E1A3 /* VulkanTutorialiOS */ = {
 			isa = PBXGroup;
 			children = (
+				3D79B1E221E6F3AD00AED3F5 /* Images */,
 				8E7B122321A2CFD700D669A6 /* Shaders */,
 				8E140F09216C6C120016E1A3 /* Classes */,
 				8E140F03216C6BA80016E1A3 /* Frameworks */,
@@ -181,6 +198,8 @@
 		8E140F09216C6C120016E1A3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3D79B1E821E6F57500AED3F5 /* HTTexture.cpp */,
+				3D79B1E721E6F57400AED3F5 /* HTTexture.hpp */,
 				8E72835321B1462B00059AFA /* HTBuffer.cpp */,
 				8E72835621B1462C00059AFA /* HTBuffer.hpp */,
 				8E72835521B1462C00059AFA /* HTUniformBuffer.cpp */,
@@ -325,11 +344,13 @@
 				8E7B122D21A2CFD700D669A6 /* vert.spv in Resources */,
 				8E140EEC216C69F10016E1A3 /* LaunchScreen.storyboard in Resources */,
 				8E7B122A21A2CFD700D669A6 /* vertex.vert in Resources */,
+				3D79B1E521E6F3AD00AED3F5 /* 2.jpg in Resources */,
 				8E7B122B21A2CFD700D669A6 /* compile.sh in Resources */,
 				8E140EE9216C69F10016E1A3 /* Assets.xcassets in Resources */,
 				8E140EE7216C69F00016E1A3 /* Main.storyboard in Resources */,
 				8E7B122C21A2CFD700D669A6 /* fragment.frag in Resources */,
 				8E7B122921A2CFD700D669A6 /* frag.spv in Resources */,
+				3D79B1E621E6F3AD00AED3F5 /* 1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +404,7 @@
 				8E140EE1216C69F00016E1A3 /* AppDelegate.m in Sources */,
 				8E7B123021A2D06F00D669A6 /* HTRenderPipline.cpp in Sources */,
 				8E140F0D216C6C120016E1A3 /* HTRenderDevice.cpp in Sources */,
+				3D79B1E921E6F57500AED3F5 /* HTTexture.cpp in Sources */,
 				8EB68943218FEFB100D14E8F /* HTRenderer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

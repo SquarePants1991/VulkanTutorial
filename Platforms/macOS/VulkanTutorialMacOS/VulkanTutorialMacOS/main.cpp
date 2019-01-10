@@ -22,6 +22,7 @@
 #include "HTCommandBufferPool.hpp"
 #include "HTUniformBufferPool.hpp"
 #include "HTRenderer.hpp"
+#include "HTTexture.hpp"
 #include "HTWindow.h"
 
 #include "HTVertexBuffer.hpp"
@@ -39,10 +40,17 @@ class HTVulkanTutorialWindow: public HTWindow {
     HTRendererPtr rendererPtr;
 
     HTVertexBufferPtr vertexBufferPtr;
+    std::vector<HTTexturePtr> diffuseTexturePtrs;
 
-    float elapsedTime;
+    float switchImageTimer;
+    float switchImageInterval;
+    int currentImageIndex;
 public:
-    HTVulkanTutorialWindow(int windowWidth, int windowHeight, const char *title = "Vulkan Tutorial"): HTWindow(windowWidth, windowHeight, title) {
+    HTVulkanTutorialWindow(int windowWidth, int windowHeight, const char *title = "Vulkan Tutorial"):
+            HTWindow(windowWidth, windowHeight, title),
+            switchImageInterval(3),
+            switchImageTimer(0),
+            currentImageIndex(0) {
 
     }
 
@@ -71,10 +79,10 @@ public:
         rendererPtr->renderContext = reinterpret_cast<void *>(this);
 
         HTVertex vertices[] = {
-                {{-0.5, 0.5, 0}, {1.0, 0.0, 1.0}},
-                {{0.45, 0.5, 0}, {1.0, 0.0, 1.0}},
-                {{0.5, -0.5, 0}, {0.0, 1.0, 1.0}},
-                {{-0.5, -0.5, 0}, {1.0, 1.0, 0.0}},
+                {{-0.5, 0.5, 0}, {1.0, 0.0, 1.0}, {0.0, 0.0}},
+                {{0.45, 0.5, 0}, {1.0, 0.0, 1.0}, {1.0, 0.0}},
+                {{0.5, -0.5, 0}, {0.0, 1.0, 1.0}, {1.0, 1.0}},
+                {{-0.5, -0.5, 0}, {1.0, 1.0, 0.0}, {0.0, 1.0}},
         };
 
         uint16_t indexes[] = {
@@ -82,6 +90,11 @@ public:
                 2, 3, 0
         };
         vertexBufferPtr = HTNew(HTVertexBuffer, renderDevicePtr, vertices, sizeof(vertices) / sizeof(HTVertex), indexes, sizeof(indexes) / sizeof(uint16_t));
+
+        HTTexturePtr diffuseTexturePtr1 = HTNew(HTTexture, renderDevicePtr, commandBufferPoolPtr, "./1.jpg");
+        HTTexturePtr diffuseTexturePtr2 = HTNew(HTTexture, renderDevicePtr, commandBufferPoolPtr, "./2.jpg");
+        diffuseTexturePtrs.push_back(diffuseTexturePtr1);
+        diffuseTexturePtrs.push_back(diffuseTexturePtr2);
 
         elapsedTime = 0.0f;
     }
@@ -104,6 +117,16 @@ public:
         uniformBufferPtr->uniformData.view = glm::lookAt(glm::vec3(0, 0, -1), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
         uniformBufferPtr->uniformData.model = glm::scale<float, glm::highp>(glm::vec3(scale, scale, scale));
 #endif
+
+        switchImageTimer += deltaTime;
+        if (switchImageTimer > switchImageInterval) {
+            currentImageIndex++;
+            if (currentImageIndex > diffuseTexturePtrs.size() - 1) {
+                currentImageIndex = 0;
+            }
+            switchImageTimer = 0;
+        }
+        uniformBufferPtr->diffuseMap = diffuseTexturePtrs[currentImageIndex];
         uniformBufferPtr->flush();
 
         if (vertexBufferPtr) {

@@ -15,6 +15,7 @@
 struct HTVertex {
     glm::vec3 position;
     glm::vec3 color;
+    glm::vec2 uv;
     
     static std::vector<VkVertexInputBindingDescription> getBindingDescriptions() {
         std::vector<VkVertexInputBindingDescription> bindingDescriptions;
@@ -41,8 +42,15 @@ struct HTVertex {
                 .location = 1,
                 .format = VK_FORMAT_R32G32B32_SFLOAT
         };
+        VkVertexInputAttributeDescription uvAttr = {
+                .binding = 0,
+                .offset = static_cast<uint32_t>(offsetof(HTVertex, uv)),
+                .location = 2,
+                .format = VK_FORMAT_R32G32_SFLOAT
+        };
         attributeDescriptions.push_back(positionAttr);
         attributeDescriptions.push_back(colorAttr);
+        attributeDescriptions.push_back(uvAttr);
         return attributeDescriptions;
     }
 };
